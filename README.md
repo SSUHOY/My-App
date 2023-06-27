@@ -1,4 +1,4 @@
-Проект МУЗЫКАЛЬНЫЙ СЕРВИС, 3 КУРС
+Проект МУЗЫКАЛЬНЫЙ СЕРВИС, 3 КУРС REACT
 
 # Getting Started with Create React App
 
