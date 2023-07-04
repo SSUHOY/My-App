@@ -3,10 +3,10 @@ import Menu from './components/menu'
 import SearchBar from './components/searchBar'
 import HeaderBlock from './components/headerBlock'
 import Filter from './components/filter'
-import PlayListTitle from './components/playListTitle'
+import PlayListTitle from './components/player_components/playListTitle'
 import Logo from './components/logo';
 import Burger from './components/burgerLine';
-import PlayListItem from './components/playListItem';
+import PlayListItem from './components/player_components/playListItem';
 import UserNameSideBar from './components/userName';
 import SidebarBlock from './components/sideBarBlock';
 import BarContentForm from './components/barContentForm';
@@ -38,7 +38,7 @@ function App() {
           </div>
         </div>
         <div className="main__sidebar sidebar">
-          <UserNameSideBar userName="Имя пользователя" avatarImg="аватарка" />
+          <UserNameSideBar userName="Имя пользователя" avatarImg="аватар" />
           <SidebarBlock />
         </div>
       </main>

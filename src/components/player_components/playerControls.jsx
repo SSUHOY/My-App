@@ -1,4 +1,4 @@
-import PlayerButton from './playerButton'
+import PlayerButton from "./playerButton"
 
 const PlayerControls = () => {
   return (

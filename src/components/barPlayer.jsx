@@ -1,4 +1,4 @@
-import PlayerControls from './playerControls'
+import PlayerControls from './player_components/playerControls'
 import TrackPlay from './trackPlay'
 
 const BarPlayer = () => {

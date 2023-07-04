@@ -1,4 +1,4 @@
-const UserNameSideBar = () => {
+const UserNameSideBar = ({ userName, avatarImg }) => {
     return (
         <div className="sidebar__personal">
           <p className="sidebar__personal-name">{userName}</p>
