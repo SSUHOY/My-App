@@ -799,23 +799,51 @@ body {
 }
 
 .track-play__like-dis {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: center;
   margin-left: 26%;
 }
-
 .track-play__like, .track-play__dislike {
   padding: 5px;
 }
 
 .track-play__like-svg {
   width: 14px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+}
+
+.track-play__dislike {
+  margin-left: 28.5px;
+}
+.track-play__dislike-svg {
+  width: 14.34px;
+  height: 13px;
+  fill: transparent;
+  stroke: #696969;
+}
+
+.volume__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.volume__image {
+  width: 13px;
+  height: 18px;
+  margin-right: 17px;
+}
+.volume__svg {
+  width: 13px;
+  height: 18px;
+  fill: transparent;
+}
+.volume__progress {
+  width: 109px;
+}
+.volume__progress-line {
+  width: 109px;
 }

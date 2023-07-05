@@ -1,22 +1,22 @@
 import './App.css';
-import Menu from './components/menu'
-import SearchBar from './components/searchBar'
-import HeaderBlock from './components/headerBlock'
-import Filter from './components/filter'
+import Menu from './components/basicPage_components/menu'
+import SearchBar from './components/basicPage_components/searchBar'
+import HeaderBlock from './components/basicPage_components/headerBlock'
+import Filter from './components/basicPage_components/filter'
 import PlayListTitle from './components/player_components/playListTitle'
-import Logo from './components/logo';
-import Burger from './components/burgerLine';
+import Logo from './components/basicPage_components/logo';
+import Burger from './components/basicPage_components/burgerLine';
 import PlayListItem from './components/player_components/playListItem';
-import UserNameSideBar from './components/userName';
-import SidebarBlock from './components/sideBarBlock';
-import BarContentForm from './components/barContentForm';
+import UserNameSideBar from './components/basicPage_components/userName';
+import SidebarBlock from './components/sideBar_components/sideBarBlock';
+import BarContentForm from './components/basicPage_components/barContentForm';
 
 function App() {
   return (
     <div className="wrapper">
-    <div className="container">
-      <main className="main">
-        <nav className="main__nav nav">
+      <div className="container">
+        <main className="main">
+          <nav className="main__nav nav">
           <Logo />
           <Burger />
           <Menu />
