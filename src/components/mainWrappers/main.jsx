@@ -1,13 +1,13 @@
-import Burger from "../basicPage_components/burgerLine"
-import Filter from "../basicPage_components/filter"
-import HeaderBlock from "../basicPage_components/headerBlock"
-import Logo from "../basicPage_components/logo"
-import Menu from "../basicPage_components/menu"
-import SearchBar from "../basicPage_components/searchBar"
-import UserNameSideBar from "../basicPage_components/userName"
-import PlayListItem from "../player_components/playListItem"
-import PlayListTitle from "../player_components/playListTitle"
-import SidebarBlock from "../sideBar_components/sideBarBlock"
+import Burger from "../basicPage/burgerLine"
+import Filter from "../basicPage/filter"
+import HeaderBlock from "../basicPage/headerBlock"
+import Logo from "../basicPage/logo"
+import Menu from "../basicPage/menu"
+import SearchBar from "../basicPage/searchBar"
+import UserNameSideBar from "../basicPage/userName"
+import PlayListItem from "../player/playListItem"
+import PlayListTitle from "../player/playListTitle"
+import SidebarBlock from "../sideBar/sideBarBlock"
 
 export function Main() {
     return (
