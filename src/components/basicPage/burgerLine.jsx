@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const Burger = () => {
     return (
       <div className="nav__burger burger">

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Burger from "../basicPage/burgerLine"
 import Filter from "../basicPage/filter"
 import HeaderBlock from "../basicPage/headerBlock"
@@ -9,13 +10,13 @@ import PlayListItem from "../player/playListItem"
 import PlayListTitle from "../player/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
 
-export function Main() {
+export function Main({active, setActive}) {
     return (
         <main className="main">
-        <nav className="main__nav nav">
+        <nav className={active ? 'menu active' : 'main__nav nav'}>
         <Logo />
-        <Burger />
-        <Menu />
+        <Burger  />
+        <Menu/>
         </nav>
         <div className="main__centerblock centerblock">
         <SearchBar />
@@ -42,3 +43,4 @@ export function Main() {
   }
 
 export default Main
+{/* <nav className="main__nav nav"> */}

@@ -104,8 +104,10 @@ body {
 
 .main__nav {
   width: 244px;
+  height: 100vh;
   background-color: #181818;
   padding: 20px 0 20px 36px;
+  transition: translateX(-130%);
 }
 
 .main__centerblock {
@@ -143,6 +145,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+          cursor: pointer;
 }
 
 .nav__menu {
