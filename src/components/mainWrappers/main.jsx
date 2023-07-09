@@ -9,20 +9,32 @@ import UserNameSideBar from "../basicPage/userName"
 import PlayListItem from "../player/playListItem"
 import PlayListTitle from "../player/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
+import { SkeletonTheme } from "react-loading-skeleton"
 
 export function Main({active, setActive}) {
+
+  const [menuActive, setMenuActive] = useState(false)
+
+
     return (
         <main className="main">
-        <nav className={active ? 'menu active' : 'main__nav nav'}>
+        <nav className='main__nav nav'>
         <Logo />
-        <Burger  />
-        <Menu/>
+        <div className="nav__burger burger" onClick={() => setMenuActive(!menuActive)}>
+        <Burger />
+        </div>
+        <div className={active ? "nav__menu active" : "nav__menu"} onClick={()=> {
+          setActive(false)
+        }}>
+         <Menu active={menuActive} setActive={setMenuActive}/>
+        </div>
         </nav>
         <div className="main__centerblock centerblock">
         <SearchBar />
         <HeaderBlock />
         <Filter />
-        <div className="centerblock__content">
+        <div className="centerblock__content"> 
+        <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">
             <PlayListItem
@@ -31,7 +43,7 @@ export function Main({active, setActive}) {
               album="альбом"
               time="время"
             />
-          </div>
+          </div></SkeletonTheme>
         </div>
         </div>
         <div className="main__sidebar sidebar">

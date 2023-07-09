@@ -1,12 +1,18 @@
-const PlayListItem = ({ title, artist, album, time }) => {
+import Skeleton from "react-loading-skeleton"
+
+const PlayListItem = ({ title, artist, album, time, item, loading }) => {
     return (
       <div className="playlist__item">
         <div className="playlist__track track">
           <div className="track__title">
             <div className="track__title-image">
+            {loading ? (
+              <Skeleton count={1} />
+            ) : (
               <svg className="track__title-svg" alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
               </svg>
+            )}
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">

@@ -1,7 +1,9 @@
+import React from "react"
+
 const Menu = () => {
  
     return (
-      <div className="nav__menu menu">
+      <React.Fragment>
         <ul className="menu__list">
           <li className="menu__item">
             <a href="http://" className="menu__link">
@@ -19,7 +21,7 @@ const Menu = () => {
             </a>
           </li>
         </ul>
-      </div>
+        </React.Fragment>
     )
   }
   

@@ -107,8 +107,9 @@ body {
   height: 100vh;
   background-color: #181818;
   padding: 20px 0 20px 36px;
-  transition: translateX(-130%);
 }
+
+
 
 .main__centerblock {
   width: auto;
@@ -151,6 +152,12 @@ body {
 .nav__menu {
   display: block;
   visibility: visible;
+  transform: translateX(-1000%);
+  transition: all 0.2s;
+}
+
+.active {
+  transform: translateX(0);
 }
 
 .logo__image {
