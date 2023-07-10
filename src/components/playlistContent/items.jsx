@@ -43,8 +43,4 @@ export const items = [
     author: 'Tom Boxer',
     album: 'Soundz Made in Romania',
     time: '3:36'},
-    {title: '',
-    author: '',
-    album: '',
-    time: ''},
 ]
