@@ -10,8 +10,19 @@ import PlayListItem from "../player/playListItem"
 import PlayListTitle from "../player/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
+import { items } from "../playlistContent/items"
+import { useEffect } from "react"
 
 export function Main({active, setActive}) {
+
+
+  const [loading,setLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 5000);
+    return () => clearTimeout(timer)
+    }, [])
 
   const [menuActive, setMenuActive] = useState(false)
 
@@ -37,17 +48,14 @@ export function Main({active, setActive}) {
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">
-            <PlayListItem
-              title="название трека"
-              artist="артист"
-              album="альбом"
-              time="время"
-            />
+          {items.map((item,index) => (
+              <PlayListItem key= {index} item={item} loading={loading} />
+            ))}
           </div></SkeletonTheme>
         </div>
         </div>
         <div className="main__sidebar sidebar">
-        <UserNameSideBar userName="Имя пользователя" avatarImg="аватар" />
+        <UserNameSideBar userName="Имя пользователя" avatarImg="" />
         <SidebarBlock />
         </div>
         </main>
