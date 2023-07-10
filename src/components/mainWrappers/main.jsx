@@ -23,7 +23,7 @@ export function Main({active, setActive}) {
         <div className="nav__burger burger" onClick={() => setMenuActive(!menuActive)}>
         <Burger />
         </div>
-        <div className={active ? "nav__menu active" : "nav__menu"} onClick={()=> {
+        <div className={menuActive ? "nav__menu active" : "nav__menu"} onClick={()=> {
           setActive(false)
         }}>
          <Menu active={menuActive} setActive={setMenuActive}/>
