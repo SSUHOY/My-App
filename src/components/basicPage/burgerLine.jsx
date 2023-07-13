@@ -1,10 +1,13 @@
+import React from "react"
+
 const Burger = () => {
+
     return (
-      <div className="nav__burger burger">
+      <React.Fragment>
         <span className="burger__line" />
         <span className="burger__line" />
         <span className="burger__line" />
-      </div>
+      </React.Fragment>
     )
   }
   
