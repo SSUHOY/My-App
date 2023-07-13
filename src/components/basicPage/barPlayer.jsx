@@ -1,12 +1,13 @@
 import PlayerControls from '../player/playerControls'
 import TrackPlay from './trackPlay'
+import * as S from '../styles/basicPage/basicPageStyles'
 
 const BarPlayer = () => {
   return (
-    <div className="bar__player player">
+    <S.BarPlayer>
       <PlayerControls />
       <TrackPlay />
-    </div>
+    </S.BarPlayer>
   )
 }
 

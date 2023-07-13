@@ -1,4 +1,23 @@
 import { useState } from "react";
+import styled from "styled-components";
+
+
+export const StyledCenterBlockFilter = styled.div`
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+    -ms-flex-direction: row;
+        flex-direction: row;
+-webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
+margin-bottom: 51px;
+`
+
+// export const StyledFilterTitle = styled.div`
+// `
 
 const Filter = () => {
 
@@ -15,7 +34,7 @@ const Filter = () => {
   }
 
     return (
-      <div className="centerblock__filter filter">
+      <StyledCenterBlockFilter>
         <div className="filter__title">Искать по: &nbsp; &nbsp;</div>
         <div className="dropdown_menu">
         <button
@@ -67,7 +86,7 @@ const Filter = () => {
           <p>Инди</p>
         </div>
       </div>
-      </div>
+      </StyledCenterBlockFilter>
     )
   }
   export default Filter
