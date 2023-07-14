@@ -1,9 +1,11 @@
+import * as S from "../styles/basicPage/basicPageStyles"
+
 const UserNameSideBar = ({ userName, avatarImg }) => {
     return (
-        <div className="sidebar__personal">
-          <p className="sidebar__personal-name">{userName}</p>
-          <div className="sidebar__avatar">{avatarImg}</div>
-        </div>
+        <S.UserNameSideBar>
+          <S.SideBarPersonalName>{userName}</S.SideBarPersonalName>
+          <S.SideBarPersonalName>{avatarImg}</S.SideBarPersonalName>
+        </S.UserNameSideBar>
       )
     }
     export default UserNameSideBar

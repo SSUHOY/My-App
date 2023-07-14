@@ -1,59 +1,62 @@
+import * as S from "../styles/basicPage/basicPageStyles"
+
+
 const TrackPlayImg = () => {
     return (
-      <div className="track-play__image">
-        <svg className="track-play__svg" alt="music">
+      <S.TrackPlayImg >
+        <S.TrackPlaySvg alt="music">
           <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-        </svg>
-      </div>
+        </S.TrackPlaySvg>
+      </S.TrackPlayImg>
     )
   }
   const TrackPlayArtist = () => {
     return (
-      <div className="track-play__author">
-        <a className="track-play__author-link" href="http://">
+      <S.TrackPlayAuthor>
+        <S.TrackPlayAuthorLink href="http://">
           Ты та...
-        </a>
-      </div>
+        </S.TrackPlayAuthorLink>
+      </S.TrackPlayAuthor>
     )
   }
   
   const TrackPlayAlbum = () => {
     return (
-      <div className="track-play__album">
-        <a className="track-play__album-link" href="http://">
+      <S.TrackPlayAlbum >
+        <S.TrackPlayAlbumLink href="http://">
           Баста
-        </a>
-      </div>
+        </S.TrackPlayAlbumLink >
+      </S.TrackPlayAlbum>
     )
   }
   
   const LikeDislike = () => {
     return (
-      <div className="track-play__like-dis">
-        <div className="track-play__like _btn-icon">
-          <svg className="track-play__like-svg" alt="like">
+      <S.TrackPlayLikeDis className="track-play__like-dis">
+        <S.TrackPlayLike className="track-play__like _btn-icon">
+          <svg alt="like" className="track-play__like-svg">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-          </svg>
-        </div>
-        <div className="track-play__dislike _btn-icon">
+          </svg >
+        </S.TrackPlayLike>
+        <S.TrackPlayDislike className="track-play__dislike _btn-icon">
           <svg className="track-play__dislike-svg" alt="dislike">
             <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
           </svg>
-        </div>
-      </div>
+        </S.TrackPlayDislike >
+      </S.TrackPlayLikeDis >
     )
   }
   
   const TrackPlay = () => {
     return (
-      <div className="player__track-play track-play">
-        <div className="track-play__contain">
+      <S.TrackPlayPlayer >
+        <S.TrackPlayContain>
           <TrackPlayImg />
           <TrackPlayArtist />
           <TrackPlayAlbum />
-        </div>
+        </S.TrackPlayContain>
         <LikeDislike />
-      </div>
+      </S.TrackPlayPlayer>
     )
   }
   

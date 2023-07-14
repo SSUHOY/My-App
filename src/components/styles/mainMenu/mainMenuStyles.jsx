@@ -65,11 +65,11 @@ padding: 20px 90px 20px 78px;
 
 export const NavMenu = styled.div`
 display: block;
-visibility: visible;
-transform: translateX(-1500%);
-transition: all 0.2s
+  visibility: visible;
+  transition: all 0.2s;
+  transform: ${props => props.active ? "translateX(0%)" : "translateX(-1500%)"};
 
-  // Затем мы можем использовать проп props.active для добавления дополнительных стилей
-  ${props => props.active && `transform: translateX(0)
+  ${props => props.active && `
+    background-color: transparent;
   `}
 `;

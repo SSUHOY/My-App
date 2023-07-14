@@ -1,6 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyling = createGlobalStyle `
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 * {
     margin: 0;
   padding: 0;
@@ -21,6 +28,7 @@ body {
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
   color: #FFFFFF;
+  background-color: #313131;
 }
 `
 export default GlobalStyling
