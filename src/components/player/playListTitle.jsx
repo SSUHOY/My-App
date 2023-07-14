@@ -1,15 +1,17 @@
+import * as S from "../styles/player/playerStyles"
+
 const PlayListTitle = () => {
     return (
-      <div className="content__title playlist-title">
-        <div className="playlist-title__col col01">Трек</div>
-        <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-        <div className="playlist-title__col col03">АЛЬБОМ</div>
-        <div className="playlist-title__col col04">
-          <svg className="playlist-title__svg" alt="time">
+      <S.PlayListContentTitle>
+        <S.PlayListTitleCol1>Трек</S.PlayListTitleCol1>
+        <S.PlayListTitleCol2>ИСПОЛНИТЕЛЬ</S.PlayListTitleCol2 >
+        <S.PlayListTitleCol3>АЛЬБОМ</S.PlayListTitleCol3 >
+        <S.PlayListTitleCol4>
+          <S.PlayListTitleSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-watch" />
-          </svg>
-        </div>
-      </div>
+          </S.PlayListTitleSvg>
+        </S.PlayListTitleCol4 >
+      </S.PlayListContentTitle >
     )
   }
   
