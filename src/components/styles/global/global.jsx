@@ -24,11 +24,18 @@ const GlobalStyling = createGlobalStyle `
 
 html,
 body {
+  margin: 0;
   width: 100%;
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
   color: #FFFFFF;
   background-color: #313131;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 `
 export default GlobalStyling

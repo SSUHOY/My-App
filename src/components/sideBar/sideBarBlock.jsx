@@ -1,14 +1,16 @@
 import SidebarItem from './sideBarItem'
 
+import * as S from '../styles/sideBar/sideBarStyles'
+
 const SidebarBlock = () => {
   return (
-    <div className="sidebar__block">
-      <div className="sidebar__list">
+    <S.SideBarBlock >
+      <S.SideBarList className="sidebar__list">
         <SidebarItem imgURL="img/playlist01.png" altText="day's playlist" />
         <SidebarItem imgURL="img/playlist02.png" altText="day's playlist" />
         <SidebarItem imgURL="img/playlist03.png" altText="day's playlist" />
-      </div>
-    </div>
+      </S.SideBarList >
+    </S.SideBarBlock>
   )
 }
 

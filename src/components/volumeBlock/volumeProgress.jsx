@@ -1,8 +1,10 @@
+import  * as S from "../styles/volumeBlock/volumeBlockStyles"
+
 const VolumeProgressBtn = () => {
     return (
-      <div className="volume__progress _btn">
-        <input className="volume__progress-line _btn" type="range" name="range" />
-      </div>
+      <S.VolumeProgressLine>
+        <S.VolumeProgressLineInput type="range" name="range" />
+      </S.VolumeProgressLine>
     )
   }
   

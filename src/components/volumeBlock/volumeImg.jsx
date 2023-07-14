@@ -1,10 +1,12 @@
+import * as S from "../styles/volumeBlock/volumeBlockStyles"
+
 const VolumeImg = () => {
     return (
-      <div className="volume__image">
-        <svg className="volume__svg" alt="volume">
+      <S.VolumeImg>
+        <S.VolumeSvg alt="volume">
           <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
-        </svg>
-      </div>
+        </S.VolumeSvg>
+      </S.VolumeImg>
     )
   }
   

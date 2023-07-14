@@ -1,10 +1,12 @@
+import * as S from "../styles/sideBar/sideBarStyles"
+
 const SidebarItem = ({ imgURL, altText }) => {
     return (
-      <div className="sidebar__item">
-        <a className="sidebar__link" href="#">
-          <img className="sidebar__img" src={imgURL} alt={altText} />
-        </a>
-      </div>
+      <S.SideBarItem >
+        <S.SideBarLink href="#">
+          <S.SideBarImg src={imgURL} alt={altText} />
+        </S.SideBarLink>
+      </S.SideBarItem>
     )
   }
   
