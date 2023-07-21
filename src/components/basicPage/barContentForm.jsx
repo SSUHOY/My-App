@@ -1,17 +1,19 @@
 import BarPlayer from './barPlayer'
 import VolumeBlock from '../volumeBlock/volumeBlock'
+import * as S from '../styles/basicPage/basicPageStyles'
+
 
 const BarContentForm = () => {
   return (
-    <div className="bar">
-  <div className="bar__content">
-    <div className="bar__player-progress"></div>
-    <div className="bar__player-block">
+    <S.Bar>
+  <S.BarContent >
+    <S.BarPlayerProgress></S.BarPlayerProgress>
+    <S.BarPlayerBlock >
       <BarPlayer />
       <VolumeBlock />
-    </div>
-  </div>
-    </div>
+    </S.BarPlayerBlock>
+  </S.BarContent>
+    </S.Bar>
   
   )
 }

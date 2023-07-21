@@ -1,12 +1,15 @@
 import React from "react"
+import { BurgerLine } from "../styles/basicPage/basicPageStyles"
+
+
 
 const Burger = () => {
 
     return (
       <React.Fragment>
-        <span className="burger__line" />
-        <span className="burger__line" />
-        <span className="burger__line" />
+        <BurgerLine className="burger__line" />
+        <BurgerLine className="burger__line" />
+        <BurgerLine className="burger__line" />
       </React.Fragment>
     )
   }

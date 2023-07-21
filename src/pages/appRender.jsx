@@ -2,13 +2,15 @@ import BarContentForm from "../components/basicPage/barContentForm";
 import { Container } from "../components/mainWrappers/container";
 import Footer from "../components/mainWrappers/footer";
 import Main from "../components/mainWrappers/main";
+import GlobalStyling from "../components/styles/global/global";
 
 function AppRender() {
   return (
     <Container>
-<Main/>
-<BarContentForm/>
-<Footer/>
+    <GlobalStyling/>
+    <Main/>
+    <BarContentForm/>
+    <Footer/>
     </Container>
   )
    

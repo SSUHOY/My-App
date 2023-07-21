@@ -1,67 +1,68 @@
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S  from "../styles/player/playerStyles"
 
 const PlayListItem = ({ title, artist, album, time, item, loading }) => {
     return (
-      <div className="playlist__item">
-        <div className="playlist__track track">
-          <div className="track__title">
-            <div className="track__title-image">
+      <S.PlaylistItem>
+        <S.PlayListTrack>
+          <S.TrackTitle>
+            <S.TrackTitleImg>
             {loading ? (
               <Skeleton count={1} />
             ) : (
-              <svg className="track__title-svg" alt="music">
+              <S.TrackTitleSvg alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-              </svg>
+              </S.TrackTitleSvg>
             )}
-            </div>
-            <div className="track__title-text">
+            </S.TrackTitleImg>
+            <S.TrackTitle>
             {loading ? (
               <Skeleton count={1} />
             ) : (
-              <a className="track__title-link" href="http://">
+              <S.TrackTitleLink href="http://">
                 {' '}
                 {item?.title}{' '}
-                <span className="track__title-span">
+                <S.TrackTitleSpan>
                   {item?.subtitle ? `(${item?.subtitle})` : ''}
-                </span>
-              </a>
+                </S.TrackTitleSpan >
+              </S.TrackTitleLink>
             )}
-            </div>
-          </div>
-          <div className="track__author">
+            </S.TrackTitle>
+          </S.TrackTitle>
+          <S.TrackAuthor >
           {loading ? (
             <Skeleton count={1} />
           ) : (
-            <a className="track__author-link" href="http://">
+            <S.TrackAuthorLink  href="http://">
               {item?.author}
-            </a>
+            </S.TrackAuthorLink>
           )}
-          </div>
-          <div className="track__album">
+          </S.TrackAuthor >
+          <S.TrackAlbum className="track__album">
           {loading ? (
             <Skeleton count={1} />
           ) : (
-            <a className="track__album-link" href="http://">
+            <S.TrackAlbumLink  href="http://">
               {item?.album}
-            </a>
+            </S.TrackAlbumLink>
           )}
-          </div>
-          <div className="track__time">
+          </S.TrackAlbum>
+          <S.TrackTimeText>
           {loading ? (
             <Skeleton count={1} />
           ) : (
             <>
               {' '}
-              <svg className="track__time-svg" alt="time">
+              <S.TrackAlbumTimeSvg alt="time">
                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-              </svg>
-              <span className="track__time-text">{item?.time}</span>
+              </S.TrackAlbumTimeSvg>
+              <S.TrackTimeText className="track__time-text">{item?.time}</S.TrackTimeText >
             </>
           )}
-          </div>
-        </div>
-      </div>
+          </S.TrackTimeText>
+        </S.PlayListTrack>
+      </S.PlaylistItem>
     )
   }
   export default PlayListItem

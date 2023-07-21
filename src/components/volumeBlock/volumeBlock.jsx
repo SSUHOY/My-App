@@ -1,14 +1,16 @@
 import VolumeImg from './volumeImg'
 import VolumeProgressBtn from './volumeProgress'
 
+import * as S from '../styles/volumeBlock/volumeBlockStyles'
+
 const VolumeBlock = () => {
   return (
-    <div className="bar__volume-block volume">
-      <div className="volume__content">
+    <S.VolumeBlock>
+      <S.VolumeContent>
         <VolumeImg />
         <VolumeProgressBtn />
-      </div>
-    </div>
+      </S.VolumeContent>
+    </S.VolumeBlock>
   )
 }
 export default VolumeBlock

@@ -1,20 +1,9 @@
-import BarContentForm from "../basicPage/barContentForm";
-import Main from "./main";
-
+import { StyledContainer } from "../styles/wrappers/containerStyles";
 
 export function Container({children}) {
   return (
-    <div className="wrapper">
+    <StyledContainer className="wrapper">
        <div className="container">{children}</div>
-    </div>
+    </StyledContainer>
   );
 }
-
-{/* <div className="container">
-   <Main/>
-  <div className="bar">
-    <BarContentForm />
-  </div>
-  <footer className="footer"></footer>
-</div>
-  ) */}

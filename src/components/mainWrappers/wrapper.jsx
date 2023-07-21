@@ -1,10 +1,14 @@
+import { StyledWrapper } from "../styles/wrappers/wrapperStyles";
 import { Container } from "./container";
+
+
+
 
 function Wrapper() {
     return (
-      <div className="wrapper">
+      <StyledWrapper className="wrapper">
        <Container/>
-    </div>
+    </StyledWrapper>
     )
   }
   

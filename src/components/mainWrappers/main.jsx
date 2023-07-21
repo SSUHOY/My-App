@@ -12,39 +12,39 @@ import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
 import { items } from "../playlistContent/items"
 import { useEffect } from "react"
+import * as S from "../styles/mainMenu/mainMenuStyles"
+
+
+
 
 export function Main({active, setActive}) {
 
-
-  const [loading,setLoading] = useState(true)
+   const [loading,setLoading] = useState(true)
   useEffect(() => {
-    const timer = setTimeout(() => {
+     const timer = setTimeout(() => {
       setLoading(false)
     }, 5000);
     return () => clearTimeout(timer)
     }, [])
 
-  const [menuActive, setMenuActive] = useState(false)
-
+   const [menuActive, setMenuActive] = useState(false)
 
     return (
-        <main className="main">
-        <nav className='main__nav nav'>
+        <S.Main>
+        <S.MainNav>
         <Logo />
-        <div className="nav__burger burger" onClick={() => setMenuActive(!menuActive)}>
+        <S.NavBurger onClick={() => setMenuActive(!menuActive)}>
         <Burger />
-        </div>
-        <div className={menuActive ? "nav__menu active" : "nav__menu"} onClick={()=> {
-          setActive(false)
-        }}>
+        </S.NavBurger>
+        <S.NavMenu active={menuActive}>
          <Menu active={menuActive} setActive={setMenuActive}/>
-        </div>
-        </nav>
-        <div className="main__centerblock centerblock">
+        </S.NavMenu>
+        </S.MainNav>
+        <S.MainCenterBlock>
         <SearchBar />
         <HeaderBlock />
         <Filter />
-        <div className="centerblock__content"> 
+        <S.CenterBlockContent > 
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">
@@ -52,15 +52,14 @@ export function Main({active, setActive}) {
               <PlayListItem key= {index} item={item} loading={loading} />
             ))}
           </div></SkeletonTheme>
-        </div>
-        </div>
-        <div className="main__sidebar sidebar">
+        </S.CenterBlockContent>
+        </S.MainCenterBlock>
+        <S.MainSideBar>
         <UserNameSideBar userName="Имя пользователя" avatarImg="" />
         <SidebarBlock />
-        </div>
-        </main>
+        </S.MainSideBar>
+        </S.Main>
     )
   }
 
 export default Main
-{/* <nav className="main__nav nav"> */}

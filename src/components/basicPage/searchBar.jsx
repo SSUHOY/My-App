@@ -1,16 +1,17 @@
+import * as S from "../styles/basicPage/basicPageStyles"
+
 const SearchBar = () => {
     return (
-      <div className="centerblock__search search">
-        <svg className="search__svg">
+      <S.CenterBlock >
+        <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search" />
-        </svg>
-        <input
-          className="search__text"
+        </S.SearchSvg>
+        <S.SearchText
           type="search"
           placeholder="Поиск"
           name="search"
         />
-      </div>
+      </S.CenterBlock>
     )
   }
   

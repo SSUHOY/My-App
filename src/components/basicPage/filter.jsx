@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as S from "../styles/basicPage/filterStyles";
 
 const Filter = () => {
 
@@ -15,8 +16,8 @@ const Filter = () => {
   }
 
     return (
-      <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по: &nbsp; &nbsp;</div>
+      <S.CenterBlockFilter>
+        <S.FilterTitle className="filter__title">Искать по: &nbsp; &nbsp;</S.FilterTitle>
         <div className="dropdown_menu">
         <button
           onClick={handClick}
@@ -33,7 +34,7 @@ const Filter = () => {
           <p>Arctic Monkeys</p>
         </div>
       </div>
-      <div className="filter__title-year">
+      <S.FilterTitle>
         <button
           onClick={handClick}
           name="year"
@@ -42,16 +43,16 @@ const Filter = () => {
           году выпуска
         </button>
         <div id="myDropdown" className={`dropdown-content-year ${clicks.year? "show-year" : ""}`}>
-          <fieldset className="select-year">
-            <input type="radio" id="New" name="Tracks" className="input-year"/>
+          <S.FieldSetRadio className="select-year">
+            <S.InputRadio type="radio" id="New" name="Tracks" className="input-year"/>
           <label>Более новые &nbsp;</label>
-          <input type="radio" id="Old" name="Tracks" className="input-year"/>
+          <S.InputRadio type="radio" id="Old" name="Tracks" className="input-year"/>
           <label>Более старые</label>
-          </fieldset>
+          </S.FieldSetRadio>
           
         </div>
-      </div>
-      <div className="filter__title">
+      </S.FilterTitle>
+      <S.FilterTitle className="filter__title">
         <button
           onClick={handClick}
           name="genre"
@@ -66,8 +67,8 @@ const Filter = () => {
           <p>Техно </p>
           <p>Инди</p>
         </div>
-      </div>
-      </div>
+      </S.FilterTitle>
+      </S.CenterBlockFilter>
     )
   }
   export default Filter
