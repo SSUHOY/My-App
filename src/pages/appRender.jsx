@@ -5,11 +5,13 @@ import Main from "../components/mainWrappers/main";
 import GlobalStyling from "../components/styles/global/global";
 
 function AppRender() {
+
+
   return (
     <Container>
     <GlobalStyling/>
-    <Main/>
-    <BarContentForm/>
+    <Main onLogout={onLogout}/>
+    <BarContentForm onLogout={onLogout}/>
     <Footer/>
     </Container>
   )

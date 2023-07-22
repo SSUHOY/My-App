@@ -1,11 +1,11 @@
-import { UserList } from "../../components/user-list/users";
-import { USERS } from "../../constants";
+import AppRender from "../appRender";
 
 export const Main = () => {
     return (
-        <div>
-            <h1>Main Page</h1>
-            <UserList users = {USERS} />
-        </div>
+        <AppRender 
+         isLoading={isLoading}
+        isAuthenticated={isAuthenticated}
+        onLogin={handleLogin}
+        onLogout={handleLogout}/>
     )
 };

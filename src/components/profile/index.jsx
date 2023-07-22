@@ -1,8 +1,13 @@
-import { useParams } from "react-router-dom";
-import { USERS } from "../../constants";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export const Profile = () => {
+
+  const navigate = useNavigate();
+  
+  const handleBackButtonClick = () => {
+    navigate('/',{replace:true});
+  }
    
   const params = useParams();
 
@@ -15,6 +20,7 @@ export const Profile = () => {
         <h1>{fullName}</h1>
         <p>email: {user.email}</p>
         <p>gender: {user.gender}</p>
+        <button onClick={handleBackButtonClick}>Back to main</button>
       </section>
     );
   };

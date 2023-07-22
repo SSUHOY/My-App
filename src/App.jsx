@@ -1,24 +1,46 @@
 import { useState } from 'react';
 import './App.css';
-import { NavBar } from './components/nav-bar/index';
-import AppRender from './pages/appRender';
 import { AppRoutes } from './routes';
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [isLoading] = useState(true)
 
-  const handleLogin = () => setUser({ login: "taradam" });
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
 
-  const handleLogout = () => setUser(null);
+    if (parts.length === 2) {
+      return true
+    } else {
+      return false
+    }
+  }
 
+  const [isAuthenticated, setIsAuthenticated] = useState(getCookie('token'))
+
+  const handleLogin = () => {
+    document.cookie =
+      'token=password; expires=Thu, 01 Jan 2024 00:00:00 UTC; path=/'
+    setIsAuthenticated(true)
+  }
+
+  const handleLogout = () => {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'
+    setIsAuthenticated(false)
+  }
 
   return (  
-    <AppRoutes user = {user}>
-    <NavBar user={user}
-          onAuthButtonClick={user ? handleLogout : handleLogin}/>
-   <AppRender/>
-    </AppRoutes>
+<>
+    <AppRoutes
+         isLoading={isLoading}
+         isAuthenticated={isAuthenticated}
+         onLogin={handleLogin}
+         onLogout={handleLogout}
+    />
+</>
+
+
   )
 }
 

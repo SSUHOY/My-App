@@ -1,26 +1,43 @@
 import { Routes, Route } from "react-router-dom"
-import { Main } from "./pages/main"
-import { About } from "./pages/about"
+import { About, Login } from "./pages/login/loginPage"
 import { NotFound } from "./pages/notFound/404"
-import { Profile } from "./components/profile"
-import { Account } from "./components/account"
 import { ProtectedRoute } from "./components/protected-route"
+import { Playlist } from "./pages/playlist/PayListPage"
+import Favorites from "./pages/favorites/FavoritesTracks"
+import { Register } from "./pages/register/registerPage"
 
-export const AppRoutes = ({user}) => {
+
+export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
 return (
     <Routes>
-<Route path="/" element = {<Main/>}/>
-<Route path="/about" element = {<About/>}/>
-<Route path="/profile/:id" element={<Profile />} />
-<Route
-        path="/account"
+      <Route path="/" element={<Login />} />
+      <Route
+        path="/login"
         element={
-          <ProtectedRoute isAllowed={Boolean(user)}>
-            <Account />
-          </ProtectedRoute>
+          <Login
+            isAuthenticated={isAuthenticated}
+            onLogin={onLogin}
+            onLogout={onLogout}
+          />
         }
-      />
-<Route path="*" element = {<NotFound/>}/>
+      /> 
+      <Route path='/register' element={<Register />}/>
+<Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
+        <Route
+          path="/"
+          element={
+            <Login
+            isLoading={isLoading}
+            isAuthenticated={isAuthenticated}
+            onLogin={onLogin}
+            onLogout={onLogout}
+            />
+          }
+        />
+        <Route path="/category/:id" element={<Playlist />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Route>
+<Route path="*" element = {<NotFound/>}/> 
     </Routes>
 )
 
