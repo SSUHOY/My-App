@@ -4,7 +4,6 @@ export const StyledLoginPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   justify-content: center;
   gap: 20px;
   margin 0 auto;
@@ -15,3 +14,4 @@ export const StyledButton = styled.button`
   font-size: 20px;
   border-radius: 9px;
 `
+

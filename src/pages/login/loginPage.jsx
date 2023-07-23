@@ -13,9 +13,11 @@ export const Login = ({ isAuthenticated, onLogin, onLogout }) => {
     }
   }
 
+  isAuthenticated = false
+  
   return (
     <S.StyledLoginPage>
-      <h1>Cтраница авторизации</h1>
+         <h1>Cтраница авторизации</h1>
       <S.StyledButton onClick={handleButtonClick}>
         {isAuthenticated ? 'Выйти' : 'Войти'}
       </S.StyledButton>

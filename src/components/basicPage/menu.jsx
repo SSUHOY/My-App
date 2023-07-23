@@ -1,25 +1,33 @@
 import React from "react"
 import * as S from "../styles/basicPage/basicPageStyles"
+import { NavLink } from "react-router-dom"
+import cn from 'classnames'
 
-const Menu = () => {
+const Menu = ({handleLogoutClick, activeLinkClass, isAuthenticated}) => {
  
     return (
       <React.Fragment>
         <S.MenuList>
           <S.MenuItem>
-            <S.MenuLink href="http://">
+          <NavLink to='/' className="menu__link-burger">
               Главное
-            </S.MenuLink>
+            </NavLink>
           </S.MenuItem>
           <S.MenuItem >
-            <S.MenuLink href="http://">
+            <NavLink to='/favorites' className="menu__link-burger">
               Мой плейлист
-            </S.MenuLink>
+            </NavLink>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink href="http://">
-              Войти
-            </S.MenuLink>
+          <NavLink
+          onClick={handleLogoutClick}
+            to="/login"
+            isAuten
+            className={({ isActive }) =>
+              cn('menu__link-burger', { [activeLinkClass]: isActive})
+            }>
+              Выйти
+            </NavLink>
           </S.MenuItem>
         </S.MenuList>
         </React.Fragment>
