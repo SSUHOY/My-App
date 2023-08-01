@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { AppRoutes } from './routes';
+import { getAllTracks } from './api';
 
 function App() {
 

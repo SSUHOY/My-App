@@ -10,14 +10,22 @@ import PlayListItem from "../player/playListItem"
 import PlayListTitle from "../player/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
-import { items } from "../playlistContent/items"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
+import { getAllTracks } from "../../api"
+import { items } from "../playlistContent/items"
 
+export function Main({active, setActive, isLoading}) {
 
-
-
-export function Main({active, setActive}) {
+  const [allTracks, setAllTracks] = useState([
+  ]);
+  
+  useEffect(() => {
+    getAllTracks().then((data) => {
+      console.log(data)
+      setAllTracks(data)
+    })
+  }, [])
 
    const [loading,setLoading] = useState(true)
   useEffect(() => {
@@ -29,6 +37,7 @@ export function Main({active, setActive}) {
 
    const [menuActive, setMenuActive] = useState(false)
 
+   
     return (
         <S.Main>
         <S.MainNav>
@@ -48,8 +57,15 @@ export function Main({active, setActive}) {
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">
-          {items.map((item,index) => (
-              <PlayListItem key= {index} item={item} loading={loading} />
+          {allTracks.map((track) => (
+                <PlayListItem
+                key={track.id}
+                title={track.name}
+                artist={track.author}
+                album={track.album}
+                time={track.duration_in_seconds}
+                isLoading={isLoading}
+              />
             ))}
           </div></SkeletonTheme>
         </S.CenterBlockContent>
