@@ -6,8 +6,9 @@ import { getAllTracks } from "../../api";
 
 const PlayListItem = ({ title, artist, album, time, item, loading }) => {
 
+
     return (
-      <S.PlaylistItem>
+      <S.PlaylistItem >
        <S.PlayListTrack>
   <S.TrackTitle>
     <S.TrackTitleImg>
