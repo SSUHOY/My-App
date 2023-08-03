@@ -10,21 +10,21 @@ const TrackPlayImg = () => {
       </S.TrackPlayImg>
     )
   }
-  const TrackPlayArtist = () => {
+  const TrackPlayArtist = (currentTrack) => {
     return (
       <S.TrackPlayAuthor>
         <S.TrackPlayAuthorLink href="http://">
-          Ты та...
+        {currentTrack.name}
         </S.TrackPlayAuthorLink>
       </S.TrackPlayAuthor>
     )
   }
   
-  const TrackPlayAlbum = () => {
+  const TrackPlayAlbum = (currentTrack) => {
     return (
       <S.TrackPlayAlbum >
         <S.TrackPlayAlbumLink href="http://">
-          Баста
+        {currentTrack.author}
         </S.TrackPlayAlbumLink >
       </S.TrackPlayAlbum>
     )
@@ -47,13 +47,13 @@ const TrackPlayImg = () => {
     )
   }
   
-  const TrackPlay = () => {
+  const TrackPlay = (currentTrack) => {
     return (
       <S.TrackPlayPlayer >
         <S.TrackPlayContain>
           <TrackPlayImg />
-          <TrackPlayArtist />
-          <TrackPlayAlbum />
+          <TrackPlayArtist currentTrack={currentTrack}/>
+          <TrackPlayAlbum currentTrack={currentTrack} />
         </S.TrackPlayContain>
         <LikeDislike />
       </S.TrackPlayPlayer>

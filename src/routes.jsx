@@ -8,7 +8,7 @@ import { Register } from "./pages/register/registerPage"
 import { Main } from "./pages/main"
 
 
-export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
+export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading, currentTrack, setCurrentTrack}) => {
 return (
     <Routes>
       <Route
@@ -32,11 +32,15 @@ return (
             isAuthenticated={isAuthenticated}
             onLogin={onLogin}
             onLogout={onLogout}
+            currentTrack={currentTrack}
+            setCurrentTrack={setCurrentTrack}
             />
           }
         />
-        <Route path="/category/:id" element={<Playlist />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/category/:id" element={<Playlist />}  currentTrack={currentTrack}
+         setCurrentTrack={setCurrentTrack}/>
+        <Route path="/favorites" element={<Favorites />}  currentTrack={currentTrack}
+         setCurrentTrack={setCurrentTrack}/>
       </Route>
 <Route path="*" element = {<NotFound/>}/> 
     </Routes>

@@ -3,13 +3,13 @@ import VolumeBlock from '../volumeBlock/volumeBlock'
 import * as S from '../styles/basicPage/basicPageStyles'
 
 
-const BarContentForm = () => {
+const BarContentForm = (currentTrack) => {
   return (
     <S.Bar>
-  <S.BarContent >
+  <S.BarContent currentTrack={currentTrack} >
     <S.BarPlayerProgress></S.BarPlayerProgress>
     <S.BarPlayerBlock >
-      <BarPlayer />
+      <BarPlayer  />
       <VolumeBlock />
     </S.BarPlayerBlock>
   </S.BarContent>

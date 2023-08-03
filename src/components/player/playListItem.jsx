@@ -1,14 +1,13 @@
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
-import { useEffect, useState } from "react";
-import { getAllTracks } from "../../api";
 
-const PlayListItem = ({ title, artist, album, time, item, loading }) => {
+
+const PlayListItem = ({ title, artist, album, time, item, loading, setCurrentTrack, track }) => {
 
 
     return (
-      <S.PlaylistItem >
+      <S.PlaylistItem className="PlayListItem"  onClick={() => setCurrentTrack(track)} >
        <S.PlayListTrack>
   <S.TrackTitle>
     <S.TrackTitleImg>

@@ -15,17 +15,12 @@ import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
 import { items } from "../playlistContent/items"
 
-export function Main({active, setActive, isLoading}) {
+export function Main({active, setActive, isLoading, setCurrentTrack}) {
 
   const [allTracks, setAllTracks] = useState([
   ]);
   
-  const[currentTrack, setCurrentTrack] = useState(null)
-
-  const handlePlayTrackClick = (track) => {
-  setCurrentTrack(track);
-  }
-
+ 
   useEffect(() => {
     getAllTracks().then((data) => {
       console.log(data)
@@ -65,19 +60,14 @@ export function Main({active, setActive, isLoading}) {
           <div className="content__playlist playlist">
           {allTracks.map((track) => (
                 <PlayListItem
-                onClick={() =>handlePlayTrackClick(track)}
-
-
                 key={track.id}
                 title={track.name}
                 artist={track.author}
                 album={track.album}
                 time={track.duration_in_seconds}
                 isLoading={isLoading}
-                allTracks={allTracks}
-              // setPlayTrack={setPlayTrack}
-              // playTrack={playTrack}
-              />
+                setCurrentTrack={setCurrentTrack}
+               />
             ))}
           </div></SkeletonTheme>
         </S.CenterBlockContent>

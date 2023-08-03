@@ -31,6 +31,8 @@ function App() {
     setIsAuthenticated(false)
   }
 
+  const[currentTrack, setCurrentTrack] = useState(null)
+  
   return (  
 <>
     <AppRoutes
@@ -38,6 +40,8 @@ function App() {
          isAuthenticated={isAuthenticated}
          onLogin={handleLogin}
          onLogout={handleLogout}
+         currentTrack={currentTrack}
+         setCurrentTrack={setCurrentTrack}
     />
 </>
 

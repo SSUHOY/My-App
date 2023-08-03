@@ -251,3 +251,12 @@ input:checked {
   fill: transparent;
   stroke: #696969;
 }
+
+
+.PlayListItem {
+  cursor: pointer;
+}
+
+.PlayListItem:hover {
+background-color: #313131;
+}
