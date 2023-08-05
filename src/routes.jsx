@@ -27,19 +27,7 @@ return (
 <Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
          <Route path='/' element={
          <Main/>}/>
-        <Route
-          path="/"
-          element={
-            <Login
-            isLoading={isLoading}
-            isAuthenticated={isAuthenticated}
-            onLogin={onLogin}
-            onLogout={onLogout}
-           
-            />
-          }
-        />
-        <Route path="/category/:id" element={<Playlist />}
+            <Route path="/category/:id" element={<Playlist />}
         />
         <Route path="/favorites" element={<Favorites />}
         />

@@ -25,15 +25,14 @@ export function Main({active, setActive, isLoading, currentTrack, setCurrentTrac
     })
   }, [])
 
-  //  const [setLoading] = useState(true)
-   
-  // useEffect(() => {
-  //    const timer = setTimeout(() => {
-  //     setLoading(false)
-  //   }, 5000);
-  //   return () => clearTimeout(timer)
-  //   }, [])
+  const [loading,setLoading] = useState(true)
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 5000);
+    return () => clearTimeout(timer)
+    }, [])
    const [menuActive, setMenuActive] = useState(false)
   
     return (
@@ -66,7 +65,7 @@ export function Main({active, setActive, isLoading, currentTrack, setCurrentTrac
                 album={track.album}
                 subtitle={track.release_date}
                 time={track.duration_in_seconds}
-                isLoading={isLoading}
+                            loading={loading}
                />
             ))}
           </div></SkeletonTheme>
