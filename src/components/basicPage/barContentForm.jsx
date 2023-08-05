@@ -4,18 +4,18 @@ import * as S from '../styles/basicPage/basicPageStyles'
 
 
 const BarContentForm = (currentTrack) => {
-  return (
+  return currentTrack ? (
     <S.Bar>
-  <S.BarContent currentTrack={currentTrack} >
+  <S.BarContent >
     <S.BarPlayerProgress></S.BarPlayerProgress>
     <S.BarPlayerBlock >
-      <BarPlayer  />
+      <BarPlayer currentTrack={currentTrack} />
       <VolumeBlock />
     </S.BarPlayerBlock>
   </S.BarContent>
     </S.Bar>
   
-  )
+  ) : null
 }
 
 export default BarContentForm

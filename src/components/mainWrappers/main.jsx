@@ -13,34 +13,31 @@ import { SkeletonTheme } from "react-loading-skeleton"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
-import { items } from "../playlistContent/items"
 
-export function Main({active, setActive, isLoading, setCurrentTrack}) {
+export function Main({active, setActive, isLoading, currentTrack, setCurrentTrack}) {
 
   const [allTracks, setAllTracks] = useState([
   ]);
-  
  
   useEffect(() => {
     getAllTracks().then((data) => {
-      console.log(data)
       setAllTracks(data)
     })
   }, [])
 
-   const [loading,setLoading] = useState(true)
-  useEffect(() => {
-     const timer = setTimeout(() => {
-      setLoading(false)
-    }, 5000);
-    return () => clearTimeout(timer)
-    }, [])
+  //  const [setLoading] = useState(true)
+   
+  // useEffect(() => {
+  //    const timer = setTimeout(() => {
+  //     setLoading(false)
+  //   }, 5000);
+  //   return () => clearTimeout(timer)
+  //   }, [])
 
    const [menuActive, setMenuActive] = useState(false)
-
-   
+  
     return (
-        <S.Main>
+        <S.Main>   
         <S.MainNav>
         <Logo />
         <S.NavBurger onClick={() => setMenuActive(!menuActive)}>
@@ -60,13 +57,16 @@ export function Main({active, setActive, isLoading, setCurrentTrack}) {
           <div className="content__playlist playlist">
           {allTracks.map((track) => (
                 <PlayListItem
+                onClick={() => setCurrentTrack(console.log(track))}
+                setCurrentTrack={setCurrentTrack}
+                currentTrack={currentTrack}
                 key={track.id}
                 title={track.name}
                 artist={track.author}
                 album={track.album}
+                subtitle={track.release_date}
                 time={track.duration_in_seconds}
                 isLoading={isLoading}
-                setCurrentTrack={setCurrentTrack}
                />
             ))}
           </div></SkeletonTheme>

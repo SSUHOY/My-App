@@ -30,8 +30,6 @@ function App() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'
     setIsAuthenticated(false)
   }
-
-  const[currentTrack, setCurrentTrack] = useState(null)
   
   return (  
 <>
@@ -40,8 +38,6 @@ function App() {
          isAuthenticated={isAuthenticated}
          onLogin={handleLogin}
          onLogout={handleLogout}
-         currentTrack={currentTrack}
-         setCurrentTrack={setCurrentTrack}
     />
 </>
 

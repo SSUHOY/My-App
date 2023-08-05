@@ -6,9 +6,11 @@ import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
 import { Register } from "./pages/register/registerPage"
 import { Main } from "./pages/main"
+import { useState } from "react"
 
 
-export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading, currentTrack, setCurrentTrack}) => {
+export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
+
 return (
     <Routes>
       <Route
@@ -23,7 +25,8 @@ return (
       />
       <Route path='/register' element={<Register />}/>
 <Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
-         <Route path='/' element={<Main />}/>
+         <Route path='/' element={
+         <Main/>}/>
         <Route
           path="/"
           element={
@@ -32,15 +35,14 @@ return (
             isAuthenticated={isAuthenticated}
             onLogin={onLogin}
             onLogout={onLogout}
-            currentTrack={currentTrack}
-            setCurrentTrack={setCurrentTrack}
+           
             />
           }
         />
-        <Route path="/category/:id" element={<Playlist />}  currentTrack={currentTrack}
-         setCurrentTrack={setCurrentTrack}/>
-        <Route path="/favorites" element={<Favorites />}  currentTrack={currentTrack}
-         setCurrentTrack={setCurrentTrack}/>
+        <Route path="/category/:id" element={<Playlist />}
+        />
+        <Route path="/favorites" element={<Favorites />}
+        />
       </Route>
 <Route path="*" element = {<NotFound/>}/> 
     </Routes>
