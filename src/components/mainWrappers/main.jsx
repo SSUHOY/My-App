@@ -56,7 +56,7 @@ export function Main({active, setActive, isLoading, currentTrack, setCurrentTrac
           <div className="content__playlist playlist">
           {allTracks.map((track) => (
                 <PlayListItem
-                onClick={() => setCurrentTrack(console.log(track))}
+                onClick={() => setCurrentTrack(track)}
                 setCurrentTrack={setCurrentTrack}
                 currentTrack={currentTrack}
                 key={track.id}
