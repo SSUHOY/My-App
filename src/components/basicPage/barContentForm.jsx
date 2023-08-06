@@ -5,6 +5,7 @@ import * as S from '../styles/basicPage/basicPageStyles'
 
 const BarContentForm = (currentTrack) => {
 
+
   return currentTrack ? (
     <S.Bar>
   <S.BarContent >

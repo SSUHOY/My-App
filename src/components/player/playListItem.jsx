@@ -5,9 +5,9 @@ import * as S  from "../styles/player/playerStyles"
 const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) => {
 
   return (
-      <S.PlaylistItem className="PlayListItem" onClick={onClick}>          
+      <S.PlaylistItem className="PlayListItem" >          
        <S.PlayListTrack>
-  <S.TrackTitle>
+  <S.TrackTitle >
     <S.TrackTitleImg>
     {loading ? (
       <Skeleton count={1} />
@@ -21,7 +21,7 @@ const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) =>
     {loading ? (
       <Skeleton count={1} />
     ) : (
-      <S.TrackTitleLink href="http://">
+      <S.TrackTitleLink>
        {title}
         <S.TrackTitleSpan>
           {item?.subtitle ? `(${item?.subtitle})` : ''}
