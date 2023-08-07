@@ -3,12 +3,12 @@ import VolumeProgressBtn from './volumeProgress'
 
 import * as S from '../styles/volumeBlock/volumeBlockStyles'
 
-const VolumeBlock = () => {
+const VolumeBlock = ({ volume, onVolumeChange }) => {
   return (
     <S.VolumeBlock>
       <S.VolumeContent>
         <VolumeImg />
-        <VolumeProgressBtn />
+        <VolumeProgressBtn volume={volume} onVolumeChange={onVolumeChange} />
       </S.VolumeContent>
     </S.VolumeBlock>
   )

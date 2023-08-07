@@ -71,7 +71,7 @@ export function Main({active, setActive, currentTrack, setCurrentTrack}) {
         </S.CenterBlockContent>
         </S.MainCenterBlock>
         <S.MainSideBar>
-        <UserNameSideBar userName="Имя пользователя" avatarImg="" />
+        <UserNameSideBar userName="USER" avatarImg="" />
         <SidebarBlock />
         </S.MainSideBar>
         </S.Main>

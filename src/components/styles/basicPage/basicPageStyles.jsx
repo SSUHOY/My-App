@@ -51,7 +51,7 @@ display: flex;
         align-items: center;
 -webkit-box-pack: start;
     -ms-flex-pack: start;
-        justify-content: flex-start;
+        justify-content: space between;
 }
 `
 
@@ -274,6 +274,8 @@ height: 43px;
 background-color: #313131;
 border-radius: 50%;
 `
+
+// Стили плеера (ref)
 
 export const StyledProgressInput = styled.input`
   --progress-height: 8px;
