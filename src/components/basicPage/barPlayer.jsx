@@ -10,7 +10,7 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
         <audio controls src={currentTrack.track_file} type="audio/mpeg">
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-        <PlayerControls />
+        {/* <PlayerControls /> */}
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
     </S.BarPlayer>
   ):null

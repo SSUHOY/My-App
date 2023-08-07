@@ -14,7 +14,7 @@ import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
 
-export function Main({active, setActive, isLoading, currentTrack, setCurrentTrack}) {
+export function Main({active, setActive, currentTrack, setCurrentTrack}) {
 
   const [allTracks, setAllTracks] = useState([
   ]);
@@ -57,8 +57,7 @@ export function Main({active, setActive, isLoading, currentTrack, setCurrentTrac
           {allTracks.map((track) => (
                 <PlayListItem
                 onClick={() => setCurrentTrack(track)}
-                setCurrentTrack={setCurrentTrack}
-                currentTrack={currentTrack}
+               currentTrack={currentTrack}
                 key={track.id}
                 title={track.name}
                 artist={track.author}

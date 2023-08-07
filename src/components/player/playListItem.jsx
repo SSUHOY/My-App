@@ -5,7 +5,7 @@ import * as S  from "../styles/player/playerStyles"
 const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) => {
 
   return (
-      <S.PlaylistItem className="PlayListItem" >          
+      <S.PlaylistItem className="PlayListItem" onClick={onClick} >          
        <S.PlayListTrack>
   <S.TrackTitle >
     <S.TrackTitleImg>

@@ -10,7 +10,7 @@ const TrackPlayImg = () => {
       </S.TrackPlayImg>
     )
   }
-  const TrackPlayArtist = (currentTrack) => {
+  const TrackPlayArtist = ({currentTrack}) => {
     return (
       <S.TrackPlayAuthor>
         <S.TrackPlayAuthorLink href="http://">
@@ -20,7 +20,7 @@ const TrackPlayImg = () => {
     )
   }
   
-  const TrackPlayAlbum = (currentTrack) => {
+  const TrackPlayAlbum = ({currentTrack}) => {
     return (
       <S.TrackPlayAlbum >
         <S.TrackPlayAlbumLink href="http://">
@@ -47,7 +47,7 @@ const TrackPlayImg = () => {
     )
   }
   
-  const TrackPlay = (currentTrack) => {
+  const TrackPlay = ({currentTrack}) => {
     return (
       <S.TrackPlayPlayer >
         <S.TrackPlayContain>

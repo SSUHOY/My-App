@@ -3,7 +3,7 @@ import VolumeBlock from '../volumeBlock/volumeBlock'
 import * as S from '../styles/basicPage/basicPageStyles'
 
 
-const BarContentForm = (currentTrack) => {
+const BarContentForm = ({currentTrack}) => {
 
 
   return currentTrack ? (
