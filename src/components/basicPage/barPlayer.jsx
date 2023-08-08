@@ -48,7 +48,7 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-        <PlayerControls togglePlay={togglePlay} />
+        <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop}/>
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>
