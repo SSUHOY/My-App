@@ -2,15 +2,15 @@ import BarPlayer from './barPlayer'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import * as S from '../styles/basicPage/basicPageStyles'
 import ProgressBar from './ProgressBar'
+import ProgressBarTime from './ProgressBarTime'
+import { useState } from 'react'
 
 
 const BarContentForm = ({currentTrack}) => {
 
-
   return currentTrack ? (
     <S.Bar>
   <S.BarContent >
-  <ProgressBar/>
     <S.BarPlayerBlock >
       <BarPlayer currentTrack={currentTrack} />
     </S.BarPlayerBlock>

@@ -10,6 +10,15 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(30)
+  const [isLoop, setIsLoop] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [realDuration, setRealDuration] = useState(0)
+
+  const handleTimeChange = (newTime) => {
+    setCurrentTime(newTime)
+    audioRef.current.currentTime = newTime
+  }
+
   const audioRef = useRef(null);
 
   // Состояние play
@@ -34,21 +43,23 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
     audioRef.current.volume = shiftVolume / 100
   }
 
-  const handleTimeChange = (newTime) => {
-    setCurrentTime(newTime)
-    audioRef.current.currentTime = newTime
-  }
-
   return currentTrack ? (
+    
     <S.BarPlayer>
+        <ProgressBarTime currentTime={currentTime} totalTime={realDuration} />
+        <ProgressBar   
+        duration={realDuration}
+        currentTime={currentTime}
+        onTimeChange={handleTimeChange}/>
         <audio 
         autoPlay
+        loop={isLoop}
         src={currentTrack.track_file}
         type="audio/mpeg"
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-        <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop}/>
+        <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlaying}/>
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>

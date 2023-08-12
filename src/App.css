@@ -194,11 +194,23 @@ input:checked {
 
 .player__btn-pause{
   margin-right: 23px;
-  width: 15px;
-  height: 19px;
+  padding: 5px;
+  display: flex;
+}
+
+.player__btn-pause-svg{
+  fill: inherit;
+  stroke: #D9D9D9;
 }
 
 .player__btn-play-svg {
+  width: 22px;
+  height: 20px;
+  fill: inherit;
+  stroke: #D9D9D9;
+}
+
+.player__btn-pause-svg {
   width: 22px;
   height: 20px;
   fill: inherit;
@@ -219,6 +231,10 @@ input:checked {
 
 .player__btn-repeat {
   margin-right: 24px;
+}
+.player__btn-repeat:hover {
+  fill:none;
+  stroke: white;
 }
 
 .player__btn-repeat-svg {
@@ -243,7 +259,6 @@ input:checked {
   fill: transparent;
   stroke: #696969;
 }
-
 
 .track-play__like-svg {
   width: 14px;
