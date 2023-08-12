@@ -5,6 +5,7 @@ import ProgressBarTime from './ProgressBarTime'
 import ProgressBar from './ProgressBar'
 import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
+import { useEffect } from 'react'
 
 const BarPlayer = ({currentTrack,setCurrentTrack}) => {
 
@@ -12,26 +13,24 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
   const [volume, setVolume] = useState(30)
   const [isLoop, setIsLoop] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
-  const [realDuration, setRealDuration] = useState(0)
-
-  const handleTimeChange = (newTime) => {
-    setCurrentTime(newTime)
-    audioRef.current.currentTime = newTime
-  }
-
+  const [duration, setDuration] = useState(0)
   const audioRef = useRef(null);
 
-  // Состояние play
+  
+  useEffect(() => {
+    setIsPlaying(true)
+  }, [setCurrentTrack])
+
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
   };
-  // Состояние stop
+ 
   const handleStop = () => {
     audioRef.current.pause();
     setIsPlaying(false);
   };
-  // Состояние проигрывать loop
+  
   const toggleLoop = () => {
     setIsLoop((prev) => !prev)
   }
@@ -42,14 +41,34 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
     setVolume(shiftVolume)
     audioRef.current.volume = shiftVolume / 100
   }
+// Progress bar функционал
+  const handleTimeUpdate = () => {
+    setCurrentTime(audioRef.current.currentTime);
+    setDuration(audioRef.current.duration);
+  }
 
+// Поиск времени, когда пользователь указывает на определенное время в полосе поиска ProgressBar
+  const handleSeekTrackTime = (e) => {
+    audioRef.current.currentTime = e.target.value;
+    setCurrentTime(e.target.value);
+ };
+
+// хук useEffect для добавления и удаления прослушивателя событий
+useEffect(() => {
+  audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+  return () => {
+    audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+  };
+}, [setCurrentTrack]);
+
+ 
   return currentTrack ? (
     <S.BarContent >
-           <ProgressBarTime currentTime={currentTime} totalTime={realDuration} />
+        <ProgressBarTime currentTime={currentTime} duration={duration} />
        <ProgressBar   
-        duration={realDuration}
-        currentTime={currentTime}
-        onTimeChange={handleTimeChange}/>
+         max={duration}
+         value={currentTime}
+         onChange={handleSeekTrackTime}/>
     <S.BarPlayerBlock >
     <S.BarPlayer>
         <audio 

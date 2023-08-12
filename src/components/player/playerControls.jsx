@@ -36,8 +36,8 @@ const PlayerControls = ({togglePlay, toggleLoop, isLoop, isPlaying}) => {
       <PlayerButtonPrev  iconConfig={iconConfig} icon="prev" alt="prev" onClick={() => alert('Функция пока не реализована')}/>
       <PlayerButtonPlay  iconConfig={iconConfig} icon={isPlaying ? 'pause' : 'play'} togglePlay={togglePlay}/>
       <PlayerButtonNext  iconConfig={iconConfig} icon="next" alt="next" />
-      <PlayerButtonRepeat  iconConfig={iconConfig} icon="repeat" alt="repeat" onClick={toggleLoop} isLoopActive={isLoopActive} />
-      <PlayerButtonShuffle  iconConfig={iconConfig} icon="shuffle" alt="shuffle"  onClick={() => alert('Функция пока не реализована')} />
+      <PlayerButtonRepeat iconConfig={iconConfig} icon="repeat" alt="repeat" onClick={toggleLoop} isLoopActive={isLoopActive} />
+      <PlayerButtonShuffle iconConfig={iconConfig} icon="shuffle" alt="shuffle"  onClick={() => alert('Функция пока не реализована')} />
     </S.PlayerControls>
   )
 }

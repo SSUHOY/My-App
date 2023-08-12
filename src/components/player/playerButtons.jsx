@@ -8,7 +8,6 @@ export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
       </div>
     )
   }
-
   
   export const PlayerButtonNext = ({ icon, alt }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
@@ -43,11 +42,11 @@ export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     )
   }
 
-  export const PlayerButtonRepeat = ({ icon, alt, togglePlay, toggleNext }) => {
+  export const PlayerButtonRepeat = ({ icon, alt, toggleLoop }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`}>
-        <svg className={`player__btn-${icon}-svg`} alt={alt}   >
+        <svg className={`player__btn-${icon}-svg`} alt={alt}  onClick={toggleLoop} >
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>

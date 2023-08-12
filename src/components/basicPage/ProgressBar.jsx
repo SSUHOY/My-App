@@ -2,24 +2,16 @@ import { useState } from "react";
 import * as S from "../styles/basicPage/basicPageStyles";
 
 
-export default function ProgressBar({duration, currentTime, onTimeChange}) {
+export default function ProgressBar({duration, currentTime, handleSeek}) {
   
-    const handleTimeChange = (event) => {
-      const newTime = parseFloat(event.target.value)
-      console.log(duration)
-      // setCurrentTime(newTime)
-      onTimeChange(newTime)
-    }
-  
-  
+ 
     return (
       <S.StyledProgressInput
-        type="range"
-        min={0}
+      type="range"
+        min="0"
         max={duration}
         value={currentTime}
-        step={0.01}
-        onChange={(event) => setCurrentTime(event.target.value)}
+        onChange={handleSeek}
         $color="#B672FF"
       />
     );

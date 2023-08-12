@@ -14,7 +14,7 @@ import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
 
-export function Main({active, setActive, currentTrack, setCurrentTrack}) {
+export function Main({currentTrack, setCurrentTrack}) {
 
   const [allTracks, setAllTracks] = useState([
   ]);
