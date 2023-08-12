@@ -44,13 +44,14 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
   }
 
   return currentTrack ? (
-    
-    <S.BarPlayer>
-        <ProgressBarTime currentTime={currentTime} totalTime={realDuration} />
-        <ProgressBar   
+    <S.BarContent >
+           <ProgressBarTime currentTime={currentTime} totalTime={realDuration} />
+       <ProgressBar   
         duration={realDuration}
         currentTime={currentTime}
         onTimeChange={handleTimeChange}/>
+    <S.BarPlayerBlock >
+    <S.BarPlayer>
         <audio 
         autoPlay
         loop={isLoop}
@@ -63,6 +64,9 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>
+    </S.BarPlayerBlock>
+    </S.BarContent>
+
     
   ):null
 }

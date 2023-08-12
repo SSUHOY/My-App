@@ -1,6 +1,7 @@
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
+import { formatTime } from "../../utils/formatTime"
 
 const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) => {
 
@@ -57,7 +58,7 @@ const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) =>
       <S.TrackAlbumTimeSvg alt="time">
         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
       </S.TrackAlbumTimeSvg>
-      <S.TrackTimeText className="track__time-text">{time}</S.TrackTimeText >
+      <S.TrackTimeText className="track__time-text">{formatTime(time)}</S.TrackTimeText >
     </>
   )}
   </S.TrackTimeText>

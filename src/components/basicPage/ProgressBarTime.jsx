@@ -1,11 +1,11 @@
+import { formatTime } from "../../utils/formatTime"
 import { StyledProgressBarTime } from "../styles/basicPage/basicPageStyles"
-// import { formatTime } from 'utils'
 
 const ProgressBarTime = ({ currentTime, totalTime }) => {
   return (
     <StyledProgressBarTime>
-      <span>{(currentTime)}</span> /{' '}
-      <span>{(totalTime)}</span>
+      <span>{formatTime(currentTime)}</span> /{' '}
+      <span>{formatTime(totalTime)}</span>
     </StyledProgressBarTime>
   )
 }
