@@ -10,13 +10,22 @@ import { useEffect } from 'react'
 const BarPlayer = ({currentTrack,setCurrentTrack}) => {
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(30)
-  const [isLoop, setIsLoop] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+
+
+  const [volume, setVolume] = useState(30)
+  const [isLoop, setIsLoop] = useState(false)
+ 
+  
   const audioRef = useRef(null);
 
-  
+  useEffect(() => {
+    setCurrentTime(0)
+    setIsLoop(false)
+  }, [currentTrack])
+
+
   useEffect(() => {
     setIsPlaying(true)
   }, [setCurrentTrack])
@@ -41,7 +50,7 @@ const BarPlayer = ({currentTrack,setCurrentTrack}) => {
     setVolume(shiftVolume)
     audioRef.current.volume = shiftVolume / 100
   }
-// Progress bar функционал
+// Определение обработчика событий для обновления времени и продолжительности звука
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
     setDuration(audioRef.current.duration);
@@ -59,15 +68,16 @@ useEffect(() => {
   return () => {
     audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
   };
-}, [setCurrentTrack]);
+}, [currentTrack]);
 
- 
-  return currentTrack ? (
+  return  (
     <S.BarContent >
         <ProgressBarTime currentTime={currentTime} duration={duration} />
        <ProgressBar   
-         max={duration}
-         value={currentTime}
+         duration={duration}
+         currentTime={currentTime}
+         handleTimeUpdate={handleTimeUpdate}
+         handleSeekTrackTime={handleSeekTrackTime}
          onChange={handleSeekTrackTime}/>
     <S.BarPlayerBlock >
     <S.BarPlayer>
@@ -75,7 +85,6 @@ useEffect(() => {
         autoPlay
         loop={isLoop}
         src={currentTrack.track_file}
-        type="audio/mpeg"
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
@@ -85,9 +94,8 @@ useEffect(() => {
     </S.BarPlayer>
     </S.BarPlayerBlock>
     </S.BarContent>
-
     
-  ):null
+  )
 }
 
 export default BarPlayer

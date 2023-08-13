@@ -278,9 +278,9 @@ border-radius: 50%;
 // Стили плеера (ref)
 
 export const StyledProgressInput = styled.input`
-  --progress-height: 8px;
+   --progress-height: 8px;
   --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: ${(props) => props.$color ?? '#b672ff'};
 
   --progress-bg-color: #2e2e2e;
 
