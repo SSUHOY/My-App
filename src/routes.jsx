@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom"
-import { About, Login } from "./pages/login/loginPage"
+import AuthPage, { About, Login } from "./pages/login/Auth/AuthPage"
 import { NotFound } from "./pages/notFound/404"
 import { ProtectedRoute } from "./components/protected-route"
 import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
-import { Register } from "./pages/register/registerPage"
+import { Register } from "./pages/registerForm/registerPage"
 import { Main } from "./pages/main"
 import { useState } from "react"
 
@@ -16,14 +16,14 @@ return (
       <Route
         path="/login"
         element={
-          <Login
+          <AuthPage
             isAuthenticated={isAuthenticated}
             onLogin={onLogin}
             onLogout={onLogout}
           />
         }
       />
-      <Route path='/register' element={<Register />}/>
+      <Route path='/register' element={<AuthPage isLoginMode = {false} />}/>
 <Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
          <Route path='/' element={
          <Main/>}/>

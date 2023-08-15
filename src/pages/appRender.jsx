@@ -13,7 +13,7 @@ function AppRender({onLogout}) {
     <Container>
     <GlobalStyling/>
     <Main onLogout={onLogout} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />
-    <BarContentForm onLogout={onLogout} currentTrack={currentTrack}/>
+   { currentTrack ? <BarContentForm onLogout={onLogout} currentTrack={currentTrack}/>:null}
     <Footer/>
     </Container>
   )
