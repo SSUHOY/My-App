@@ -4,12 +4,14 @@ import Footer from "../components/mainWrappers/footer";
 import Main from "../components/mainWrappers/main";
 import GlobalStyling from "../components/styles/global/global";
 
-function AppRender() {
+function AppRender({onLogout}) {
+
+
   return (
     <Container>
     <GlobalStyling/>
-    <Main/>
-    <BarContentForm/>
+    <Main onLogout={onLogout}/>
+    <BarContentForm onLogout={onLogout}/>
     <Footer/>
     </Container>
   )

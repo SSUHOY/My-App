@@ -7,9 +7,9 @@ const Burger = () => {
 
     return (
       <React.Fragment>
-        <BurgerLine className="burger__line" />
-        <BurgerLine className="burger__line" />
-        <BurgerLine className="burger__line" />
+        <BurgerLine />
+        <BurgerLine />
+        <BurgerLine />
       </React.Fragment>
     )
   }
