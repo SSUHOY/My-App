@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { fetchRegister } from "../../../api";
+import { handleRegistration, registration } from "../../../content/AuthContent";
 
 export default function AuthPage() {
   // const { setUser, login } = useAuthContext()
@@ -60,6 +61,7 @@ export default function AuthPage() {
                 name="login"
                 placeholder="Почта"
                 value={email}
+                
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
@@ -68,7 +70,7 @@ export default function AuthPage() {
                 type="password"
                 name="password"
                 placeholder="Пароль"
-                value={password}
+                value={password}    
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }}
@@ -126,7 +128,7 @@ export default function AuthPage() {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={handleRegister}>
+              <S.PrimaryButton onClick={() => handleRegistration({ email, password, userName })}>
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
