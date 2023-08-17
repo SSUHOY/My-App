@@ -1,23 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
+import { fetchRegister } from "../../../api";
 
-export default function AuthPage({ isLoginMode = true }) {
+export default function AuthPage() {
+  // const { setUser, login } = useAuthContext()
   const [error, setError] = useState(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [userName, setUserName] = useState('')
+  const [isLoginMode, setIsLoginMode] = useState(true)
+  const [isAuthLoading, setIsAuthLoading] = useState(false)
 
-  const handleLogin = async ({ email, password }) => {
-    alert(`Выполняется вход: ${email} ${password}`);
-    setError("Неизвестная ошибка входа");
-  };
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setIsLoginMode(location.pathname === '/login')
+  }, [location.pathname, isLoginMode])
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError("Пожалуйста, введите пароль и/или логин");
+      return;
+    }
+  }
 
   const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`);
-    setError("Неизвестная ошибка регистрации");
-  };
+    if (!email || !password) {
+      setError("Не заполнены обязательные поля (Имя, почта, пароль)");
+      return;
+    }
+    if (repeatPassword !== password) {
+      setError('Пароли не совпадают')
+      return
+    }
+  }
+
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
@@ -67,6 +87,15 @@ export default function AuthPage({ isLoginMode = true }) {
         ) : (
           <>
             <S.Inputs>
+            <S.ModalInput
+                type="text"
+                name="name"
+                placeholder="Имя"
+                value={userName}
+                onChange={(event) => {
+                  setUserName(event.target.value);
+                }}
+              />
               <S.ModalInput
                 type="text"
                 name="login"
@@ -133,4 +162,3 @@ export default function AuthPage({ isLoginMode = true }) {
 //     </Link>
 //   </S.StyledLoginPage>
 // )
-// }
