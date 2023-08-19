@@ -2,10 +2,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { fetchRegister } from "../../../api";
-import { handleRegistration, registration } from "../../../content/AuthContent";
+import {registration, useAuthContext } from "../../../content/AuthContext";
 
 export default function AuthPage() {
-  // const { setUser, login } = useAuthContext()
+
+  const { setUser, loginUserFn } = useAuthContext()
+
+
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +29,16 @@ export default function AuthPage() {
       setError("Пожалуйста, введите пароль и/или логин");
       return;
     }
+    try {
+      setIsAuthLoading(true)
+      await loginUserFn({ email, password })
+      setIsAuthLoading(false)
+      navigate('/', { replace: true })
+    } catch (error) {
+      console.error('Ошибка авторизации:', error)
+      setError(error.message)
+      setIsAuthLoading(false)
+    }
   }
 
   const handleRegister = async () => {
@@ -38,6 +51,21 @@ export default function AuthPage() {
       return
     }
   }
+  // try {
+  //   setIsAuthLoading(true)
+  //   const userData = fetchRegister({ email, password, userName })
+  //   console.log(userData)
+  //   localStorage.setItem('userData', JSON.stringify(userData))
+  //   setIsLoginMode(true)
+  //   setUser(userData)
+  //   setError(null)
+  //   setIsAuthLoading(false)
+  //   navigate('/', { replace: true })
+  // } catch (error) {
+  //   console.error('Ошибка регистрации:', error)
+  //   setError(error.message || 'Неизвестная ошибка регистрации')
+  //   setIsAuthLoading(false)
+  // }
 
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
@@ -78,7 +106,9 @@ export default function AuthPage() {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleLogin({ email, password })}>
+              <S.PrimaryButton onClick={() => handleLogin({ email, password })}
+               disabled={isAuthLoading}>
+                
                 Войти
               </S.PrimaryButton>
               <Link to="/register">
@@ -128,7 +158,7 @@ export default function AuthPage() {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleRegistration({ email, password, userName })}>
+              <S.PrimaryButton onClick={() => fetchRegister({ email, password, userName })}>
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
@@ -139,7 +169,7 @@ export default function AuthPage() {
   );
 }
 
-  
+  console.log(localStorage);
 
 
 // const navigate = useNavigate()
