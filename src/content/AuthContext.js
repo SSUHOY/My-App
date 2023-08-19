@@ -16,7 +16,7 @@ const [error, setError] = useState(() => {
     } else {
       return null
     }
-
+  })
 
     const loginUserFn = async ({ email, password }) => {
       console.log("userData");
@@ -45,5 +45,5 @@ const [error, setError] = useState(() => {
           {children}
         </AuthContext.Provider>
       )
-  })
-}
+  }
+

@@ -50,23 +50,22 @@ export default function AuthPage() {
       setError('Пароли не совпадают')
       return
     }
+  try {
+    setIsAuthLoading(true)
+    const userData = fetchRegister({ email, password, userName })
+    console.log(userData)
+    localStorage.setItem('userData', JSON.stringify(userData))
+    setIsLoginMode(true)
+    setUser(userData)
+    setError(null)
+    setIsAuthLoading(false)
+    navigate('/', { replace: true })
+  } catch (error) {
+    console.error('Ошибка регистрации:', error)
+    setError(error.message || 'Неизвестная ошибка регистрации')
+    setIsAuthLoading(false)
   }
-  // try {
-  //   setIsAuthLoading(true)
-  //   const userData = fetchRegister({ email, password, userName })
-  //   console.log(userData)
-  //   localStorage.setItem('userData', JSON.stringify(userData))
-  //   setIsLoginMode(true)
-  //   setUser(userData)
-  //   setError(null)
-  //   setIsAuthLoading(false)
-  //   navigate('/', { replace: true })
-  // } catch (error) {
-  //   console.error('Ошибка регистрации:', error)
-  //   setError(error.message || 'Неизвестная ошибка регистрации')
-  //   setIsAuthLoading(false)
-  // }
-
+}
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
@@ -158,7 +157,7 @@ export default function AuthPage() {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => fetchRegister({ email, password, userName })}>
+              <S.PrimaryButton onClick={handleRegister}>
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
@@ -169,7 +168,6 @@ export default function AuthPage() {
   );
 }
 
-  console.log(localStorage);
 
 
 // const navigate = useNavigate()
