@@ -6,15 +6,16 @@ import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
 import { Main } from "./pages/main"
 import { useState } from "react"
+import { useAuthContext } from "./context/AuthContext"
 
 
 export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
-
+    const { user } = useAuthContext()
 return (
     <Routes>
         <Route path="/login" element={<AuthPage />} />
       <Route path="/register" element={<AuthPage />} />
-<Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
+<Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
          <Route path='/' element={
          <Main/>}/>
             <Route path="/category/:id" element={<Playlist />}
