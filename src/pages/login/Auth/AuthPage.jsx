@@ -2,7 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { fetchRegister } from "../../../api";
-import {registration, useAuthContext } from "../../../content/AuthContext";
+// import useAuthContext from "../../../context/AuthContext";
+import {registration, useAuthContext } from "../../../context/AuthContext";
 
 export default function AuthPage() {
 
@@ -107,7 +108,6 @@ export default function AuthPage() {
             <S.Buttons>
               <S.PrimaryButton onClick={() => handleLogin({ email, password })}
                disabled={isAuthLoading}>
-                
                 Войти
               </S.PrimaryButton>
               <Link to="/register">

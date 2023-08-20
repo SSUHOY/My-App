@@ -1,4 +1,4 @@
-import React, { useContext, useState, createContext } from "react"
+import { useContext, useState, createContext } from "react"
 import { fetchLogin } from "../api"
 
 export const AuthContext = createContext({})
@@ -46,4 +46,3 @@ const [error, setError] = useState(() => {
         </AuthContext.Provider>
       )
   }
-

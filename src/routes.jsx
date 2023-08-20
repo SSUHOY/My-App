@@ -4,7 +4,6 @@ import { NotFound } from "./pages/notFound/404"
 import { ProtectedRoute } from "./components/protected-route"
 import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
-import { Register } from "./pages/registerForm/registerPage"
 import { Main } from "./pages/main"
 import { useState } from "react"
 
@@ -13,17 +12,8 @@ export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
 
 return (
     <Routes>
-      <Route
-        path="/login"
-        element={
-          <AuthPage
-            isAuthenticated={isAuthenticated}
-            onLogin={onLogin}
-            onLogout={onLogout}
-          />
-        }
-      />
-      <Route path='/register' element={<AuthPage isLoginMode = {false} />}/>
+        <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage />} />
 <Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
          <Route path='/' element={
          <Main/>}/>
