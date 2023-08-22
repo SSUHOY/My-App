@@ -6,15 +6,19 @@ import Logo from "../basicPage/logo"
 import Menu from "../basicPage/menu"
 import SearchBar from "../basicPage/searchBar"
 import UserNameSideBar from "../basicPage/userName"
-import PlayListItem from "../player/playListItem"
-import PlayListTitle from "../player/playListTitle"
+import PlayListItem from "../musicPlayer/playListItem"
+import PlayListTitle from "../musicPlayer/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
+import { useDispatch, useSelector } from "react-redux"
+import { trackSelector } from "../../store/selectors/tracks"
 
-export function Main({currentTrack, setCurrentTrack}) {
+export function Main({ currentTrack, setCurrentTrack }) {
+  
+  const dispatch = useDispatch();
   
   const [allTracks, setAllTracks] = useState([
   ]);
@@ -22,7 +26,7 @@ export function Main({currentTrack, setCurrentTrack}) {
   useEffect(() => {
     getAllTracks().then((data) => {
       setAllTracks(data)
-    })
+    }).catch((error) => alert(error))
   }, [])
 
   const [loading,setLoading] = useState(true)
@@ -57,14 +61,14 @@ export function Main({currentTrack, setCurrentTrack}) {
           {allTracks.map((track) => (
                 <PlayListItem
                 onClick={() => setCurrentTrack(track)}
-               currentTrack={currentTrack}
+                currentTrack={currentTrack}
                 key={track.id}
                 title={track.name}
                 artist={track.author}
                 album={track.album}
                 subtitle={track.release_date}
                 time={track.duration_in_seconds}
-                            loading={loading}
+                loading={loading}
                />
             ))}
           </div></SkeletonTheme>

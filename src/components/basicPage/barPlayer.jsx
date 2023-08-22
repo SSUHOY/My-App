@@ -1,4 +1,4 @@
-import PlayerControls from '../player/playerControls'
+import PlayerControls from '../musicPlayer/playerControls'
 import TrackPlay from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
 import ProgressBarTime from './ProgressBarTime'
