@@ -5,7 +5,7 @@ import {
     PREV_TRACK,
     PAUSE_TRACK,
     SHUFFLE_PLAYLIST
- } from '../types';
+ } from '../types/tracks';
 
 
  export const setTrack = (id) => ({
@@ -20,6 +20,7 @@ payload: id
 
      
 export const setPlaylist = (playlist) => ({
-    type: PAUSE_TRACK,
+    type: SET_PLAYLIST,
    payload: playlist
-    })
+})
+    

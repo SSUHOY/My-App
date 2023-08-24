@@ -13,8 +13,8 @@ import { SkeletonTheme } from "react-loading-skeleton"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
-import { useDispatch, useSelector } from "react-redux"
-import { trackSelector } from "../../store/selectors/tracks"
+import { useDispatch } from "react-redux"
+import { setPlaylist } from "../../store/actions/creators/tracks"
 
 export function Main({ currentTrack, setCurrentTrack }) {
   
@@ -26,6 +26,7 @@ export function Main({ currentTrack, setCurrentTrack }) {
   useEffect(() => {
     getAllTracks().then((data) => {
       setAllTracks(data)
+      dispatch(setPlaylist({...data}))
     }).catch((error) => alert(error))
   }, [])
 
