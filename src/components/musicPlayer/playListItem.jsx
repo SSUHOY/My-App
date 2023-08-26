@@ -3,8 +3,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
 import { formatTime } from "../../utils/formatTime"
 
-const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) => {
+const PlayListItem = ({ title, artist, album, time, item, loading, onClick, id }) => {
 
+  console.log(id);
   return (
       <S.PlaylistItem className="PlayListItem" onClick={onClick} >          
        <S.PlayListTrack>
@@ -13,8 +14,11 @@ const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) =>
     {loading ? (
       <Skeleton count={1} />
     ) : (
-      <S.TrackTitleSvg alt="music">
-        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+         <S.TrackTitleSvg alt="music">
+                  {/* {currentTrack?.id ? (<S.Circle />
+                  ):( */}
+                  <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+        
       </S.TrackTitleSvg>
     )}
     </S.TrackTitleImg>

@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from "react-redux"
+import { playlistSelector, shufflePlaylistSelector } from "../../store/selectors/tracks"
+
 export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
@@ -9,11 +12,21 @@ export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     )
   }
   
-  export const PlayerButtonNext = ({ icon, alt }) => {
+export const PlayerButtonNext = ({ icon, alt, currentTrack, setIsisShuffleActive,isShuffleActive  }) => {
+
+  // const playlist = useSelector(playlistSelector)
+  // const shufflePlaylist = useSelector(shufflePlaylistSelector)
+  // const dispatch = useDispatch()
+
+  // const obj = isShuffleActive ? { ...shufflePlaylist } : { ...playlist }
+  // let index = Object.keys(obj).find((key) => obj[key].id === currentTrack.id)
+  // console.log(index);
+
+    
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`}>
-        <svg className={`player__btn-${icon}-svg`} alt={alt}  onClick={()=>alert('Функция пока не реализована')} >
+        <svg className={`player__btn-${icon}-svg`} alt={alt} >
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>

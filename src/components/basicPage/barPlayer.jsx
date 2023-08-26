@@ -7,9 +7,9 @@ import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 
-const BarPlayer = ({currentTrack,setCurrentTrack}) => {
+const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
@@ -85,11 +85,10 @@ useEffect(() => {
         autoPlay
         loop={isLoop}
         src={currentTrack.track_file}
-        // onTimeupdate={handleTimeUpdate}
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-        <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlaying}/>
+          <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlaying} currentTrack={currentTrack} />
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>

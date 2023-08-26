@@ -16,9 +16,10 @@ import { getAllTracks } from "../../api"
 import { useDispatch } from "react-redux"
 import { setPlaylist } from "../../store/actions/creators/tracks"
 
-export function Main({ currentTrack, setCurrentTrack }) {
+export function Main({ currentTrack, setCurrentTrack, setIsPlaying, isPlaying }) {
   
   const dispatch = useDispatch();
+  console.log(dispatch);
   
   const [allTracks, setAllTracks] = useState([
   ]);
@@ -63,13 +64,16 @@ export function Main({ currentTrack, setCurrentTrack }) {
                 <PlayListItem
                 onClick={() => setCurrentTrack(track)}
                 currentTrack={currentTrack}
-                key={track.id}
+              key={track.id}
+              id={track.id}
                 title={track.name}
                 artist={track.author}
                 album={track.album}
-                subtitle={track.release_date}
-                time={track.duration_in_seconds}
-                loading={loading}
+              subtitle={track.release_date}
+              time={track.duration_in_seconds}
+              loading={loading}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying} 
                />
             ))}
           </div></SkeletonTheme>

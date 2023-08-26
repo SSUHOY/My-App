@@ -3,6 +3,7 @@ import {
     SET_PLAYLIST
 } from "../actions/types/tracks"
 
+// начальное состояние 
 const initialState = {
     playing:false,
     track: null,
@@ -11,7 +12,9 @@ const initialState = {
 }
 
 export default function trackReducer(state = initialState, action) {
+    // ловим action
     switch (action.type) {
+        // действие со стором
 case SET_PLAYLIST: {
     return {
         ...state,

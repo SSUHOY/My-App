@@ -212,3 +212,7 @@ export const PlayListTitleSvg = styled.svg`
   fill: transparent;
   stroke: #696969;
 `
+
+export const Circle = styled.circle`
+  fill: #ad61ff;
+`

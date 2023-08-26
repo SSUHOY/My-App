@@ -42,13 +42,6 @@ button,
   cursor: pointer;
 }
 
-/* ._btn:active .player__btn-repeat,
-._btn:active .player__btn-shuffle {
-  fill: #696969;
-  stroke: #FFFFFF;
-  cursor: pointer;
-} */
-
 .dropdown_menu {
   position: relative;
   display: inline-block;
@@ -177,7 +170,7 @@ input:checked {
   stroke: #696969;
 }
 
-.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat, .player__btn-shuffle .player__btn-pause{
+.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat,.player__btn-repeat_active, .player__btn-shuffle .player__btn-pause{
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -246,6 +239,13 @@ input:checked {
 }
 
 .player__btn-repeat-svg {
+  width: 18px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+}
+
+.player__btn-repeat_active-svg {
   width: 18px;
   height: 12px;
   fill: transparent;
