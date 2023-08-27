@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom"
 import cn from 'classnames'
 import { useAuthContext } from "../../context/AuthContext"
 
-const Menu = ({ activeLinkClass, isAuthenticated}) => {
+const Menu = ({ activeLinkClass }) => {
+  
   const { logoutUserFn } = useAuthContext()
   const handleLogoutClick = () => {
     logoutUserFn()

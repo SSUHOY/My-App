@@ -6,17 +6,21 @@ import ProgressBar from './ProgressBar'
 import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentTrack, selectIsPlaying } from '../../store/selectors/tracks'
+import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
 const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
 
   
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-
-
   const [volume, setVolume] = useState(30)
   const [isLoop, setIsLoop] = useState(false)
  
+  const isPlayingFromStore = useSelector(selectIsPlaying)
+  const selectedTrack = useSelector(selectCurrentTrack)
+  const dispatch = useDispatch()
   
   const audioRef = useRef(null);
 
@@ -25,26 +29,25 @@ const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
     setIsLoop(false)
   }, [currentTrack])
 
-
-  useEffect(() => {
-    setIsPlaying(true)
-  }, [setCurrentTrack])
-
   const handleStart = () => {
+    dispatch(playTrack())
     audioRef.current.play();
-    setIsPlaying(true);
+    // setIsPlaying(true);
+    console.log('play', isPlayingFromStore);
   };
  
   const handleStop = () => {
+    dispatch(pauseTrack())
     audioRef.current.pause();
-    setIsPlaying(false);
+    // setIsPlaying(false);
+    console.log('stop:', isPlayingFromStore)
   };
   
   const toggleLoop = () => {
     setIsLoop((prev) => !prev)
   }
 
-  const togglePlay = isPlaying ? handleStop : handleStart;
+  const togglePlay = isPlayingFromStore ? handleStop : handleStart;
 
   const handleVolumeChange = (shiftVolume) =>{
     setVolume(shiftVolume)
@@ -88,7 +91,7 @@ useEffect(() => {
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-          <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlaying} currentTrack={currentTrack} />
+          <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlayingFromStore} currentTrack={currentTrack} />
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>

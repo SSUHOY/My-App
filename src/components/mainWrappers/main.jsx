@@ -13,21 +13,20 @@ import { SkeletonTheme } from "react-loading-skeleton"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
-import { useDispatch } from "react-redux"
-import { setPlaylist } from "../../store/actions/creators/tracks"
+import { useDispatch, useSelector } from "react-redux"
+import { setPlaylist, setTrack } from "../../store/actions/creators/tracks"
 
 export function Main({ currentTrack, setCurrentTrack, setIsPlaying, isPlaying }) {
   
   const dispatch = useDispatch();
-  console.log(dispatch);
-  
+
   const [allTracks, setAllTracks] = useState([
   ]);
  
   useEffect(() => {
     getAllTracks().then((data) => {
       setAllTracks(data)
-      dispatch(setPlaylist({...data}))
+     dispatch(setPlaylist({...data}))
     }).catch((error) => alert(error))
   }, [])
 
@@ -64,8 +63,7 @@ export function Main({ currentTrack, setCurrentTrack, setIsPlaying, isPlaying })
                 <PlayListItem
                 onClick={() => setCurrentTrack(track)}
                 currentTrack={currentTrack}
-              key={track.id}
-              id={track.id}
+                key={track.id}
                 title={track.name}
                 artist={track.author}
                 album={track.album}

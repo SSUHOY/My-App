@@ -1,5 +1,3 @@
-Проект МУЗЫКАЛЬНЫЙ СЕРВИС, 3 КУРС REACT
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -70,8 +68,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-Домашнее задание 9 - Управление состоянием. Redux
-
-Время выполнения: 5 часов
-Фактически затраченное время: 
