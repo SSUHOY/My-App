@@ -14,12 +14,12 @@ type: SET_CURRENT_TRACK,
 payload: track
  })
 
- export const pauseTrack = (isPlaying) => ({
+ export const pauseTrack = () => ({
     type: PAUSE_TRACK
      })
 
 
- export const playTrack = (isPlaying) => ({
+ export const playTrack = () => ({
     type: PLAY_TRACK
     })
     

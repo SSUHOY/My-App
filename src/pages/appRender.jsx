@@ -9,7 +9,7 @@ function AppRender({onLogout}) {
 
   const [currentTrack, setCurrentTrack] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false);
-
+  console.log(currentTrack);
 
   return (
     <Container>

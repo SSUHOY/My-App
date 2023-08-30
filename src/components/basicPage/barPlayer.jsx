@@ -12,7 +12,7 @@ import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
 const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
 
-  
+
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(30)
@@ -29,12 +29,14 @@ const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
     setIsLoop(false)
   }, [currentTrack])
 
-  const handleStart = () => {
-    dispatch(playTrack())
-    audioRef.current.play();
-    // setIsPlaying(true);
-    console.log('play', isPlayingFromStore);
-  };
+
+    const handleStart = () => {
+      dispatch(playTrack())
+      audioRef.current.play();
+      // setIsPlaying(true);
+      console.log('play', isPlayingFromStore);
+    } 
+  
  
   const handleStop = () => {
     dispatch(pauseTrack())
@@ -91,7 +93,12 @@ useEffect(() => {
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-          <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlayingFromStore} currentTrack={currentTrack} />
+          <PlayerControls
+            togglePlay={togglePlay}
+            toggleLoop={toggleLoop}
+            isLoop={isLoop}
+            isPlaying={isPlaying}
+            currentTrack={currentTrack} />
       <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
       <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
     </S.BarPlayer>

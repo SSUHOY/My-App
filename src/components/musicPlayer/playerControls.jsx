@@ -9,11 +9,27 @@ import { useDispatch, useSelector } from "react-redux"
 // } from '../../../store/selectors/tracks'
 
 
-const PlayerControls = ({togglePlay, toggleLoop, isLoop, isPlayingFromStore}) => {
+const PlayerControls = ({togglePlay, toggleLoop, isLoop, isPlayingFromStore, isPlaying}) => {
   
   const [isLoopActive, setIsLoopActive] = useState(false)
   const [isShuffleActive, setIsisShuffleActive] = useState(false)
   
+  // const dispatch = useDispatch()
+
+  // const isLoop = useSelector(selectIsLoop)
+  // const isShuffle = useSelector(selectIsShuffle)
+
+  // const handleToggleLoop = () => {
+  //   dispatch(toggleLoop())
+  // }
+  // const handleNextTrack = () => {
+  //   dispatch(nextTrack())
+  //   dispatch(playAudio())
+  // }
+
+  // const handleToggleShuffle = () => {
+  //   dispatch(toggleShuffle())
+  // }
 
   useEffect(() => {
     setIsLoopActive(isLoop)

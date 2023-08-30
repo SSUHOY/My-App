@@ -2,9 +2,14 @@ import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
 import { formatTime } from "../../utils/formatTime"
-import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { setTrack } from "../../store/actions/creators/tracks"
+import { selectCurrentTrack, selectIsPlaying } from "../../store/selectors/tracks"
 
-const PlayListItem = ({ title, artist, album, time, item, loading, onClick}) => {
+const PlayListItem = ({ title, artist, album, time, item, loading, onClick, id, handlePlaytrack}) => {
+
+  const currentTrack = useSelector(selectCurrentTrack)
+  const isPlaying = useSelector(selectIsPlaying)
 
   return (
       <S.PlaylistItem className="PlayListItem" onClick={onClick} >          
@@ -13,10 +18,14 @@ const PlayListItem = ({ title, artist, album, time, item, loading, onClick}) => 
     <S.TrackTitleImg>
     {loading ? (
       <Skeleton count={1} />
-    ) : (
-         <S.TrackTitleSvg alt="music">
-      <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-        
+            ) : (
+          //     { currentTrack && currentTrack.id === id && isPlaying} ? (<S.StyledPlayingDot />
+                  
+          // ):{currentTrack && currentTrack.id === id ? (
+          //       <S.StyledDot />
+          //   ) : (
+              <S.TrackTitleSvg alt="music">
+              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
       </S.TrackTitleSvg>
     )}
     </S.TrackTitleImg>
