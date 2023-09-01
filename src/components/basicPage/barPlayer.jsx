@@ -7,7 +7,7 @@ import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCurrentTrack, selectIsPlaying } from '../../store/selectors/tracks'
+import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
 import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
 const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
@@ -16,38 +16,32 @@ const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(30)
-  const [isLoop, setIsLoop] = useState(false)
  
   const isPlayingFromStore = useSelector(selectIsPlaying)
-  const selectedTrack = useSelector(selectCurrentTrack)
+  const isLoop = useSelector(selectIsLoop)
   const dispatch = useDispatch()
   
   const audioRef = useRef(null);
 
   useEffect(() => {
     setCurrentTime(0)
-    setIsLoop(false)
   }, [currentTrack])
 
 
     const handleStart = () => {
       dispatch(playTrack())
       audioRef.current.play();
-      // setIsPlaying(true);
-      console.log('play', isPlayingFromStore);
     } 
   
+    const handleTrackEnd = () => {
+      dispatch(nextTrack())
+    }
  
   const handleStop = () => {
     dispatch(pauseTrack())
     audioRef.current.pause();
-    // setIsPlaying(false);
-    console.log('stop:', isPlayingFromStore)
   };
   
-  const toggleLoop = () => {
-    setIsLoop((prev) => !prev)
-  }
 
   const togglePlay = isPlayingFromStore ? handleStop : handleStart;
 
@@ -77,7 +71,9 @@ useEffect(() => {
 
   return  (
     <S.BarContent >
-        <ProgressBarTime currentTime={currentTime} duration={duration} />
+      <ProgressBarTime
+        currentTime={currentTime}
+        duration={duration} />
        <ProgressBar   
          duration={duration}
          currentTime={currentTime}
@@ -95,12 +91,15 @@ useEffect(() => {
         </audio>
           <PlayerControls
             togglePlay={togglePlay}
-            toggleLoop={toggleLoop}
             isLoop={isLoop}
-            isPlaying={isPlaying}
+            isPlaying={isPlayingFromStore}
             currentTrack={currentTrack} />
-      <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
-      <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
+          <TrackPlay
+            currentTrack={currentTrack}
+            setCurrentTrack={setCurrentTrack} />
+          <VolumeBlock
+            volume={volume}
+            onVolumeChange={handleVolumeChange} />
     </S.BarPlayer>
     </S.BarPlayerBlock>
     </S.BarContent>

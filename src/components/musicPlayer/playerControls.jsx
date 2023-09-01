@@ -3,45 +3,45 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { PlayerButtonNext, PlayerButtonPlay, PlayerButtonPrev, PlayerButtonRepeat, PlayerButtonShuffle } from "./playerButtons"
 import { useDispatch, useSelector } from "react-redux"
-// import {
-//   playlistSelector,
-//   shufflePlaylistSelector,
-// } from '../../../store/selectors/tracks'
+import { selectAllTracks, selectCurrentTrack, selectIsLoop, selectIsShuffle, selectShuffledTracks } from "../../store/selectors/tracks"
+import { nextTrack, playTrack, prevTrack, setIsLoop, setIsShuffle, setPlaylist, setTrack } from "../../store/actions/creators/tracks"
 
+const PlayerControls = ({togglePlay, isPlaying}) => {
 
-const PlayerControls = ({togglePlay, toggleLoop, isLoop, isPlayingFromStore, isPlaying}) => {
-  
-  const [isLoopActive, setIsLoopActive] = useState(false)
-  const [isShuffleActive, setIsisShuffleActive] = useState(false)
-  
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const isLoop = useSelector(selectIsLoop)
-  // const isShuffle = useSelector(selectIsShuffle)
+  const isLoop = useSelector(selectIsLoop)
+  const isShuffle = useSelector(selectIsShuffle)
+  const tracks = useSelector(selectAllTracks)
+  const shuffledTracks = useSelector(selectShuffledTracks)
 
-  // const handleToggleLoop = () => {
-  //   dispatch(toggleLoop())
-  // }
-  // const handleNextTrack = () => {
-  //   dispatch(nextTrack())
-  //   dispatch(playAudio())
-  // }
+  const handleToggleLoop = () => {
+    dispatch(setIsLoop())
+  }
+  const handleNextTrack = () => {
+    const trackList = isShuffle ? shuffledTracks : tracks
+    dispatch(nextTrack(trackList))
+    dispatch(playTrack())
+  }
 
-  // const handleToggleShuffle = () => {
-  //   dispatch(toggleShuffle())
-  // }
+  const handlePrevTrack = () => {
+    const trackList = isShuffle ? shuffledTracks : tracks
+    dispatch(prevTrack(trackList))
+    dispatch(playTrack())
+  }
 
-  useEffect(() => {
-    setIsLoopActive(isLoop)
-  }, [isLoop])
+  const handleToggleShuffle = () => {
+    dispatch(setIsShuffle())
+    dispatch(playTrack())
+  }
 
   return (
     <S.PlayerControls>
-      <PlayerButtonPrev  icon="prev" alt="prev" onClick={() => alert('Функция пока не реализована')}/>
-      <PlayerButtonPlay  icon={isPlayingFromStore ? 'pause' : 'play'} togglePlay={togglePlay}/>
-      <PlayerButtonNext icon="next" alt="next" isShuffleActive={isShuffleActive} setIsisShuffleActive={setIsisShuffleActive} />
-      <PlayerButtonRepeat icon={isLoopActive ? 'repeat_active' : 'repeat'} alt="repeat" isLoopActive={isLoopActive} toggleLoop={toggleLoop}/>
-      <PlayerButtonShuffle  icon="shuffle" alt="shuffle"  onClick={() => alert('Функция пока не реализована')} />
+      <PlayerButtonPrev icon="prev" alt="prev" togglePrevTrack={handlePrevTrack}/>
+      <PlayerButtonPlay icon={isPlaying ? 'pause' : 'play'} togglePlay={togglePlay}/>
+      <PlayerButtonNext icon="next" alt="next" toggleNextTrack={handleNextTrack} />
+      <PlayerButtonRepeat icon={isLoop ? 'repeated' : 'repeat'} alt="repeat" toggleLoop={handleToggleLoop} />
+      <PlayerButtonShuffle icon={isShuffle ? "shuffled" :"shuffle"} alt="shuffle"  toggleShuffle={handleToggleShuffle}/>
     </S.PlayerControls>
   )
 }

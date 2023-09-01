@@ -8,9 +8,6 @@ import { selectCurrentTrack, selectIsPlaying } from "../../store/selectors/track
 
 const PlayListItem = ({ title, artist, album, time, item, loading, onClick, id, handlePlaytrack}) => {
 
-  const currentTrack = useSelector(selectCurrentTrack)
-  const isPlaying = useSelector(selectIsPlaying)
-
   return (
       <S.PlaylistItem className="PlayListItem" onClick={onClick} >          
        <S.PlayListTrack>

@@ -9,7 +9,7 @@ import { useState } from "react"
 import { useAuthContext } from "./context/AuthContext"
 
 
-export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
+export const AppRoutes = ({}) => {
     const { user } = useAuthContext()
 return (
     <Routes>

@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from "react-redux"
-import { playlistSelector, shufflePlaylistSelector } from "../../store/selectors/tracks"
-
 export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
@@ -12,43 +9,34 @@ export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     )
   }
   
-export const PlayerButtonNext = ({ icon, alt, currentTrack, setIsisShuffleActive,isShuffleActive  }) => {
-
-  // const playlist = useSelector(playlistSelector)
-  // const shufflePlaylist = useSelector(shufflePlaylistSelector)
-  // const dispatch = useDispatch()
-
-  // const obj = isShuffleActive ? { ...shufflePlaylist } : { ...playlist }
-  // let index = Object.keys(obj).find((key) => obj[key].id === currentTrack.id)
-  // console.log(index);
-
+export const PlayerButtonNext = ({ icon, alt, toggleNextTrack }) => {
     
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`}>
-        <svg className={`player__btn-${icon}-svg`} alt={alt} >
+        <svg className={`player__btn-${icon}-svg`} alt={alt} onClick={toggleNextTrack}>
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>
     )
   }
 
-  export const PlayerButtonPrev = ({ icon, alt }) => {
+  export const PlayerButtonPrev = ({ icon, alt, togglePrevTrack }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`}>
-        <svg className={`player__btn-${icon}-svg`} alt={alt}  onClick={()=>alert('Функция пока не реализована')} >
+        <svg className={`player__btn-${icon}-svg`} alt={alt}  onClick={togglePrevTrack} >
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>
     )
   }
 
-  export const PlayerButtonShuffle = ({ icon, alt}) => {
+  export const PlayerButtonShuffle = ({ icon, alt, toggleShuffle}) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`}>
-        <svg className={`player__btn-${icon}-svg`} alt={alt} onClick={()=>alert('Функция пока не реализована')}  >
+        <svg className={`player__btn-${icon}-svg`} alt={alt} onClick={toggleShuffle}>
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>
