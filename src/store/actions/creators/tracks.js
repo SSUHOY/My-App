@@ -39,12 +39,14 @@ export const setIsLoop = () => ({
     type: LOOP_TRACK
 })
 
-export const nextTrack = () => ({
+export const nextTrack = (track, index) => ({
     type: NEXT_TRACK,
+    payload: {index, track}
 })
   
-export const prevTrack = () => ({
+export const prevTrack = (index, track) => ({
     type: PREV_TRACK,
+    payload: {index, track}
   })
     
 

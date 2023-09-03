@@ -7,12 +7,12 @@ import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
+import { selectCurrentTrack, selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
 import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
-const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
+const BarPlayer = () => {
 
-
+  const currentTrack = useSelector(selectCurrentTrack)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(30)
@@ -31,12 +31,12 @@ const BarPlayer = ({currentTrack,setCurrentTrack, setIsPlaying, isPlaying}) => {
     const handleStart = () => {
       dispatch(playTrack())
       audioRef.current.play();
-    } 
-  
-    const handleTrackEnd = () => {
-      dispatch(nextTrack())
-    }
- 
+  } 
+
+  const handleTrackEnd = () => {
+    dispatch(nextTrack())
+  }
+    
   const handleStop = () => {
     dispatch(pauseTrack())
     audioRef.current.pause();
@@ -96,7 +96,7 @@ useEffect(() => {
             currentTrack={currentTrack} />
           <TrackPlay
             currentTrack={currentTrack}
-            setCurrentTrack={setCurrentTrack} />
+          />
           <VolumeBlock
             volume={volume}
             onVolumeChange={handleVolumeChange} />

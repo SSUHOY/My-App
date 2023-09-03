@@ -2,11 +2,8 @@ import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
 import { formatTime } from "../../utils/formatTime"
-import { useSelector } from "react-redux"
-import { setTrack } from "../../store/actions/creators/tracks"
-import { selectCurrentTrack, selectIsPlaying } from "../../store/selectors/tracks"
 
-const PlayListItem = ({ title, artist, album, time, item, loading, onClick, id, handlePlaytrack}) => {
+const PlayListItem = ({ title, artist, album, time, item, loading, onClick}) => {
 
   return (
       <S.PlaylistItem className="PlayListItem" onClick={onClick} >          

@@ -4,10 +4,12 @@ import { Container } from "../components/mainWrappers/container";
 import Footer from "../components/mainWrappers/footer";
 import Main from "../components/mainWrappers/main";
 import GlobalStyling from "../components/styles/global/global";
+import { selectCurrentTrack } from "../store/selectors/tracks";
+import { useSelector } from "react-redux";
 
 function AppRender({onLogout}) {
-
-  const [currentTrack, setCurrentTrack] = useState(null)
+// передали трек в стор, сначала трек был в стейтах
+  const currentTrack = useSelector(selectCurrentTrack);
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
@@ -15,17 +17,14 @@ function AppRender({onLogout}) {
     <GlobalStyling/>
       <Main
         onLogout={onLogout}
-        currentTrack={currentTrack}
-        setCurrentTrack={setCurrentTrack}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying} />
-      {currentTrack ?
+      {currentTrack &&
         <BarContentForm
         onLogout={onLogout}
-        currentTrack={currentTrack}
         isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying} />
-        : null}
+        setIsPlaying={setIsPlaying} />
+       }
     <Footer/>
     </Container>
   )

@@ -36,7 +36,7 @@ export default function trackReducer(state = initialState, action) {
             }
       }
           //  получаем отдельный трек
-      case SET_CURRENT_TRACK: {
+      case SET_CURRENT_TRACK: 
         const { track, index } = action.payload
         return {
             ...state,
@@ -45,14 +45,12 @@ export default function trackReducer(state = initialState, action) {
             isLoop: false,
             isShuffle: false,
         }
-       }
         // действие со стором, получаем общее состояние и состояние - все треки
-      case SET_PLAYLIST: {
+      case SET_PLAYLIST: 
             return {
               ...state,
               playlist: action.payload,
             }
-      }
         case LOOP_TRACK:
             return {
               ...state,
@@ -76,10 +74,10 @@ export default function trackReducer(state = initialState, action) {
                   }
                }
         case NEXT_TRACK:
-      const nextIndex = state.isShuffle
+           const nextIndex = state.isShuffle
         ? state.shuffledTracks.indexOf(state.track) + 1
         : state.currentTrackIndex + 1
-      if (nextIndex >= 0 && nextIndex < state.playlist.length) {
+        if (nextIndex >= 0 && nextIndex < state.playlist.length) {
         return {
           ...state,
           track: state.isShuffle

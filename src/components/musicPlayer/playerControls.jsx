@@ -1,10 +1,8 @@
 import * as S from "../styles/player/playerStyles"
-import { useState } from "react"
-import { useEffect } from "react"
 import { PlayerButtonNext, PlayerButtonPlay, PlayerButtonPrev, PlayerButtonRepeat, PlayerButtonShuffle } from "./playerButtons"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllTracks, selectCurrentTrack, selectIsLoop, selectIsShuffle, selectShuffledTracks } from "../../store/selectors/tracks"
-import { nextTrack, playTrack, prevTrack, setIsLoop, setIsShuffle, setPlaylist, setTrack } from "../../store/actions/creators/tracks"
+import { selectAllTracks, selectIsLoop, selectIsShuffle, selectShuffledTracks } from "../../store/selectors/tracks"
+import { nextTrack, playTrack, prevTrack, setIsLoop, setIsShuffle} from "../../store/actions/creators/tracks"
 
 const PlayerControls = ({togglePlay, isPlaying}) => {
 
@@ -12,21 +10,17 @@ const PlayerControls = ({togglePlay, isPlaying}) => {
 
   const isLoop = useSelector(selectIsLoop)
   const isShuffle = useSelector(selectIsShuffle)
-  const tracks = useSelector(selectAllTracks)
-  const shuffledTracks = useSelector(selectShuffledTracks)
 
   const handleToggleLoop = () => {
     dispatch(setIsLoop())
   }
   const handleNextTrack = () => {
-    const trackList = isShuffle ? shuffledTracks : tracks
-    dispatch(nextTrack(trackList))
+    dispatch(nextTrack())
     dispatch(playTrack())
   }
 
   const handlePrevTrack = () => {
-    const trackList = isShuffle ? shuffledTracks : tracks
-    dispatch(prevTrack(trackList))
+    dispatch(prevTrack())
     dispatch(playTrack())
   }
 

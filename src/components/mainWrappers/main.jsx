@@ -15,17 +15,18 @@ import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
 import { useDispatch, useSelector } from "react-redux"
 import { playTrack, setPlaylist, setTrack } from "../../store/actions/creators/tracks"
+import { selectCurrentTrack } from "../../store/selectors/tracks"
 
-export function Main({ currentTrack, isPlaying, setIsPlaying, setCurrentTrack }) {
-  
+export function Main({ isPlaying, setIsPlaying }) {
+  // получаем currentTrack из стора
+  const currentTrack = useSelector(selectCurrentTrack);
+  console.log(selectCurrentTrack);
   const dispatch = useDispatch();
 
   const handlePlayTrack = (track, index) => {
     dispatch(setTrack(track, index))
-    console.log(setTrack);
-    setCurrentTrack(track, index)
     dispatch(playTrack())
-    console.log('Track Index:', index)
+    console.log('Track Index:', index, currentTrack)
   }
 
   const [allTracks, setAllTracks] = useState([
@@ -34,7 +35,7 @@ export function Main({ currentTrack, isPlaying, setIsPlaying, setCurrentTrack })
   useEffect(() => {
     getAllTracks().then((data) => {
       setAllTracks(data)
-      dispatch(setPlaylist({ ...data }))
+      dispatch(setPlaylist(data))
     }).catch((error) => alert(error))
   }, [])
 
