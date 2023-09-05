@@ -20,7 +20,7 @@ import { selectCurrentTrack } from "../../store/selectors/tracks"
 export function Main({ isPlaying, setIsPlaying }) {
   // получаем currentTrack из стора
   const currentTrack = useSelector(selectCurrentTrack);
-  console.log(selectCurrentTrack);
+ console.log(currentTrack);
   const dispatch = useDispatch();
 
   const handlePlayTrack = (track, index) => {
@@ -80,7 +80,8 @@ export function Main({ isPlaying, setIsPlaying }) {
                 time={track.duration_in_seconds}
                 loading={loading}
                 isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying} 
+              setIsPlaying={setIsPlaying} 
+              id={track.id}
                />
             ))}
           </div></SkeletonTheme>

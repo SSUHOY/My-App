@@ -64,12 +64,10 @@ display: flex;
         justify-content: center;
 margin-right: 17px;
 `
-
 export const TrackTitleSvg = styled.svg`
 width: 18px;
 height: 17px;
 fill: transparent;
-stroke: #4E4E4E;
 `
 export const TrackTitleLink = styled.a`
 font-style: normal;
@@ -223,6 +221,7 @@ width: 16px;
   background-color: #b672ff;
   border-radius: 8px;
   display: block;
+  fill: transparent;
   animation: bubble_out 0.6s ease-in-out infinite both;
 }
 @keyframes bubble_out {
@@ -240,6 +239,5 @@ width: 16px;
   background-color: #b672ff;
   border-radius: 8px;
   display: block;
- 
 }
   `
