@@ -2,7 +2,7 @@ export const PlayerButtonPlay = ({ icon, alt, togglePlay }) => {
     const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`} onClick={togglePlay}>
-        <svg className={`player__btn-${icon}-svg`} >
+        <svg className={`player__btn-${icon}-svg`}  >
           <use xlinkHref={xlinkHref}></use>
         </svg>
       </div>

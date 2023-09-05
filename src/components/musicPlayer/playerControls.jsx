@@ -26,14 +26,13 @@ const PlayerControls = ({togglePlay, isPlaying}) => {
 
   const handleToggleShuffle = () => {
     dispatch(setIsShuffle())
-    dispatch(playTrack())
   }
 
   return (
     <S.PlayerControls>
-      <PlayerButtonPrev icon="prev" alt="prev" togglePrevTrack={handlePrevTrack}/>
+      <PlayerButtonPrev icon="prev" alt="prev" togglePrevTrack={handlePrevTrack} toggleLoop={handleToggleLoop} />
       <PlayerButtonPlay icon={isPlaying ? 'pause' : 'play'} togglePlay={togglePlay}/>
-      <PlayerButtonNext icon="next" alt="next" toggleNextTrack={handleNextTrack} />
+      <PlayerButtonNext icon="next" alt="next" toggleNextTrack={handleNextTrack} toggleLoop={handleToggleLoop} />
       <PlayerButtonRepeat icon={isLoop ? 'repeated' : 'repeat'} alt="repeat" toggleLoop={handleToggleLoop} />
       <PlayerButtonShuffle icon={isShuffle ? "shuffled" :"shuffle"} alt="shuffle"  toggleShuffle={handleToggleShuffle}/>
     </S.PlayerControls>
