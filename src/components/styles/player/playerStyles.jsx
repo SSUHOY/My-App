@@ -123,6 +123,7 @@ stroke: #696969;
 `
 
 export const TrackTimeText = styled.span`
+padding-left: 5px;
 font-style: normal;
 font-weight: 400;
 font-size: 16px;

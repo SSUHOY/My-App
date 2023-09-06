@@ -20,7 +20,6 @@ import { selectCurrentTrack } from "../../store/selectors/tracks"
 export function Main({ isPlaying, setIsPlaying }) {
   // получаем currentTrack из стора
   const currentTrack = useSelector(selectCurrentTrack);
- console.log(currentTrack);
   const dispatch = useDispatch();
 
   const handlePlayTrack = (track, index) => {
@@ -47,10 +46,47 @@ export function Main({ isPlaying, setIsPlaying }) {
     }, 5000);
     return () => clearTimeout(timer)
     }, [])
-   const [menuActive, setMenuActive] = useState(false)
-  
+      
     return (
         <S.Main>   
+        <S.MainNav>
+        </S.MainNav>
+        <S.MainCenterBlock>
+        <Filter />
+        <S.CenterBlockContent > 
+        <SkeletonTheme baseColor="#313131" highlightColor="#444">
+          <PlayListTitle />
+          <div className="content__playlist playlist">
+          {allTracks.map((track, index) => (
+            <PlayListItem
+                onClick={() => handlePlayTrack(track, index)}
+                currentTrack={currentTrack}
+                key={index}
+                title={track.name}
+                artist={track.author}
+                album={track.album}
+                subtitle={track.release_date}
+                time={track.duration_in_seconds}
+                loading={loading}
+                isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying} 
+              id={track.id}
+               />
+            ))}
+          </div></SkeletonTheme>
+        </S.CenterBlockContent>
+        </S.MainCenterBlock>
+        <S.MainSideBar>
+        <SidebarBlock />
+        </S.MainSideBar>
+        </S.Main>
+    )
+  }
+
+export default Main
+
+
+{/* <S.Main>   
         <S.MainNav>
         <Logo />
         <S.NavBurger onClick={() => setMenuActive(!menuActive)}>
@@ -91,8 +127,4 @@ export function Main({ isPlaying, setIsPlaying }) {
         <UserNameSideBar />
         <SidebarBlock />
         </S.MainSideBar>
-        </S.Main>
-    )
-  }
-
-export default Main
+        </S.Main> */}

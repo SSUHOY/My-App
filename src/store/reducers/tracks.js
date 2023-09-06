@@ -7,6 +7,7 @@ import {
     PREV_TRACK,
     SET_CURRENT_TRACK,
     SET_PLAYLIST,
+    SET_PLAYLIST_TITLE,
     SHUFFLE_PLAYLIST
 } from "../actions/types/tracks"
 
@@ -102,7 +103,12 @@ export default function trackReducer(state = initialState, action) {
               currentTrackIndex: prevIndex,
               isLoop: false,
             }
-          }
+        }
+        // case SET_PLAYLIST_TITLE:
+        //   return {
+        //     ...state,
+        //     playlistTitle:[],
+        //   }
           
             //  действие со стором - получение состояния конкретного трека
         

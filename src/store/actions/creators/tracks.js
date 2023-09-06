@@ -7,7 +7,8 @@ import {
     SHUFFLE_PLAYLIST,
     PLAY_TRACK,
     LOOP_TRACK,
-    GET_TRACKS
+    GET_TRACKS,
+    SET_PLAYLIST_TITLE
  } from '../types/tracks';
 
 
@@ -47,7 +48,12 @@ export const nextTrack = (track, index) => ({
 export const prevTrack = (index, track) => ({
     type: PREV_TRACK,
     payload: {index, track}
-  })
+})
+  
+// export const setPlaylistTitle = (title) => ({
+//     type: SET_PLAYLIST_TITLE,
+//     pal
+// })
     
 
     
