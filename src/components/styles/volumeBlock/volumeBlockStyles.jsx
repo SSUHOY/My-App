@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const VolumeBlock = styled.div`
 width: auto;
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,6 +12,7 @@ width: auto;
   padding: 0 92px 0 0;
 `
 export const VolumeContent = styled.div`
+padding-left: 1200px;
 display: flex;
 flex-direction: row;
 align-items: center;

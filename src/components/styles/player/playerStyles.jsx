@@ -130,7 +130,7 @@ font-weight: 400;
 font-size: 16px;
 line-height: 24px;
 text-align: right;
-color: #696969;
+color: white;
 `
 
 export const PlayListContentTitle = styled.div`

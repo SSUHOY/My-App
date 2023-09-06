@@ -1,12 +1,13 @@
-// import { StyledProgressBarTime } from "../styles/basicPage/basicPageStyles"
+import { formatTime } from "../../utils/formatTime"
+import { StyledProgressBarTime } from "../styles/basicPage/basicPageStyles"
 
+const ProgressBarTime = ({ currentTime, duration }) => {
 
-// const ProgressBarTime = ({ currentTime, totalTime }) => {
-//   return (
-//     <StyledProgressBarTime>
-//       <span>{currentTime}</span> /{' '}
-//       <span>{totalTime}</span>
-//     </StyledProgressBarTime>
-//   )
-// }
-// export default ProgressBarTime
+  return (
+    <StyledProgressBarTime>
+      <span>{formatTime(currentTime)}</span>{'/'}
+      <span>{formatTime(duration)} </span>
+    </StyledProgressBarTime>
+  )
+}
+export default ProgressBarTime

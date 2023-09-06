@@ -51,7 +51,7 @@ display: flex;
         align-items: center;
 -webkit-box-pack: start;
     -ms-flex-pack: start;
-        justify-content: flex-start;
+        justify-content: space between;
 }
 `
 
@@ -275,10 +275,12 @@ background-color: #313131;
 border-radius: 50%;
 `
 
+// Стили плеера (ref)
+
 export const StyledProgressInput = styled.input`
-  --progress-height: 8px;
+   --progress-height: 8px;
   --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: ${(props) => props.$color ?? '#b672ff'};
 
   --progress-bg-color: #2e2e2e;
 

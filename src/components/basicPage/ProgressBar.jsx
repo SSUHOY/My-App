@@ -1,24 +1,17 @@
-// import * as S from './'
+import { formatTime } from "../../utils/formatTime";
+import * as S from "../styles/basicPage/basicPageStyles";
 
-// export default function ProgressBar({ duration, currentTime, onTimeChange }) {
 
-
-//   const handleTimeChange = (event) => {
-//     const newTime = parseFloat(event.target.value)
-//     console.log(duration)
-//     // setCurrentTime(newTime)
-//     onTimeChange(newTime)
-//   }
-
-//   return (
-//     <S.StyledBarPlayerProgress
-//       type="range"
-//       min={0}
-//       max={duration}
-//       value={currentTime}
-//       step={0.01}
-//       onChange={handleTimeChange}
-//       $color="#b672ff"
-//     />
-//   )
-// }
+export default function ProgressBar({duration, currentTime, handleSeekTrackTime}) {
+  console.log(currentTime);
+      return (
+      <S.StyledProgressInput
+      type="range"
+      min='0'
+        step={currentTime}
+        max={duration}
+        onChange={handleSeekTrackTime}
+        $color="#B672FF"
+      />
+    );
+  }

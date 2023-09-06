@@ -169,7 +169,7 @@ input:checked {
   stroke: #696969;
 }
 
-.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat, .player__btn-shuffle {
+.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat, .player__btn-shuffle .player__btn-pause{
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -192,10 +192,29 @@ input:checked {
   margin-right: 23px;
 }
 
+.player__btn-pause{
+  margin-right: 23px;
+  padding: 5px;
+  display: flex;
+}
+
+.player__btn-pause-svg{
+  fill: inherit;
+  stroke: #D9D9D9;
+}
+
 .player__btn-play-svg {
   width: 22px;
   height: 20px;
-  fill: #D9D9D9;
+  fill: inherit;
+  stroke: #D9D9D9;
+}
+
+.player__btn-pause-svg {
+  width: 22px;
+  height: 20px;
+  fill: inherit;
+  stroke: #D9D9D9;
 }
 
 .player__btn-next {
@@ -212,6 +231,10 @@ input:checked {
 
 .player__btn-repeat {
   margin-right: 24px;
+}
+.player__btn-repeat:hover {
+  fill:none;
+  stroke: white;
 }
 
 .player__btn-repeat-svg {
@@ -237,7 +260,6 @@ input:checked {
   stroke: #696969;
 }
 
-
 .track-play__like-svg {
   width: 14px;
   height: 12px;
@@ -260,3 +282,4 @@ input:checked {
 .PlayListItem:hover {
 background-color: #313131;
 }
+

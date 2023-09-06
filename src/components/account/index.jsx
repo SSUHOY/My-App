@@ -1,7 +1,7 @@
 export const Account = () => {
     return (
       <section>
-        <h1>Very secret page</h1>
+        <h1>Аккаунт пользователя</h1>
       </section>
     );
   };
