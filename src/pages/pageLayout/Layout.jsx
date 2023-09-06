@@ -12,6 +12,8 @@ import UserNameSideBar from "../../components/basicPage/userName"
 import SidebarBlock from "../../components/sideBar/sideBarBlock"
 import { useState } from "react"
 import Main from "../../components/mainWrappers/main"
+import { StyledHeader } from "../../components/styles/basicPage/blockHeaderStyle"
+import { BlockHeader } from "../../components/basicPage/BlockHeader"
 
 
 
@@ -32,9 +34,7 @@ const Layout = () => {
    </S.MainNav>
     <S.MainCenterBlock>
     <SearchBar />
-    <HeaderBlock />
-    <S.CenterBlockContent > 
-    </S.CenterBlockContent > 
+    {/* <BlockHeader title='Треки'/> */}
     </S.MainCenterBlock>
     <S.MainSideBar>
     <UserNameSideBar />

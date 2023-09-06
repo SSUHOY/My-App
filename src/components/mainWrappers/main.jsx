@@ -16,6 +16,7 @@ import { getAllTracks } from "../../api"
 import { useDispatch, useSelector } from "react-redux"
 import { playTrack, setPlaylist, setTrack } from "../../store/actions/creators/tracks"
 import { selectCurrentTrack } from "../../store/selectors/tracks"
+import { BlockHeader } from "../basicPage/BlockHeader"
 
 export function Main({ isPlaying, setIsPlaying }) {
   // получаем currentTrack из стора
@@ -46,14 +47,13 @@ export function Main({ isPlaying, setIsPlaying }) {
     }, 5000);
     return () => clearTimeout(timer)
     }, [])
-      
     return (
         <S.Main>   
-        <S.MainNav>
-        </S.MainNav>
+        <S.MainNav/>
         <S.MainCenterBlock>
+        <BlockHeader title='Треки'/>
         <Filter />
-        <S.CenterBlockContent > 
+          <S.CenterBlockContent > 
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">

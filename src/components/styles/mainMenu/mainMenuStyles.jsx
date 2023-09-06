@@ -17,7 +17,7 @@ flex-wrap: wrap;
 
 export const MainNav = styled.nav`
 width: 264px;
-height: 270px;
+height: 100%px;
 background-color: #181818;
 padding: 20px 0 20px 36px
 `

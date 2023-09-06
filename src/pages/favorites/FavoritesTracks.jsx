@@ -1,8 +1,8 @@
+import { BlockHeader } from "../../components/basicPage/BlockHeader"
+
 const Favorites = () => {
     return (
-      <div>
-        <h1>Favorites Tracks</h1>
-      </div>
+       <BlockHeader title="Мои треки"/>  
     )
   }
   
