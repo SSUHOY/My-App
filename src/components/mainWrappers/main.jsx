@@ -10,27 +10,33 @@ import PlayListItem from "../player/playListItem"
 import PlayListTitle from "../player/playListTitle"
 import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
-import { items } from "../playlistContent/items"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
+import { getAllTracks } from "../../api"
 
+export function Main({active, setActive, currentTrack, setCurrentTrack}) {
 
-
-
-export function Main({active, setActive}) {
-
-   const [loading,setLoading] = useState(true)
+  const [allTracks, setAllTracks] = useState([
+  ]);
+ 
   useEffect(() => {
-     const timer = setTimeout(() => {
+    getAllTracks().then((data) => {
+      setAllTracks(data)
+    })
+  }, [])
+
+  const [loading,setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
       setLoading(false)
     }, 5000);
     return () => clearTimeout(timer)
     }, [])
-
    const [menuActive, setMenuActive] = useState(false)
-
+  
     return (
-        <S.Main>
+        <S.Main>   
         <S.MainNav>
         <Logo />
         <S.NavBurger onClick={() => setMenuActive(!menuActive)}>
@@ -48,8 +54,18 @@ export function Main({active, setActive}) {
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <div className="content__playlist playlist">
-          {items.map((item,index) => (
-              <PlayListItem key= {index} item={item} loading={loading} />
+          {allTracks.map((track) => (
+                <PlayListItem
+                onClick={() => setCurrentTrack(track)}
+               currentTrack={currentTrack}
+                key={track.id}
+                title={track.name}
+                artist={track.author}
+                album={track.album}
+                subtitle={track.release_date}
+                time={track.duration_in_seconds}
+                            loading={loading}
+               />
             ))}
           </div></SkeletonTheme>
         </S.CenterBlockContent>

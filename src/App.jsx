@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { AppRoutes } from './routes';
+import { getAllTracks } from './api';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'
     setIsAuthenticated(false)
   }
-
+  
   return (  
 <>
     <AppRoutes

@@ -6,9 +6,11 @@ import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
 import { Register } from "./pages/register/registerPage"
 import { Main } from "./pages/main"
+import { useState } from "react"
 
 
 export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
+
 return (
     <Routes>
       <Route
@@ -23,20 +25,12 @@ return (
       />
       <Route path='/register' element={<Register />}/>
 <Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
-         <Route path='/' element={<Main />}/>
-        <Route
-          path="/"
-          element={
-            <Login
-            isLoading={isLoading}
-            isAuthenticated={isAuthenticated}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            />
-          }
+         <Route path='/' element={
+         <Main/>}/>
+            <Route path="/category/:id" element={<Playlist />}
         />
-        <Route path="/category/:id" element={<Playlist />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites" element={<Favorites />}
+        />
       </Route>
 <Route path="*" element = {<NotFound/>}/> 
     </Routes>
