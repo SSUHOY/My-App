@@ -10,11 +10,10 @@ import { useSelector } from "react-redux";
 function AppRender({onLogout}) {
 // передали трек в стор, сначала трек был в стейтах
   const currentTrack = useSelector(selectCurrentTrack);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <Container>
-    <GlobalStyling/>
       <Main
         onLogout={onLogout}
         isPlaying={isPlaying}
@@ -25,7 +24,6 @@ function AppRender({onLogout}) {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying} />
        }
-    <Footer/>
     </Container>
   )
    

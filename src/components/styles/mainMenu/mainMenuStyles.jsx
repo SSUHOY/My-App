@@ -15,9 +15,18 @@ flex-wrap: wrap;
     justify-content: space-between;
 `
 
+export const PlaylistContent = styled.div`
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+overflow-y: auto;`
+
 export const MainNav = styled.nav`
 width: 264px;
-height: 100%px;
 background-color: #181818;
 padding: 20px 0 20px 36px
 `

@@ -8,6 +8,12 @@
       "prettier",
       "plugin:react/jsx-runtime"
     ],
+    "ignorePatterns": [
+      "node_modules",
+      "build",
+      "dist",
+      "public"
+    ],
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
@@ -22,4 +28,3 @@
       "react/destructuring-assignment": [0]
     }
   }
-  

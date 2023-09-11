@@ -1,14 +1,9 @@
 import { useState } from "react"
-import Burger from "../basicPage/burgerLine"
 import Filter from "../basicPage/filter"
 import HeaderBlock from "../basicPage/headerBlock"
-import Logo from "../basicPage/logo"
-import Menu from "../basicPage/menu"
 import SearchBar from "../basicPage/searchBar"
-import UserNameSideBar from "../basicPage/userName"
 import PlayListItem from "../musicPlayer/playListItem"
 import PlayListTitle from "../musicPlayer/playListTitle"
-import SidebarBlock from "../sideBar/sideBarBlock"
 import { SkeletonTheme } from "react-loading-skeleton"
 import { useEffect } from "react"
 import * as S from "../styles/mainMenu/mainMenuStyles"
@@ -16,9 +11,11 @@ import { getAllTracks } from "../../api"
 import { useDispatch, useSelector } from "react-redux"
 import { playTrack, setPlaylist, setTrack } from "../../store/actions/creators/tracks"
 import { selectCurrentTrack } from "../../store/selectors/tracks"
+import { Nav } from "./nav"
+import { MainSideBar, SideBar } from "./sidebar"
 import { BlockHeader } from "../basicPage/BlockHeader"
 
-export function Main({ isPlaying, setIsPlaying }) {
+export function Main() {
   // получаем currentTrack из стора
   const currentTrack = useSelector(selectCurrentTrack);
   const dispatch = useDispatch();
@@ -39,7 +36,8 @@ export function Main({ isPlaying, setIsPlaying }) {
     }).catch((error) => alert(error))
   }, [])
 
-  const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
+  const [menuActive, setMenuActive] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,38 +46,34 @@ export function Main({ isPlaying, setIsPlaying }) {
     return () => clearTimeout(timer)
     }, [])
     return (
-        <S.Main>   
-        <S.MainNav/>
-        <S.MainCenterBlock>
-        <BlockHeader title='Треки'/>
-        <Filter />
-          <S.CenterBlockContent > 
-        <SkeletonTheme baseColor="#313131" highlightColor="#444">
-          <PlayListTitle />
-          <div className="content__playlist playlist">
-          {allTracks.map((track, index) => (
-            <PlayListItem
-                onClick={() => handlePlayTrack(track, index)}
-                currentTrack={currentTrack}
-                key={index}
-                title={track.name}
-                artist={track.author}
-                album={track.album}
-                subtitle={track.release_date}
-                time={track.duration_in_seconds}
-                loading={loading}
-                isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying} 
-              id={track.id}
-               />
-            ))}
-          </div></SkeletonTheme>
-        </S.CenterBlockContent>
-        </S.MainCenterBlock>
-        <S.MainSideBar>
-        <SidebarBlock />
-        </S.MainSideBar>
-        </S.Main>
+      <S.Main>   
+      <Nav/>
+      <S.MainCenterBlock>
+      <SearchBar />
+      <BlockHeader title="Треки"/>
+      <Filter />
+      <S.CenterBlockContent > 
+      <SkeletonTheme baseColor="#313131" highlightColor="#444">
+        <PlayListTitle />
+        <S.PlaylistContent>
+        {allTracks.map((track) => (
+              <PlayListItem
+              onClick={() => setCurrentTrack(track)}
+             currentTrack={currentTrack}
+              key={track.id}
+              title={track.name}
+              artist={track.author}
+              album={track.album}
+              subtitle={track.release_date}
+              time={track.duration_in_seconds}
+                          loading={loading}
+             />
+          ))}
+        </S.PlaylistContent></SkeletonTheme>
+      </S.CenterBlockContent>
+      </S.MainCenterBlock>
+      <MainSideBar/>
+      </S.Main>
     )
   }
 
