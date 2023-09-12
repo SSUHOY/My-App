@@ -1,5 +1,5 @@
 import Burger from "../../components/basicPage/burgerLine"
-import Logo from "../../components/basicPage/logo"
+import Logo from "../../components/basicPage/logos"
 import Menu from "../../components/basicPage/menu"
 import GlobalStyling from "../../components/styles/global/global"
 import { Outlet } from "react-router-dom"

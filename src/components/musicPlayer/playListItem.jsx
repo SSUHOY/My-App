@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
-import * as S  from "../styles/player/playerStyles"
+import * as S  from "../styles/musicPlayer/playerStyles"
 import { formatTime } from "../../utils/formatTime"
 import { useSelector } from "react-redux"
 import { selectCurrentTrack, selectIsPlaying } from "../../store/selectors/tracks"

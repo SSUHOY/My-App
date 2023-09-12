@@ -1,4 +1,3 @@
-import { formatTime } from "../../utils/formatTime";
 import * as S from "../styles/basicPage/basicPageStyles";
 
 

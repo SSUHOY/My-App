@@ -1,9 +1,7 @@
 import { useState } from "react";
 import BarContentForm from "../components/basicPage/barContentForm";
 import { Container } from "../components/mainWrappers/container";
-import Footer from "../components/mainWrappers/footer";
 import Main from "../components/mainWrappers/main";
-import GlobalStyling from "../components/styles/global/global";
 import { selectCurrentTrack } from "../store/selectors/tracks";
 import { useSelector } from "react-redux";
 
