@@ -1,5 +1,8 @@
 import { useContext, useState, createContext } from "react"
-import { fetchLogin } from "../api"
+import { fetchLogin, fetchToken } from "../api"
+import { useDispatch } from "react-redux"
+
+// https://github.com/skypro-web-developer/webdev-react-skypro-music-examples/blob/master/src/examples/rtk-query/playlist.js
 
 export const AuthContext = createContext({})
 
@@ -18,8 +21,9 @@ const [error, setError] = useState(() => {
     }
   })
 
+// const dispatch = useDispatch()
+
     const loginUserFn = async ({ email, password }) => {
-      console.log("userData");
       try {
         const userData = await fetchLogin({ email, password })
         localStorage.setItem('userData', JSON.stringify(userData))

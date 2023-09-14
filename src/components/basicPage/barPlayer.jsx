@@ -67,7 +67,7 @@ useEffect(() => {
   return () => {
     audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
   };
-}, [currentTrack]);
+}, []);
 
   return  (
     <S.BarContent >

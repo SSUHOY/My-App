@@ -13,9 +13,9 @@ export const AppRoutes = ({}) => {
     const { user } = useAuthContext()
 return (
     <Routes>
-        {/* <Route path="/login" element={<AuthPage />} />
-        <Route path="/register" element={<AuthPage />} /> */}
-        {/* <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}> */}
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/register" element={<AuthPage />} />
+        <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="/" element={<Layout />}>
         <Route index element={
         <Main/>}/>
@@ -23,6 +23,7 @@ return (
         />
         <Route path="/favorites" element={<FavoriteTracks />} 
         />
+    </Route>
     </Route>
             <Route path="*" element={<NotFound />} /> 
     </Routes>

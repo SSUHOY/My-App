@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { themes } from '../../../utils/theme-switcher/theme';
 
 const GlobalStyling = createGlobalStyle `
 
@@ -56,7 +57,7 @@ body {
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
   color: #FFFFFF;
-  background-color: #313131;
+  background-color: ${themes.dark};
   position: relative;
 }
 

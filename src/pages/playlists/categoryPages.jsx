@@ -5,8 +5,9 @@ import * as S from "../../components/styles/mainMenu/mainMenuStyles"
 import SearchBar from "../../components/basicPage/searchBar"
 import PlayListTitle from "../../components/musicPlayer/playListTitle"
 import { SideBar } from "../../components/mainWrappers/sidebar"
-import { PlaylistItem } from "../../components/styles/musicPlayer/playerStyles"
+
 import { useParams } from "react-router-dom"
+import PlayListItem from "../../components/musicPlayer/playListItem"
 
 export const Playlist = () => {
     const { id } = useParams()
@@ -19,12 +20,11 @@ export const Playlist = () => {
       <S.CenterBlockContent > 
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
-      <PlaylistItem/>
+      <PlayListItem/>
       </SkeletonTheme>
       </S.CenterBlockContent>
       </S.MainCenterBlock>
       <SideBar/>
-
       </S.Main>   
   )
 }

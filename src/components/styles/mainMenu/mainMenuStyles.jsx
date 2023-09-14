@@ -23,7 +23,8 @@ display: flex;
 -webkit-box-direction: normal;
     -ms-flex-direction: column;
         flex-direction: column;
-overflow-y: auto;`
+overflow-y: scroll;
+`
 
 export const MainNav = styled.nav`
 width: 264px;
@@ -58,6 +59,7 @@ width: auto;
   padding: 20px 40px 20px 111px;
 `
 
+
 export const CenterBlockContent = styled.div`
 display: -webkit-box;
 display: -ms-flexbox;
@@ -70,6 +72,7 @@ display: flex;
 
 export const MainSideBar = styled.div`
 background-color: rgb(24, 24, 24);
+min-width: 400px;
 max-width: 418px;
 padding: 20px 90px 20px 78px;
 `

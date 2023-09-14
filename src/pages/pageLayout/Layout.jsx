@@ -1,25 +1,32 @@
-import Burger from "../../components/basicPage/burgerLine"
-import Logo from "../../components/basicPage/logos"
-import Menu from "../../components/basicPage/menu"
 import GlobalStyling from "../../components/styles/global/global"
 import { Outlet } from "react-router-dom"
-import * as S from "../../components/styles/mainMenu/mainMenuStyles"
-import SearchBar from "../../components/basicPage/searchBar"
-import UserNameSideBar from "../../components/basicPage/userName"
-import { useState } from "react"
-import { BlockHeader } from "../../components/basicPage/BlockHeader"
-import { Container } from "../../components/mainWrappers/container"
-import BarContentForm from "../../components/basicPage/barContentForm"
 import Footer from "../../components/mainWrappers/footer"
+import { ThemeSwitcher } from "../../utils/theme-switcher/switchButton"
+import { ThemeContext } from "styled-components"
+import { useState } from "react"
+import { themes } from "../../utils/theme-switcher/theme"
 
 
 
 const Layout = () => {
+
+    const [currentTheme, setCurrentTheme] = useState(themes.light);
+
+    const toggleTheme = () => {
+        if(currentTheme === themes.dark) {
+            setCurrentTheme(themes.light);
+            return;
+        }
+        setCurrentTheme(themes.dark);
+    }
     return (
     <>
+    <ThemeContext.Provider value={{theme:currentTheme, toggleTheme}}>
     <GlobalStyling />
     <Outlet/>
     <Footer/>
+    </ThemeContext.Provider>
+    
     </>
     )
 }

@@ -6,9 +6,14 @@ import Filter from "../../components/basicPage/filter"
 import SearchBar from "../../components/basicPage/searchBar"
 import PlayListTitle from "../../components/musicPlayer/playListTitle"
 import { SideBar } from "../../components/mainWrappers/sidebar"
-import { PlaylistItem } from "../../components/styles/musicPlayer/playerStyles"
+import PlayListItem from "../../components/musicPlayer/playListItem"
+import { useEffect, useState } from "react"
+import { getAllTracks } from "../../api"
+import { setPlaylist } from "../../store/actions/creators/tracks"
+import { useDispatch } from "react-redux"
 
 const FavoriteTracks = () => {
+
   return (
     <>
       <S.Main>
@@ -19,7 +24,10 @@ const FavoriteTracks = () => {
       <S.CenterBlockContent > 
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
-      <PlaylistItem/>
+      {/* мок данные можно захардкодить в стейте или в коде */}
+      <S.PlaylistContent>
+      <PlayListItem/>
+      </S.PlaylistContent>
       </SkeletonTheme>
       </S.CenterBlockContent>
       </S.MainCenterBlock>
