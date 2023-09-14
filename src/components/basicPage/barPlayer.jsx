@@ -85,6 +85,7 @@ useEffect(() => {
         autoPlay
         loop={isLoop}
         src={currentTrack.track_file}
+        // onTimeupdate={handleTimeUpdate}
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>

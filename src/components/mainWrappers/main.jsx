@@ -15,7 +15,7 @@ import * as S from "../styles/mainMenu/mainMenuStyles"
 import { getAllTracks } from "../../api"
 
 export function Main({currentTrack, setCurrentTrack}) {
-
+  
   const [allTracks, setAllTracks] = useState([
   ]);
  
@@ -71,7 +71,7 @@ export function Main({currentTrack, setCurrentTrack}) {
         </S.CenterBlockContent>
         </S.MainCenterBlock>
         <S.MainSideBar>
-        <UserNameSideBar userName="USER" avatarImg="" />
+        <UserNameSideBar />
         <SidebarBlock />
         </S.MainSideBar>
         </S.Main>

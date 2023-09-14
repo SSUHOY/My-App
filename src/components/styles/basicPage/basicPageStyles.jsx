@@ -211,13 +211,13 @@ cursor: pointer;
 export const TrackPlayLikeSvg = styled.svg`
 padding: 5px;
 width: 14px;
-height: 12px;
 fill: transparent;
 stroke: #696969;
 `
 export const TrackPlayDislike = styled.div`
-padding: 5px;
+padding-bottom: 4px;
 margin-left: 28.5px;
+cursor: pointer;
 `
 
 export const TrackPlayPlayer = styled.div`

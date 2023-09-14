@@ -1,30 +1,21 @@
 import { Routes, Route } from "react-router-dom"
-import { About, Login } from "./pages/login/loginPage"
+import AuthPage, { About, Login } from "./pages/login/Auth/AuthPage"
 import { NotFound } from "./pages/notFound/404"
 import { ProtectedRoute } from "./components/protected-route"
 import { Playlist } from "./pages/playlists/PlayListPage_1"
 import Favorites from "./pages/favorites/FavoritesTracks"
-import { Register } from "./pages/register/registerPage"
 import { Main } from "./pages/main"
 import { useState } from "react"
+import { useAuthContext } from "./context/AuthContext"
 
 
 export const AppRoutes = ({isAuthenticated , onLogin, onLogout, isLoading}) => {
-
+    const { user } = useAuthContext()
 return (
     <Routes>
-      <Route
-        path="/login"
-        element={
-          <Login
-            isAuthenticated={isAuthenticated}
-            onLogin={onLogin}
-            onLogout={onLogout}
-          />
-        }
-      />
-      <Route path='/register' element={<Register />}/>
-<Route element={<ProtectedRoute isAllowed={Boolean(isAuthenticated)} />}>
+        <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage />} />
+<Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
          <Route path='/' element={
          <Main/>}/>
             <Route path="/category/:id" element={<Playlist />}

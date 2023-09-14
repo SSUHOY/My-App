@@ -2,9 +2,15 @@ import React from "react"
 import * as S from "../styles/basicPage/basicPageStyles"
 import { NavLink } from "react-router-dom"
 import cn from 'classnames'
+import { useAuthContext } from "../../context/AuthContext"
 
-const Menu = ({handleLogoutClick, activeLinkClass, isAuthenticated}) => {
- 
+const Menu = ({ activeLinkClass, isAuthenticated}) => {
+  const { logoutUserFn } = useAuthContext()
+  const handleLogoutClick = () => {
+    logoutUserFn()
+  }
+
+
     return (
       <React.Fragment>
         <S.MenuList>

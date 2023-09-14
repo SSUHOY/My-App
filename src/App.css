@@ -41,6 +41,14 @@ button,
   stroke: #FFFFFF;
   cursor: pointer;
 }
+
+/* ._btn:active .player__btn-repeat,
+._btn:active .player__btn-shuffle {
+  fill: #696969;
+  stroke: #FFFFFF;
+  cursor: pointer;
+} */
+
 .dropdown_menu {
   position: relative;
   display: inline-block;
@@ -268,10 +276,12 @@ input:checked {
 }
 
 .track-play__dislike-svg {
-  width: 14.34px;
-  height: 13px;
+  margin-top: 7px;
+  width: 14px;
+  height: 15px;
   fill: transparent;
   stroke: #696969;
+  cursor: pointer;
 }
 
 
