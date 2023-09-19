@@ -2,7 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styles/musicPlayer/playerStyles";
 import { formatTime } from "../../utils/formatTime";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentTrack,
   selectFavoriteTracks,
@@ -23,6 +23,14 @@ const PlayListItem = ({
 }) => {
   const currentTrack = useSelector(selectCurrentTrack);
   const isPlaying = useSelector(selectIsPlaying);
+
+//  const dispatch = useDispatch()
+
+//   const handleSelectFavTrack = () => {
+//     dispatch(selectFavoriteTracks());
+//     console.log("Liked track:", currentTrack);
+//   };
+
 
   return (
     <S.PlaylistItem className="PlayListItem" onClick={onClick}>
@@ -76,7 +84,7 @@ const PlayListItem = ({
           <S.LikeIconSvg
             onClick={(e) => {
               e.stopPropagation();
-              selectFavoriteTracks();
+          console.log('Лайк нажат');
             }}>
             <LikeIcon />
           </S.LikeIconSvg>

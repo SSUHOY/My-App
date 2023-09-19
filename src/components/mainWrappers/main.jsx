@@ -13,14 +13,12 @@ import {
   setPlaylist,
   setTrack,
 } from "../../store/actions/creators/tracks";
-import { selectCurrentTrack } from "../../store/selectors/tracks";
 import { Nav } from "./nav";
 import { MainSideBar } from "./sidebar";
 import { BlockHeader } from "../basicPage/BlockHeader";
 
-export function Main({ isPlaying, setIsPlaying }) {
+export function Main({ isPlaying, setIsPlaying, currentTrack }) {
   // получаем currentTrack из стора
-  const currentTrack = useSelector(selectCurrentTrack);
   const [allTracks, setAllTracks] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -82,7 +80,7 @@ export function Main({ isPlaying, setIsPlaying }) {
           </SkeletonTheme>
         </S.CenterBlockContent>
       </S.MainCenterBlock>
-      <MainSideBar />
+      <MainSideBar/>
     </S.Main>
   );
 }

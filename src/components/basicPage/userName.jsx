@@ -9,10 +9,9 @@ const UserNameSideBar = () => {
         <S.UserNameSideBar>
         <S.SideBarPersonalName>{user?.username}</S.SideBarPersonalName>
         <NavLink to='/login'>
-        <LogOutLogo/>
+        <LogOutLogo />
         </NavLink>
         </S.UserNameSideBar>
       )
     }
     export default UserNameSideBar
-    

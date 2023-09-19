@@ -3,16 +3,15 @@ import TrackPlay from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
 import ProgressBarTime from './progressBarTime'
 import ProgressBar from './progressBar'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCurrentTrack, selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
+import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
 import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
-const BarPlayer = () => {
+const BarPlayer = ({currentTrack, audioRef}) => {
 
-  const currentTrack = useSelector(selectCurrentTrack)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(30)
@@ -21,8 +20,6 @@ const BarPlayer = () => {
   const isLoop = useSelector(selectIsLoop)
   const dispatch = useDispatch()
   
-  const audioRef = useRef(null);
-
   useEffect(() => {
     setCurrentTime(0)
   }, [currentTrack])

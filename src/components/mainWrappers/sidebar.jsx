@@ -2,9 +2,9 @@ import UserNameSideBar from "../basicPage/userName"
 import SidebarBlock from "../sideBar/sideBarBlock"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 
-export function MainSideBar() {
+export function MainSideBar(isPlaying) {
     return <S.MainSideBar>
-    <UserNameSideBar />
+    <UserNameSideBar/>
     <SidebarBlock />
     </S.MainSideBar>
 }

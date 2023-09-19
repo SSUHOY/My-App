@@ -1,10 +1,10 @@
+import { useSelector } from "react-redux";
+import { selectCurrentTrack } from "../../store/selectors/tracks";
 import AppRender from "../appRender";
 
-export const Main = ({handleLogin, handleLogout}) => {
+export const Main = () => {
+
     return (
-        <AppRender
-        onLogin={handleLogin}
-        onLogout={handleLogout}
-       />
+        <AppRender />
     )
 };
