@@ -20,7 +20,9 @@ export const Playlist = () => {
       <S.CenterBlockContent > 
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
+      <S.PlaylistContent>
       <PlayListItem/>
+      </S.PlaylistContent>
       </SkeletonTheme>
       </S.CenterBlockContent>
       </S.MainCenterBlock>

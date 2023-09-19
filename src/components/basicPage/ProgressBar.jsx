@@ -1,7 +1,7 @@
 import * as S from "../styles/basicPage/basicPageStyles";
 
 
-export default function ProgressBar({duration, currentTime, handleSeekTrackTime}) {
+export function ProgressBar({duration, currentTime, handleSeekTrackTime}) {
       return (
       <S.StyledProgressInput
         type="range"
@@ -14,3 +14,4 @@ export default function ProgressBar({duration, currentTime, handleSeekTrackTime}
       />
     );
   }
+

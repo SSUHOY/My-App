@@ -1,14 +1,10 @@
 import BarPlayer from './barPlayer'
 import * as S from '../styles/basicPage/basicPageStyles'
 
-const BarContentForm = ({ setIsPlaying, isPlaying, currentTrack, audioRef }) => {
+const BarContentForm = ({currentTrack}) => {
   return (
     <S.Bar>
-      <BarPlayer
-        audioRef={audioRef}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        currentTrack={currentTrack}
+      <BarPlayer currentTrack={currentTrack}
         />
     </S.Bar>
   )

@@ -19,11 +19,23 @@ export const PlaylistContent = styled.div`
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;
+height: 1200px;
+margin-bottom: 80px;
+padding-right: 4px;
 -webkit-box-orient: vertical;
 -webkit-box-direction: normal;
     -ms-flex-direction: column;
         flex-direction: column;
 overflow-y: scroll;
+&::-webkit-scrollbar {
+    background: #2E2E2E;
+    width: 2px;
+}
+&::-webkit-scrollbar-thumb{
+    background: #f2f2f2;
+    width: 15px;
+    height: 15px;
+  }
 `
 
 export const MainNav = styled.nav`

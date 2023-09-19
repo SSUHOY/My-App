@@ -16,8 +16,6 @@ const Layout = () => {
 
     const [isPlaying, setIsPlaying] = useState(true);
     const currentTrack = useSelector(selectCurrentTrack);
-    const audioRef = useRef(null);
-
 
     return (
     <>
@@ -26,7 +24,6 @@ const Layout = () => {
        <Outlet/>
     {currentTrack &&
         <BarContentForm
-        audioRef={audioRef}
         currentTrack={currentTrack}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying} />

@@ -36,4 +36,9 @@ margin-bottom: 10px;
 export const VolumeProgressLineInput = styled.input`
 width: 109px;
 height:2px;
+background: #797979;
+&::-webkit-slider-thumb {
+  background: white;
+  
+}
 `

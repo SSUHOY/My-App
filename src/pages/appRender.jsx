@@ -1,13 +1,10 @@
 import Main from "../components/mainWrappers/main";
 
-function AppRender({isPlaying, currentTrack, setIsPlaying}) {
+function AppRender() {
 
   
   return (
-      <Main
-        currentTrack={currentTrack}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} />
+      <Main />
   )
    
   }

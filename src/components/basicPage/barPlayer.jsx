@@ -1,16 +1,19 @@
 import PlayerControls from '../musicPlayer/playerControls'
 import TrackPlay from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
-import ProgressBarTime from './progressBarTime'
-import ProgressBar from './progressBar'
 import { useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
-import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
+import { nextTrack, pauseTrack, playTrack } from '../../store/actions/creators/tracks'
+import { useRef } from 'react'
+import {ProgressBarTime} from './progressBarTime'
+import {ProgressBar} from './progressBar'
 
-const BarPlayer = ({currentTrack, audioRef}) => {
+const BarPlayer = ({currentTrack}) => {
+
+  const audioRef = useRef(null);
 
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -24,6 +27,14 @@ const BarPlayer = ({currentTrack, audioRef}) => {
     setCurrentTime(0)
   }, [currentTrack])
 
+
+  // Определение обработчика событий для обновления времени и продолжительности звука
+  const handleTimeUpdate = () => {
+    if(audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+      setDuration(audioRef.current.duration);
+    }
+  }
 
     const handleStart = () => {
       dispatch(playTrack())
@@ -46,11 +57,7 @@ const BarPlayer = ({currentTrack, audioRef}) => {
     setVolume(shiftVolume)
     audioRef.current.volume = shiftVolume / 100
   }
-// Определение обработчика событий для обновления времени и продолжительности звука
-  const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
-    setDuration(audioRef.current.duration);
-  }
+
 
 // Поиск времени, когда пользователь указывает на определенное время в полосе поиска ProgressBar
   const handleSeekTrackTime = (e) => {
@@ -60,9 +67,15 @@ const BarPlayer = ({currentTrack, audioRef}) => {
 
 // хук useEffect для добавления и удаления прослушивателя событий
 useEffect(() => {
-  audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+  if(audioRef.current) {
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    audioRef.current.addEventListener('ended', handleTrackEnd)
+  }
   return () => {
-    audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+    if(audioRef.current) {
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current.removeEventListener('ended', handleTrackEnd)
+    }
   };
 }, []);
 
@@ -71,7 +84,7 @@ useEffect(() => {
       <ProgressBarTime
         currentTime={currentTime}
         duration={duration} />
-       <ProgressBar   
+       <ProgressBar
          duration={duration}
          currentTime={currentTime}
          handleTimeUpdate={handleTimeUpdate}
