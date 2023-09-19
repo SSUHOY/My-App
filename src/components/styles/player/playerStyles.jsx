@@ -64,12 +64,10 @@ display: flex;
         justify-content: center;
 margin-right: 17px;
 `
-
 export const TrackTitleSvg = styled.svg`
 width: 18px;
 height: 17px;
 fill: transparent;
-stroke: #4E4E4E;
 `
 export const TrackTitleLink = styled.a`
 font-style: normal;
@@ -125,6 +123,7 @@ stroke: #696969;
 `
 
 export const TrackTimeText = styled.span`
+padding-left: 5px;
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
@@ -212,3 +211,34 @@ export const PlayListTitleSvg = styled.svg`
   fill: transparent;
   stroke: #696969;
 `
+
+export const Circle = styled.circle`
+  fill: #ad61ff;
+`
+
+export const StyledPlayingDot = styled.div`
+width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+  display: block;
+  fill: transparent;
+  animation: bubble_out 0.6s ease-in-out infinite both;
+}
+@keyframes bubble_out {
+  0%,
+  to {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }`
+
+export const StyledDot = styled.div`
+width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+  display: block;
+}
+  `

@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom"
 import cn from 'classnames'
 import { useAuthContext } from "../../context/AuthContext"
 
-const Menu = ({ activeLinkClass, isAuthenticated}) => {
+const Menu = ({ activeLinkClass }) => {
+  
   const { logoutUserFn } = useAuthContext()
   const handleLogoutClick = () => {
     logoutUserFn()
@@ -16,7 +17,7 @@ const Menu = ({ activeLinkClass, isAuthenticated}) => {
         <S.MenuList>
           <S.MenuItem>
           <NavLink to='/' className="menu__link-burger">
-              Главное
+              Главная
             </NavLink>
           </S.MenuItem>
           <S.MenuItem >
@@ -28,7 +29,6 @@ const Menu = ({ activeLinkClass, isAuthenticated}) => {
           <NavLink
           onClick={handleLogoutClick}
             to="/login"
-            isAuten
             className={({ isActive }) =>
               cn('menu__link-burger', { [activeLinkClass]: isActive})
             }>

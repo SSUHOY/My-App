@@ -42,13 +42,6 @@ button,
   cursor: pointer;
 }
 
-/* ._btn:active .player__btn-repeat,
-._btn:active .player__btn-shuffle {
-  fill: #696969;
-  stroke: #FFFFFF;
-  cursor: pointer;
-} */
-
 .dropdown_menu {
   position: relative;
   display: inline-block;
@@ -177,7 +170,7 @@ input:checked {
   stroke: #696969;
 }
 
-.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat, .player__btn-shuffle .player__btn-pause{
+.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat,.player__btn-repeated, .player__btn-shuffle .player__btn-pause{
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -252,6 +245,14 @@ input:checked {
   stroke: #696969;
 }
 
+.player__btn-repeated-svg {
+  width: 18px;
+  height: 12px;
+  margin-right: 24px;
+  fill: transparent;
+  stroke: #696969;
+}
+
 .player__btn-shuffle {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -266,6 +267,13 @@ input:checked {
   height: 12px;
   fill: transparent;
   stroke: #696969;
+}
+
+.player__btn-shuffled-svg {
+  margin-top: 9px;
+  width: 19px;
+  height: 12px;
+  fill: transparent;
 }
 
 .track-play__like-svg {

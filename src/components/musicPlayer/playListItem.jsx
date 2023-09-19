@@ -2,22 +2,26 @@ import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S  from "../styles/player/playerStyles"
 import { formatTime } from "../../utils/formatTime"
+import { useSelector } from "react-redux"
+import { selectCurrentTrack, selectIsPlaying } from "../../store/selectors/tracks"
+import { LikeIcon, NoteIcon } from "./icons/playListIcons"
 
-const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) => {
-
+const PlayListItem = ({ title, artist, album, time, item, loading, onClick, id }) => {
+  const currentTrack = useSelector(selectCurrentTrack)
+  const isPlaying = useSelector(selectIsPlaying)
   return (
       <S.PlaylistItem className="PlayListItem" onClick={onClick} >          
        <S.PlayListTrack>
   <S.TrackTitle >
-    <S.TrackTitleImg>
     {loading ? (
       <Skeleton count={1} />
-    ) : (
-      <S.TrackTitleSvg alt="music">
-        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-      </S.TrackTitleSvg>
-    )}
+            ) : (
+              <S.TrackTitleImg>
+        {currentTrack && currentTrack.id === id && isPlaying? ( <S.StyledPlayingDot />): currentTrack && currentTrack.id === id ? (<S.StyledDot />) : (   <S.TrackTitleSvg alt="music">
+       <NoteIcon/>
+    </S.TrackTitleSvg>)}
     </S.TrackTitleImg>
+               )}
     <S.TrackTitle>
     {loading ? (
       <Skeleton count={1} />
@@ -49,14 +53,14 @@ const PlayListItem = ({ title, artist, album, time, item, loading, onClick }) =>
     </S.TrackAlbumLink>
   )}
   </S.TrackAlbum>
+  <LikeIcon/>
   <S.TrackTimeText>
   {loading ? (
     <Skeleton count={1} />
   ) : (
     <>
-      {' '}
+      {' '}   
       <S.TrackAlbumTimeSvg alt="time">
-        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
       </S.TrackAlbumTimeSvg>
       <S.TrackTimeText className="track__time-text">{formatTime(time)}</S.TrackTimeText >
     </>

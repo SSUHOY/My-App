@@ -1,4 +1,4 @@
-import PlayerControls from '../player/playerControls'
+import PlayerControls from '../musicPlayer/playerControls'
 import TrackPlay from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
 import ProgressBarTime from './ProgressBarTime'
@@ -6,45 +6,44 @@ import ProgressBar from './ProgressBar'
 import { useRef, useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentTrack, selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
+import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 
-const BarPlayer = ({currentTrack,setCurrentTrack}) => {
+const BarPlayer = () => {
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const currentTrack = useSelector(selectCurrentTrack)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-
-
   const [volume, setVolume] = useState(30)
-  const [isLoop, setIsLoop] = useState(false)
  
+  const isPlayingFromStore = useSelector(selectIsPlaying)
+  const isLoop = useSelector(selectIsLoop)
+  const dispatch = useDispatch()
   
   const audioRef = useRef(null);
 
   useEffect(() => {
     setCurrentTime(0)
-    setIsLoop(false)
   }, [currentTrack])
 
 
-  useEffect(() => {
-    setIsPlaying(true)
-  }, [setCurrentTrack])
+    const handleStart = () => {
+      dispatch(playTrack())
+      audioRef.current.play();
+  } 
 
-  const handleStart = () => {
-    audioRef.current.play();
-    setIsPlaying(true);
-  };
- 
+  const handleTrackEnd = () => {
+    dispatch(nextTrack())
+  }
+    
   const handleStop = () => {
+    dispatch(pauseTrack())
     audioRef.current.pause();
-    setIsPlaying(false);
   };
   
-  const toggleLoop = () => {
-    setIsLoop((prev) => !prev)
-  }
 
-  const togglePlay = isPlaying ? handleStop : handleStart;
+  const togglePlay = isPlayingFromStore ? handleStop : handleStart;
 
   const handleVolumeChange = (shiftVolume) =>{
     setVolume(shiftVolume)
@@ -72,7 +71,9 @@ useEffect(() => {
 
   return  (
     <S.BarContent >
-        <ProgressBarTime currentTime={currentTime} duration={duration} />
+      <ProgressBarTime
+        currentTime={currentTime}
+        duration={duration} />
        <ProgressBar   
          duration={duration}
          currentTime={currentTime}
@@ -85,13 +86,20 @@ useEffect(() => {
         autoPlay
         loop={isLoop}
         src={currentTrack.track_file}
-        // onTimeupdate={handleTimeUpdate}
         ref={audioRef}>
       <source src="/music/song.mp3" type="audio/mpeg" />
         </audio>
-        <PlayerControls togglePlay={togglePlay} toggleLoop={toggleLoop} isLoop={isLoop} isPlaying={isPlaying}/>
-      <TrackPlay currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}/>
-      <VolumeBlock  volume={volume} onVolumeChange={handleVolumeChange}/>
+          <PlayerControls
+            togglePlay={togglePlay}
+            isLoop={isLoop}
+            isPlaying={isPlayingFromStore}
+            currentTrack={currentTrack} />
+          <TrackPlay
+            currentTrack={currentTrack}
+          />
+          <VolumeBlock
+            volume={volume}
+            onVolumeChange={handleVolumeChange} />
     </S.BarPlayer>
     </S.BarPlayerBlock>
     </S.BarContent>

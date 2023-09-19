@@ -6,9 +6,6 @@ width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   padding: 0 92px 0 0;
 `
 export const VolumeContent = styled.div`
@@ -33,7 +30,10 @@ fill: transparent;
 
 export const VolumeProgressLine = styled.div`
 width: 109px;
+height:18px;
+margin-bottom: 10px;
 `
 export const VolumeProgressLineInput = styled.input`
 width: 109px;
+height:2px;
 `

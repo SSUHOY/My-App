@@ -16,8 +16,8 @@ flex-wrap: wrap;
 `
 
 export const MainNav = styled.nav`
-width: 244px;
-height: 189px;
+width: 264px;
+height: 270px;
 background-color: #181818;
 padding: 20px 0 20px 36px
 `
@@ -41,6 +41,7 @@ display: flex;
 
 
 export const MainCenterBlock = styled.div`
+background-color: rgb(24, 24, 24);
 width: auto;
   -webkit-box-flex: 3;
       -ms-flex-positive: 3;
@@ -59,6 +60,7 @@ display: flex;
 `
 
 export const MainSideBar = styled.div`
+background-color: rgb(24, 24, 24);
 max-width: 418px;
 padding: 20px 90px 20px 78px;
 `

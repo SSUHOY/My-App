@@ -53,7 +53,7 @@ export default function AuthPage() {
     }
   try {
     setIsAuthLoading(true)
-    const userData = fetchRegister({ email, password, userName })
+    const userData = await fetchRegister({ email, password, userName })
     console.log(userData)
     localStorage.setItem('userData', JSON.stringify(userData))
     setIsLoginMode(true)
