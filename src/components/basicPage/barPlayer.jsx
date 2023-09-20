@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
 import { nextTrack, pauseTrack, playTrack } from '../../store/actions/creators/tracks'
 import { useRef } from 'react'
-import {ProgressBarTime} from './progressBarTime'
-import {ProgressBar} from './progressBar'
+import {ProgressBarTime} from './progressbartime'
+import {ProgressBar} from './progressbar'
 
 const BarPlayer = ({currentTrack}) => {
 

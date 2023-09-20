@@ -9,7 +9,7 @@ import {
     LOOP_TRACK,
     GET_FAVORITE_TRACKS,
     TOGGLE_LIKE,
-    UPLOAD_TOKEN
+    UPLOAD_TOKENS
  } from '../types/tracks';
 
 
@@ -62,6 +62,6 @@ export const toggleLike = (id, playlistName) =>({
 })
 
 export const uploadTokens = (accessToken, refreshToken) => ({
-    type: UPLOAD_TOKEN,
+    type: UPLOAD_TOKENS,
     payload: {accessToken, refreshToken}
 })

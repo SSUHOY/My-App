@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// реализовать через rtk query
 export async function getAllTracks() {
     const response = await axios.get("https://skypro-music-api.skyeng.tech/catalog/track/all/");
   
@@ -51,24 +52,56 @@ export async function getAllTracks() {
     const data = await response.json()
     return data
   }
+export async function postToken(email, password) {
+  return fetch("https://skypro-music-api.skyeng.tech/user/token/", {
+    method: "POST",
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((response) => response.json());
 
-  export async function fetchToken({email, password}) {
-    const response = await axios.post(
-      "https://skypro-music-api.skyeng.tech/user/token/",
-      {
-        email: email,
-        password:password
+}
+export async function fetchToken({ email, password }) {
+  const response = await axios.post(
+    'https://skypro-music-api.skyeng.tech/user/token/',
+    {
+      email: email,
+      password: password,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
       },
-      {
-        headers: {
-          'content-type': 'application/json',
-        },
-      }
-    )
-    if (response.status !== 200) {
-      const errorData = response.data
-      const errorMessages = Object.values(errorData).flat()
-      throw new Error(errorMessages[0])
     }
-    return console.log(response.data);
+  )
+  if (response.status !== 200) {
+    const errorData = response.data
+    const errorMessages = Object.values(errorData).flat()
+    throw new Error(errorMessages[0])
+  }
+
+  return response.data
+}
+
+  export async function getFavTracks() {
+    const accessToken = localStorage.getItem("token")
+    console.log(accessToken);
+    const response = await fetch("https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+    }
+    })
+   if (response.status === 401) {
+    await postToken()
+    return getFavTracks()
+   } else {
+    const items = await response.json()
+    return items
+   }
   }

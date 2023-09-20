@@ -8,7 +8,6 @@ import {
   PREV_TRACK,
   SET_CURRENT_TRACK,
   SET_PLAYLIST,
-  SET_PLAYLIST_TITLE,
   SHUFFLE_PLAYLIST,
   TOGGLE_LIKE,
 } from "../actions/types/tracks";
@@ -19,7 +18,25 @@ const initialState = {
   track: null,
   playlist: [],
   shuffledTracks: [],
-  favoriteTracks: [],
+  favoriteTracks: [
+    {id: 9, name:"Chase",
+  author:"Alexander Nakarada",
+  release_date:"2005-06-11",
+  genre:"Классическая музыка",
+  duration_in_seconds:205,
+  album:"Chase",
+  logo:null,
+  track_file:"https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3"}, 
+
+  {id: 9, name:"Chase",
+  author:"Alexander Nakarada",
+  release_date:"2005-06-11",
+  genre:"Классическая музыка",
+  duration_in_seconds:205,
+  album:"Chase",
+  logo:null,
+  track_file:"https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3"}
+],
   isLoop: false,
   isShuffle: false,
 };

@@ -24,14 +24,6 @@ const PlayListItem = ({
   const currentTrack = useSelector(selectCurrentTrack);
   const isPlaying = useSelector(selectIsPlaying);
 
-//  const dispatch = useDispatch()
-
-//   const handleSelectFavTrack = () => {
-//     dispatch(selectFavoriteTracks());
-//     console.log("Liked track:", currentTrack);
-//   };
-
-
   return (
     <S.PlaylistItem className="PlayListItem" onClick={onClick}>
       <S.PlayListTrack>

@@ -11,7 +11,6 @@ import FavoriteTracks from "./pages/favorites/favoriteTracks"
 export const AppRoutes = ({}) => {
     const { user } = useAuthContext()
 
-
 return (
     <Routes>
         <Route path="/login" element={<AuthPage />} />
