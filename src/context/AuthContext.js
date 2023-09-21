@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(() => {
     const storedUserData = localStorage.getItem('userData')
     if (storedUserData) {
+      console.log(storedUserData);
       setUser(JSON.parse(storedUserData))
     } else {
       return null
@@ -31,8 +32,8 @@ const loginUserFn = async ({ email, password }) => {
     const tokenData = await fetchToken({ email, password })
     const {access: accessToken, refresh: refreshToken} = tokenData
     console.log(tokenData);
-    dispatch(uploadTokens(accessToken, refreshToken))
-    const userData = await fetchLogin({email, password})
+    dispatch(uploadTokens(accessToken, refreshToken));
+    const userData = await fetchLogin({email, password});
     
     localStorage.setItem('userData', JSON.stringify(userData))
     setUser(userData)

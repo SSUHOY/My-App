@@ -128,16 +128,6 @@ export default function trackReducer(state = initialState, action) {
       }
       return state;
 // обновление всех треков, добавление их в список лайкнутых
-    case GET_FAVORITE_TRACKS:
-      const favoriteTracks = action.payload.map((track) => ({
-        ...track,
-        isFavorite,
-      }));
-      return {
-        ...state,
-        favoriteTracks: favoriteTracks,
-      };
-
     case PREV_TRACK:
       const prevIndex = state.isShuffle
         ? state.shuffledTracks.indexOf(state.track) - 1
