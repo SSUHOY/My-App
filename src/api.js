@@ -89,12 +89,11 @@ export async function fetchToken({ email, password }) {
 }
 
   export async function getFavTracks() {
-    const accessToken = localStorage.getItem("token")
-    console.log(accessToken);
+    const tokenObj = JSON.parse(localStorage.getItem('tokenData'))
     const response = await fetch("https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${tokenObj.access}`
     }
     })
    if (response.status === 401) {
