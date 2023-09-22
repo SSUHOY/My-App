@@ -7,36 +7,47 @@ import PlayListTitle from "../../components/musicPlayer/playListTitle"
 import { SideBar } from "../../components/mainWrappers/sidebar"
 import PlayListItem from "../../components/musicPlayer/playListItem"
 import { useDispatch, useSelector } from "react-redux"
-import { playTrack, setTrack } from "../../store/actions/creators/tracks"
+import { getFavoriteTracks, playTrack, setTrack } from "../../store/actions/creators/tracks"
 import { getFavTracks } from "../../api"
 import { useState } from "react"
 import { useEffect } from "react"
+import { selectAllTracks, selectFavoriteTracks } from "../../store/selectors/tracks"
+import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi"
 
 
 
-const FavoriteTracks = () => {
+const FavoriteTracks = ({}) => {
+  const allTracks = useSelector(selectAllTracks)
+  const {data, isLoading} = useGetFavoriteTracksQuery()
+  const dispatch = useDispatch()
+  const favoriteTracksFromStore = useSelector(selectFavoriteTracks)
+  console.log('fav tracks' , favoriteTracksFromStore);
 
-// const FavoriteTracksSel =
-//  useSelector((store) => store.player.favoriteTracks)
-const [favTracks, setFavTracks] = useState([]);
+const [loading, setLoading] = useState(true);
 // получение треков из понравившихся
-console.log(favTracks);
-
 useEffect(() => {
-  getFavTracks()
-    .then((items) => {
-      setFavTracks(items);
-    })
-    .catch((error) => alert(error));
-}, []);
+if(data) {
+  dispatch(getFavoriteTracks(data))
+  console.log(getFavoriteTracks(data));
+}
+}, [data, dispatch]);
 
- const dispatch = useDispatch()
+
 
  const handlePlayTrack = (track) => {
   dispatch(setTrack(track));
   dispatch(playTrack());
   console.log("Track Index:");
 };
+
+
+  // таймер для skeletona
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -49,10 +60,10 @@ useEffect(() => {
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
       <S.PlaylistContent>
-        {favTracks.map((track) =>
+        {favoriteTracksFromStore.map((track) =>
            (<PlayListItem
                   onClick={() => handlePlayTrack(track)}
-                  // loading={loading}
+                  loading={loading}
                   title={track.name}
                   artist={track.author}
                   album={track.album}

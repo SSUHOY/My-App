@@ -1,6 +1,7 @@
 import { compareRandom } from "../../utils/randomShuffledTracks";
 import {
   GET_FAVORITE_TRACKS,
+  GET_TRACKS,
   LOOP_TRACK,
   NEXT_TRACK,
   PAUSE_TRACK,
@@ -18,25 +19,7 @@ const initialState = {
   track: null,
   playlist: [],
   shuffledTracks: [],
-  favoriteTracks: [
-    {id: 9, name:"Chase",
-  author:"Alexander Nakarada",
-  release_date:"2005-06-11",
-  genre:"Классическая музыка",
-  duration_in_seconds:205,
-  album:"Chase",
-  logo:null,
-  track_file:"https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3"}, 
-
-  {id: 9, name:"Chase",
-  author:"Alexander Nakarada",
-  release_date:"2005-06-11",
-  genre:"Классическая музыка",
-  duration_in_seconds:205,
-  album:"Chase",
-  logo:null,
-  track_file:"https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3"}
-],
+  favoriteTracks: [],
   isLoop: false,
   isShuffle: false,
 };
@@ -59,6 +42,7 @@ export default function trackReducer(state = initialState, action) {
     //  получаем отдельный трек
     case SET_CURRENT_TRACK:
       const { track, index } = action.payload;
+      console.log(track);
       return {
         ...state,
         track,
@@ -66,16 +50,21 @@ export default function trackReducer(state = initialState, action) {
         isLoop: false,
         isShuffle: false,
       };
-    // действие со стором, получаем общее состояние и состояние - все треки
-    case SET_PLAYLIST:
-      return {
-        ...state,
-        playlist: action.payload,
-      };
+      case GET_TRACKS:
+        const userId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
+        const tracksWithLikes = action.payload.map((track) => ({
+          ...track,
+          isFavorite:track.stared_user.some((user) => user.id === userId),
+        }))
+        return {
+          ...state,
+          tracks: tracksWithLikes
+        }
       case TOGGLE_LIKE:
+        console.log(state.track);
         const { trackId } = action.payload;
-  
-        const updatedTracks = state.playlist.map((track) => {
+        console.log(state.playlist);
+        const updatedTracks = state.playlist.map((track, id) => {
           if (track.id === trackId) {
             return {
               ...state,
@@ -88,13 +77,18 @@ export default function trackReducer(state = initialState, action) {
           ...state,
           playlist: updatedTracks,
         };
+    // действие со стором, получаем общее состояние и состояние - все треки
+    case SET_PLAYLIST:
+      return {
+        ...state,
+        playlist: action.payload,
+      };
     case LOOP_TRACK:
       return {
         ...state,
         isLoop: !state.isLoop,
       };
-      // добавляем трек в лайкнутые
-  
+
     case SHUFFLE_PLAYLIST:
       if (!state.isShuffle) {
         const shuffledTracks = compareRandom([...state.playlist]);
@@ -112,6 +106,20 @@ export default function trackReducer(state = initialState, action) {
           currentTrackIndex: trackIndex,
         };
       }
+      case PREV_TRACK:
+        const prevIndex = state.isShuffle
+          ? state.shuffledTracks.indexOf(state.track) - 1
+          : state.currentTrackIndex - 1;
+        if (prevIndex >= 0 && prevIndex < state.playlist.length) {
+          return {
+            ...state,
+            track: state.isShuffle
+              ? state.shuffledTracks[prevIndex]
+              : state.playlist[prevIndex],
+            currentTrackIndex: prevIndex,
+            isLoop: false,
+          };
+        }
     case NEXT_TRACK:
       const nextIndex = state.isShuffle
         ? state.shuffledTracks.indexOf(state.track) + 1
@@ -127,21 +135,18 @@ export default function trackReducer(state = initialState, action) {
         };
       }
       return state;
-// обновление всех треков, добавление их в список лайкнутых
-    case PREV_TRACK:
-      const prevIndex = state.isShuffle
-        ? state.shuffledTracks.indexOf(state.track) - 1
-        : state.currentTrackIndex - 1;
-      if (prevIndex >= 0 && prevIndex < state.playlist.length) {
+      // обновление всех треков, добавление их в список лайкнутых
+
+      case GET_FAVORITE_TRACKS:
+        const favoriteTracks = action.payload.map((track) => ({
+          ...track,
+          isFavorite:true,
+        }))
         return {
           ...state,
-          track: state.isShuffle
-            ? state.shuffledTracks[prevIndex]
-            : state.playlist[prevIndex],
-          currentTrackIndex: prevIndex,
-          isLoop: false,
-        };
-      }
+          favoriteTracks:favoriteTracks,
+        }
+
     //  действие со стором - получение состояния конкретного трека
 
     default:

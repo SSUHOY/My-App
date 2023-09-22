@@ -9,6 +9,8 @@ import {
   selectIsPlaying,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
+import { setTrack, toggleLike } from "../../store/actions/creators/tracks";
+import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
 
 const PlayListItem = ({
   title,
@@ -19,18 +21,37 @@ const PlayListItem = ({
   loading,
   onClick,
   id,
+  index,
+  track,
   isFavorite,
 }) => {
+
+
   const currentTrack = useSelector(selectCurrentTrack);
   const isPlaying = useSelector(selectIsPlaying);
 
+  const [addToFavorites] = useAddToFavoritesMutation({id})
+  const [deleteFromFavorites] = useDeleteFromFavoritesMutation({id})
+
+const dispatch = useDispatch()
+
+  const handleLikeTrack = async () => {
+if(isFavorite) {
+  await deleteFromFavorites(id)
+} else {
+  addToFavorites(id)
+}
+    dispatch(toggleLike(id))
+    console.log('Лайк нажат', isFavorite);
+  }
+
   return (
     <S.PlaylistItem className="PlayListItem" onClick={onClick}>
-      <S.PlayListTrack>
-        <S.TrackTitle>
-          {loading ? (
-            <Skeleton count={1} />
-          ) : (
+      {loading ? (
+        <Skeleton count={1} />
+      ) : (
+        <S.PlayListTrack>
+          <S.TrackTitle>
             <S.TrackTitleImg>
               {currentTrack && currentTrack.id === id && isPlaying ? (
                 <S.StyledPlayingDot />
@@ -42,48 +63,30 @@ const PlayListItem = ({
                 </S.TrackTitleSvg>
               )}
             </S.TrackTitleImg>
-          )}
-          <S.TrackTitle>
-            {loading ? (
-              <Skeleton count={1} />
-            ) : (
+            <S.TrackTitle>
               <S.TrackTitleLink>
                 {title}
                 <S.TrackTitleSpan>
                   {item?.subtitle ? `(${item?.subtitle})` : ""}
                 </S.TrackTitleSpan>
               </S.TrackTitleLink>
-            )}
+            </S.TrackTitle>
           </S.TrackTitle>
-        </S.TrackTitle>
-        <S.TrackAuthor>
-          {loading ? (
-            <Skeleton count={1} />
-          ) : (
+          <S.TrackAuthor>
             <S.TrackAuthorLink href="http://">{artist}</S.TrackAuthorLink>
-          )}
-        </S.TrackAuthor>
-        <S.TrackAlbum className="track__album">
-          {loading ? (
-            <Skeleton count={1} />
-          ) : (
+          </S.TrackAuthor>
+          <S.TrackAlbum className="track__album">
             <S.TrackAlbumLink href="http://">{album}</S.TrackAlbumLink>
-          )}
-        </S.TrackAlbum>
-        {loading ? (
-          <Skeleton count={1} />
-        ) : (
+          </S.TrackAlbum>
           <S.LikeIconSvg
+          alt = 'heart'
             onClick={(e) => {
               e.stopPropagation();
-          console.log('Лайк нажат');
-            }}>
+              handleLikeTrack()
+            }}
+            className={isFavorite ? "active" : ""}>
             <LikeIcon />
           </S.LikeIconSvg>
-        )}
-        {loading ? (
-          <Skeleton count={1} />
-        ) : (
           <S.TrackTimeText>
             <>
               {" "}
@@ -93,8 +96,8 @@ const PlayListItem = ({
               </S.TrackTimeText>
             </>
           </S.TrackTimeText>
-        )}
-      </S.PlayListTrack>
+        </S.PlayListTrack>
+      )}
     </S.PlaylistItem>
   );
 };

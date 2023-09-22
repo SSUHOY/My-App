@@ -16,9 +16,11 @@ import {
 import { Nav } from "./nav";
 import { MainSideBar } from "./sidebar";
 import { BlockHeader } from "../basicPage/BlockHeader";
+import { selectCurrentTrack } from "../../store/selectors/tracks";
 
-export function Main({ isPlaying, setIsPlaying, currentTrack }) {
+export function Main({ isPlaying, setIsPlaying }) {
   // получаем currentTrack из стора
+  const currentTrack = useSelector(selectCurrentTrack)
   const [allTracks, setAllTracks] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ export function Main({ isPlaying, setIsPlaying, currentTrack }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 

@@ -123,7 +123,16 @@ stroke: #696969;
 `
 
 export const LikeIconSvg = styled.div`
-padding-left:1px
+padding-left:1px;
+
+&.active svg {
+  fill: #b672ff;
+  stroke:  #b672ff
+}
+&.active:hover svg {
+  fill: #b672ff;
+  stroke: #b672ff;
+}
 `
 
 

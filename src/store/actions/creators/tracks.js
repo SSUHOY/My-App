@@ -51,14 +51,14 @@ export const prevTrack = (index, track) => ({
     payload: {index, track}
 })
 
-export const getFavoriteTracks = (playlist) => ({
+export const getFavoriteTracks = (favoriteTracks) => ({
     type: GET_FAVORITE_TRACKS,
-    payload: playlist,
+    payload: favoriteTracks,
 })
      
-export const toggleLike = (id, playlistName) =>({
+export const toggleLike = (index, track) =>({
     type: TOGGLE_LIKE,
-    payload: {id, playlistName}
+    payload: {index, track}
 })
 
 export const uploadTokens = (accessToken, refreshToken) => ({

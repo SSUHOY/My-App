@@ -88,6 +88,27 @@ export async function fetchToken({ email, password }) {
   return response.data
 }
 
+export async function fetchNewAccessToken({ refreshToken }) {
+  const response = await axios.post(
+    'https://skypro-music-api.skyeng.tech/user/token/refresh/',
+    {
+      refresh: refreshToken,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+  )
+  if (response.status !== 200) {
+    const errorData = response.data
+    const errorMessages = Object.values(errorData)
+    throw new Error(errorMessages)
+  }
+
+  return response.data.access
+}
+
   export async function getFavTracks() {
     const tokenObj = JSON.parse(localStorage.getItem('tokenData'))
     const response = await fetch("https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/", {
