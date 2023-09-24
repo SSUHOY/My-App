@@ -16,9 +16,10 @@ import {
 import { Nav } from "./nav";
 import { MainSideBar } from "./sidebar";
 import { BlockHeader } from "../basicPage/BlockHeader";
-import { selectCurrentTrack } from "../../store/selectors/tracks";
+import { selectAllTracks, selectCurrentTrack } from "../../store/selectors/tracks";
 
 export function Main({ isPlaying, setIsPlaying }) {
+  const fetchAllTracks = useSelector(selectAllTracks)
   // получаем currentTrack из стора
   const currentTrack = useSelector(selectCurrentTrack)
   const [allTracks, setAllTracks] = useState([]);
@@ -38,6 +39,7 @@ export function Main({ isPlaying, setIsPlaying }) {
       .then((data) => {
         setAllTracks(data);
         dispatch(setPlaylist(data));
+        console.log(data);
       })
       .catch((error) => alert(error));
   }, []);
@@ -61,9 +63,10 @@ export function Main({ isPlaying, setIsPlaying }) {
           <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <PlayListTitle />
             <S.PlaylistContent>
-              {allTracks.map((track, index) => (
+              {fetchAllTracks.map((track, index) => (
                 <PlayListItem
                   onClick={() => handlePlayTrack(track, index)}
+                  track={track}
                   currentTrack={currentTrack}
                   key={index}
                   title={track.name}

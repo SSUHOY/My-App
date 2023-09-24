@@ -11,6 +11,8 @@ import {
   SET_PLAYLIST,
   SHUFFLE_PLAYLIST,
   TOGGLE_LIKE,
+  TRACK_IS_LIKED,
+  TRACK_IS_UNLIKED,
 } from "../actions/types/tracks";
 
 // начальное состояние
@@ -50,16 +52,6 @@ export default function trackReducer(state = initialState, action) {
         isLoop: false,
         isShuffle: false,
       };
-      case GET_TRACKS:
-        const userId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
-        const tracksWithLikes = action.payload.map((track) => ({
-          ...track,
-          isFavorite:track.stared_user.some((user) => user.id === userId),
-        }))
-        return {
-          ...state,
-          tracks: tracksWithLikes
-        }
       case TOGGLE_LIKE:
         console.log(state.track);
         const { trackId } = action.payload;
@@ -79,9 +71,14 @@ export default function trackReducer(state = initialState, action) {
         };
     // действие со стором, получаем общее состояние и состояние - все треки
     case SET_PLAYLIST:
+      const userId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
+      const tracksWithLikes = action.payload.map((track) => ({
+        ...track,
+        isFavorite:track.stared_user.some((user) => user.id === userId),
+      }));
       return {
         ...state,
-        playlist: action.payload,
+        playlist: tracksWithLikes,
       };
     case LOOP_TRACK:
       return {

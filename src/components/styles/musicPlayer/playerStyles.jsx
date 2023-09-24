@@ -130,9 +130,9 @@ padding-left:1px;
   stroke:  #b672ff
 }
 &.active:hover svg {
-  fill: #b672ff;
-  stroke: #b672ff;
-}
+    fill: #b672ff;
+    stroke: #b672ff;
+  }
 `
 
 

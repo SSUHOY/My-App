@@ -20,7 +20,7 @@ const Menu = ({ activeLinkClass }) => {
         </S.MenuItem>
         <S.MenuItem>
           <NavLink to="/favorites" className="menu__link-burger">
-            Мой плейлист
+           Мои треки
           </NavLink>
         </S.MenuItem>
         <S.MenuItem>

@@ -9,7 +9,9 @@ import {
     LOOP_TRACK,
     GET_FAVORITE_TRACKS,
     TOGGLE_LIKE,
-    UPLOAD_TOKENS
+    UPLOAD_TOKENS,
+    TRACK_IS_LIKED,
+    TRACK_IS_UNLIKED
  } from '../types/tracks';
 
 
@@ -30,7 +32,7 @@ import {
      
 export const setPlaylist = (playlist) => ({
     type: SET_PLAYLIST,
-    payload: playlist
+    payload: playlist,
 })
 
 export const setIsShuffle = () => ({

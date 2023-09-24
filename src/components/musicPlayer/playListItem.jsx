@@ -11,6 +11,7 @@ import {
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
 import { setTrack, toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
+import { useEffect } from "react";
 
 const PlayListItem = ({
   title,
@@ -21,17 +22,18 @@ const PlayListItem = ({
   loading,
   onClick,
   id,
-  index,
-  track,
-  isFavorite,
+  isFavorite, 
+  currentTrack,
+  track, 
 }) => {
 
-
-  const currentTrack = useSelector(selectCurrentTrack);
+  console.log(id);
   const isPlaying = useSelector(selectIsPlaying);
 
   const [addToFavorites] = useAddToFavoritesMutation({id})
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation({id})
+
+  useEffect(() => {}, [toggleLike])
 
 const dispatch = useDispatch()
 
@@ -39,7 +41,7 @@ const dispatch = useDispatch()
 if(isFavorite) {
   await deleteFromFavorites(id)
 } else {
-  addToFavorites(id)
+  await addToFavorites(id)
 }
     dispatch(toggleLike(id))
     console.log('Лайк нажат', isFavorite);
@@ -82,7 +84,7 @@ if(isFavorite) {
           alt = 'heart'
             onClick={(e) => {
               e.stopPropagation();
-              handleLikeTrack()
+              handleLikeTrack();
             }}
             className={isFavorite ? "active" : ""}>
             <LikeIcon />

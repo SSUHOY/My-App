@@ -17,7 +17,6 @@ import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi
 
 
 const FavoriteTracks = ({}) => {
-  const allTracks = useSelector(selectAllTracks)
   const {data, isLoading} = useGetFavoriteTracksQuery()
   const dispatch = useDispatch()
   const favoriteTracksFromStore = useSelector(selectFavoriteTracks)
@@ -28,11 +27,8 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
 if(data) {
   dispatch(getFavoriteTracks(data))
-  console.log(getFavoriteTracks(data));
 }
 }, [data, dispatch]);
-
-
 
  const handlePlayTrack = (track) => {
   dispatch(setTrack(track));
@@ -60,7 +56,7 @@ if(data) {
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
       <S.PlaylistContent>
-        {favoriteTracksFromStore.map((track) =>
+        {favoriteTracksFromStore.map((track, index) =>
            (<PlayListItem
                   onClick={() => handlePlayTrack(track)}
                   loading={loading}
@@ -69,7 +65,8 @@ if(data) {
                   album={track.album}
                   subtitle={track.release_date}
                   time={track.duration_in_seconds}
-                  key={track.id}
+                  key={index}
+                  id ={track.id}
                   isFavorite={track.isFavorite}
            /> ))}
       {/* делать проверку на наличие треков из понравившихся */}
