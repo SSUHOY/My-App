@@ -2,13 +2,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { fetchRegister } from "../../../api";
-// import useAuthContext from "../../../context/AuthContext";
-import {registration, useAuthContext } from "../../../context/AuthContext";
+import { useAuthContext } from "../../../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../store/actions/creators/tracks";
 
 export default function AuthPage() {
 
   const { setUser, loginUserFn } = useAuthContext()
-
+  const dispatch = useDispatch()
 
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
@@ -26,6 +27,7 @@ export default function AuthPage() {
   }, [location.pathname, isLoginMode])
 
   const handleLogin = async () => {
+    dispatch(loginUser())
     if (!email || !password) {
       setError("Пожалуйста, введите пароль и/или логин");
       return;

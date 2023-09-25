@@ -11,13 +11,15 @@ import {
     TOGGLE_LIKE,
     UPLOAD_TOKENS,
     TRACK_IS_LIKED,
-    TRACK_IS_UNLIKED
+    TRACK_IS_UNLIKED,
+    LOG_OUT_USER,
+    LOG_IN_USER
  } from '../types/tracks';
 
 
- export const setTrack = (track, index) => ({
+ export const setTrack = (track, index, playlist) => ({
     type: SET_CURRENT_TRACK,
-    payload: {index, track}
+    payload: {index, track, playlist}
 })
  
  export const pauseTrack = () => ({
@@ -66,4 +68,12 @@ export const toggleLike = (index, track) =>({
 export const uploadTokens = (accessToken, refreshToken) => ({
     type: UPLOAD_TOKENS,
     payload: {accessToken, refreshToken}
+})
+
+export const logoutUser = () => ({
+    type: LOG_OUT_USER
+})
+
+export const loginUser = () => ({
+    type: LOG_IN_USER
 })

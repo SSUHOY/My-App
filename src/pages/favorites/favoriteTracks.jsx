@@ -69,7 +69,7 @@ if(data) {
                   id ={track.id}
                   isFavorite={track.isFavorite}
            /> ))}
-      {/* делать проверку на наличие треков из понравившихся */}
+      {favoriteTracksFromStore.length === 0 && 'В этом плейлисте нет треков'}
       </S.PlaylistContent>
       </SkeletonTheme>
       </S.CenterBlockContent>

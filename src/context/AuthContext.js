@@ -1,7 +1,7 @@
 import { useContext, useState, createContext } from "react"
 import { fetchLogin, fetchToken, postNewToken, postToken } from "../api"
 import { useDispatch } from "react-redux"
-import { uploadTokens } from "../store/actions/creators/tracks"
+import { logoutUser, uploadTokens } from "../store/actions/creators/tracks"
 
 // https://github.com/skypro-web-developer/webdev-react-skypro-music-examples/blob/master/src/examples/rtk-query/playlist.js
 
@@ -53,6 +53,7 @@ const loginUserFn = async ({ email, password }) => {
       const logoutUserFn = () => {
         setUser(null)
         localStorage.removeItem('userData')
+        logoutUser();
       }
     
       return (

@@ -5,7 +5,10 @@ export const selectAllTracks = (state) => state.player.playlist
 export const selectCurrentTrack = (state) => state.player.track
 export const selectIsShuffle = (state) => state.player.isShuffle
 export const selectCurrentTrackIndex = (state) => state.player.currentTrackIndex
+export const selectCurrentTrackPlaylist = (state) => state.player.currentTrackPlaylist
 export const selectShuffledTracks = (state) => state.player.shuffledTracks
 export const selectIsLoop = (state) => state.player.isLoop
 export const selectFavoriteTracks = (state) => state.player.favoriteTracks
 export const selectIsLiked = (state) => state.player.isLiked
+export const logoutUserSelector = (store) => store.player.isLogin
+export const logUserSelector = (store) => store.player.isLogin

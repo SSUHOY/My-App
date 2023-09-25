@@ -19,16 +19,16 @@ import { BlockHeader } from "../basicPage/BlockHeader";
 import { selectAllTracks, selectCurrentTrack } from "../../store/selectors/tracks";
 
 export function Main({ isPlaying, setIsPlaying }) {
-  const fetchAllTracks = useSelector(selectAllTracks)
+  
   // получаем currentTrack из стора
   const currentTrack = useSelector(selectCurrentTrack)
-  const [allTracks, setAllTracks] = useState([]);
+  const fetchAllTracks = useSelector(selectAllTracks)
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   // запуск воспроизведения
-  const handlePlayTrack = (track, index) => {
-    dispatch(setTrack(track, index));
+  const handlePlayTrack = (track, index, playlist) => {
+    dispatch(setTrack(track, index, playlist));
     dispatch(playTrack());
     console.log("Track Index:", index, currentTrack);
   };
@@ -37,9 +37,7 @@ export function Main({ isPlaying, setIsPlaying }) {
   useEffect(() => {
     getAllTracks()
       .then((data) => {
-        setAllTracks(data);
         dispatch(setPlaylist(data));
-        console.log(data);
       })
       .catch((error) => alert(error));
   }, []);
@@ -79,6 +77,7 @@ export function Main({ isPlaying, setIsPlaying }) {
                   setIsPlaying={setIsPlaying}
                   id={track.id}
                   isFavorite={track.isFavorite}
+                  fetchAllTracks={fetchAllTracks}
                 />
               ))}
             </S.PlaylistContent>

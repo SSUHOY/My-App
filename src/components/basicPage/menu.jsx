@@ -3,11 +3,15 @@ import * as S from "../styles/basicPage/basicPageStyles";
 import { NavLink } from "react-router-dom";
 import cn from "classnames";
 import { useAuthContext } from "../../context/AuthContext";
+import { logoutUser } from "../../store/actions/creators/tracks";
+import { useDispatch } from "react-redux";
 
 const Menu = ({ activeLinkClass }) => {
   const { logoutUserFn } = useAuthContext();
+  const dispatch = useDispatch();
   const handleLogoutClick = () => {
     logoutUserFn();
+    dispatch(logoutUser())
   };
 
   return (

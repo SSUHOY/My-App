@@ -4,14 +4,13 @@ import * as S from "../styles/musicPlayer/playerStyles";
 import { formatTime } from "../../utils/formatTime";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectCurrentTrack,
-  selectFavoriteTracks,
   selectIsPlaying,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
-import { setTrack, toggleLike } from "../../store/actions/creators/tracks";
+import { setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
 import { useEffect } from "react";
+import { getAllTracks } from "../../api";
 
 const PlayListItem = ({
   title,
@@ -24,28 +23,35 @@ const PlayListItem = ({
   id,
   isFavorite, 
   currentTrack,
-  track, 
 }) => {
-
-  console.log(id);
   const isPlaying = useSelector(selectIsPlaying);
 
-  const [addToFavorites] = useAddToFavoritesMutation({id})
-  const [deleteFromFavorites] = useDeleteFromFavoritesMutation({id})
-
-  useEffect(() => {}, [toggleLike])
-
-const dispatch = useDispatch()
-
+  const [addToFavorites] = useAddToFavoritesMutation({ id });
+  const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
+  
+  useEffect(() => {}, [toggleLike]);
+  
+  const dispatch = useDispatch();
+  
   const handleLikeTrack = async () => {
-if(isFavorite) {
-  await deleteFromFavorites(id)
-} else {
-  await addToFavorites(id)
-}
-    dispatch(toggleLike(id))
-    console.log('Лайк нажат', isFavorite);
-  }
+    if (isFavorite) {
+      await deleteFromFavorites(id);
+    } else {
+      await addToFavorites(id);
+    }
+    dispatch(toggleLike(id));
+    console.log("Лайк нажат");
+  
+    const ReloadPage = () => {
+      getAllTracks()
+        .then((data) => {
+          dispatch(setPlaylist(data));
+        })
+        .catch((error) => alert(error));
+    };
+    ReloadPage();
+  };
+  
 
   return (
     <S.PlaylistItem className="PlayListItem" onClick={onClick}>

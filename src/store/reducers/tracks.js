@@ -2,6 +2,8 @@ import { compareRandom } from "../../utils/randomShuffledTracks";
 import {
   GET_FAVORITE_TRACKS,
   GET_TRACKS,
+  LOG_IN_USER,
+  LOG_OUT_USER,
   LOOP_TRACK,
   NEXT_TRACK,
   PAUSE_TRACK,
@@ -11,8 +13,7 @@ import {
   SET_PLAYLIST,
   SHUFFLE_PLAYLIST,
   TOGGLE_LIKE,
-  TRACK_IS_LIKED,
-  TRACK_IS_UNLIKED,
+
 } from "../actions/types/tracks";
 
 // начальное состояние
@@ -24,6 +25,7 @@ const initialState = {
   favoriteTracks: [],
   isLoop: false,
   isShuffle: false,
+  isLogin: false,
 };
 
 export default function trackReducer(state = initialState, action) {
@@ -41,21 +43,8 @@ export default function trackReducer(state = initialState, action) {
         isPlaying: false,
       };
     }
-    //  получаем отдельный трек
-    case SET_CURRENT_TRACK:
-      const { track, index } = action.payload;
-      console.log(track);
-      return {
-        ...state,
-        track,
-        currentTrackIndex: index,
-        isLoop: false,
-        isShuffle: false,
-      };
       case TOGGLE_LIKE:
-        console.log(state.track);
         const { trackId } = action.payload;
-        console.log(state.playlist);
         const updatedTracks = state.playlist.map((track, id) => {
           if (track.id === trackId) {
             return {
@@ -80,6 +69,16 @@ export default function trackReducer(state = initialState, action) {
         ...state,
         playlist: tracksWithLikes,
       };
+            //  получаем отдельный трек
+            case SET_CURRENT_TRACK:
+              const { track, index } = action.payload;
+              return {
+                ...state,
+                track,
+                currentTrackIndex: index,
+                isLoop: false,
+                isShuffle: false,
+              };
     case LOOP_TRACK:
       return {
         ...state,
@@ -132,6 +131,17 @@ export default function trackReducer(state = initialState, action) {
         };
       }
       return state;
+      case LOG_OUT_USER:
+        return {
+          ...state,
+          track: null,
+          isPlaying: false,
+        }
+        case LOG_IN_USER:
+          return {
+            ...state,
+            track: null,
+          }
       // обновление всех треков, добавление их в список лайкнутых
 
       case GET_FAVORITE_TRACKS:
