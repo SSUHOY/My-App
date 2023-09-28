@@ -17,12 +17,13 @@ import { Nav } from "./nav";
 import { MainSideBar } from "./sidebar";
 import { BlockHeader } from "../basicPage/BlockHeader";
 import { selectAllTracks, selectCurrentTrack } from "../../store/selectors/tracks";
+import { useGetTracksQuery } from "../services/playlistApi";
 
 export function Main({ isPlaying, setIsPlaying }) {
-  
+  const {data} = useGetTracksQuery()
   // получаем currentTrack из стора
-  const currentTrack = useSelector(selectCurrentTrack)
   const fetchAllTracks = useSelector(selectAllTracks)
+  const currentTrack = useSelector(selectCurrentTrack)
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -36,12 +37,10 @@ export function Main({ isPlaying, setIsPlaying }) {
 
   // получение всех треков
   useEffect(() => {
-    getAllTracks()
-      .then((data) => {
-        dispatch(setPlaylist(data));
-      })
-      .catch((error) => alert(error));
-  }, []);
+   if(data) {
+    dispatch(setPlaylist(data));
+   }
+  }, [data, dispatch]);
 
     // таймер для skeletona
     useEffect(() => {

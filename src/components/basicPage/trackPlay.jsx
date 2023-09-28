@@ -1,3 +1,4 @@
+
 import * as S from "../styles/basicPage/basicPageStyles"
 
 
@@ -30,7 +31,10 @@ const TrackPlayImg = () => {
     )
   }
   
-  const LikeDislike = () => {
+  export const LikeDislike = (currentTrack) => {
+    
+    
+
     return (
       <S.TrackPlayLikeDis className="track-play__like-dis">
         <S.TrackPlayLike className="track-play__like _btn-icon">
@@ -48,6 +52,7 @@ const TrackPlayImg = () => {
   }
   
   const TrackPlay = ({currentTrack}) => {
+    
     return (
       <S.TrackPlayPlayer >
         <S.TrackPlayContain>
@@ -55,9 +60,12 @@ const TrackPlayImg = () => {
           <TrackPlayArtist currentTrack={currentTrack}/>
           <TrackPlayAlbum currentTrack={currentTrack} />
         </S.TrackPlayContain>
-        <LikeDislike />
       </S.TrackPlayPlayer>
     )
+  }
+
+ export const LikeDislikeContent = ({currentTrack}) => {
+           <LikeDislike currentTrack={currentTrack}/>
   }
   
   export default TrackPlay

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import Footer from "../../components/mainWrappers/footer"
 import { useState } from "react"
 import BarContentForm from "../../components/basicPage/barContentForm"
-import { selectCurrentTrack } from "../../store/selectors/tracks"
+import { selectAllTracks, selectCurrentTrack } from "../../store/selectors/tracks"
 import { useSelector } from "react-redux"
 import { Container } from "../../components/mainWrappers/container"
 
@@ -13,6 +13,7 @@ const Layout = () => {
 
     const [isPlaying, setIsPlaying] = useState(true);
     const currentTrack = useSelector(selectCurrentTrack);
+   
 
     return (
       <>

@@ -21,6 +21,18 @@ width: 100%;
 height: 5px;
 background: #2E2E2E;
 `
+export const LikeIconSvgBarPlayer = styled.div`
+margin-left:120px;
+cursor: pointer;
+&.active svg {
+  fill: #b672ff;
+  stroke:  #b672ff
+}
+&.active:hover svg {
+    fill: #b672ff;
+    stroke: #b672ff;
+  }
+`
 
 export const BarPlayerBlock = styled.div`
 height: 73px;
@@ -168,7 +180,7 @@ export const TrackPlayAuthor = styled.div`
 -ms-grid-row: 1;
 -ms-grid-column: 2;
 grid-area: author;
-min-width: 49px;
+width: 49px;
 `
 
 export const TrackPlayAuthorLink = styled.a`
@@ -199,24 +211,21 @@ export const TrackPlayLikeDis= styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
-margin-left: 26%;
-`
-export const TrackPlayLike= styled.div`
-padding: 5px;
-fill: transparent;
-stroke: #ACACAC;
-cursor: pointer;
+margin-left: 120px;
 `
 
-export const TrackPlayLikeSvg = styled.svg`
+export const TrackPlayLike = styled.svg`
+width: 40px;
 padding: 5px;
-width: 14px;
 fill: transparent;
 stroke: #696969;
+cursor: pointer;
 `
-export const TrackPlayDislike = styled.div`
-padding-bottom: 4px;
+export const TrackPlayDislike = styled.svg`
+width: 30px;
 margin-left: 28.5px;
+fill: transparent;
+stroke: #696969;
 cursor: pointer;
 `
 
@@ -230,8 +239,12 @@ display: flex;
         flex-direction: row;
 `
 
+export const LikeDislikeBox = styled.div`
+height:40px;
+`
+
 export const TrackPlayContain = styled.div`
-width: auto;
+width: 180px;
 display: -ms-grid;
 display: grid;
 -ms-grid-columns: auto 1fr;

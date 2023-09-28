@@ -4,8 +4,7 @@ import * as S from '../styles/basicPage/basicPageStyles'
 const BarContentForm = ({currentTrack}) => {
   return (
     <S.Bar>
-      <BarPlayer currentTrack={currentTrack}
-        />
+      <BarPlayer currentTrack={currentTrack}/>
     </S.Bar>
   )
 }

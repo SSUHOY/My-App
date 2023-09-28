@@ -1,17 +1,22 @@
 import PlayerControls from '../musicPlayer/playerControls'
-import TrackPlay from './trackPlay'
+import TrackPlay, { LikeDislike, LikeDislikeContent } from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
 import { useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
-import { nextTrack, pauseTrack, playTrack } from '../../store/actions/creators/tracks'
+import { selectAllTracks, selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
+import { nextTrack, pauseTrack, playTrack, setTrack } from '../../store/actions/creators/tracks'
 import { useRef } from 'react'
 import { ProgressBarTime } from './durationtimebar'
 import {ProgressBar} from './progressbarinput'
+import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation, useGetFavoriteTracksQuery, useGetPlaylistQuery, useGetTracksQuery } from '../services/playlistApi'
+import { LikeIcon } from '../musicPlayer/icons/playListIcons'
+import { getAllTracks } from "../../api"
+import { setPlaylist, toggleLike } from "../../store/actions/creators/tracks"
 
 const BarPlayer = ({currentTrack}) => {
+  const {data} = useGetTracksQuery()
 
   const audioRef = useRef(null);
 
@@ -79,6 +84,36 @@ useEffect(() => {
   };
 }, []);
 
+// Лайк трека
+    const id = currentTrack.id
+    const isFavorite = currentTrack.isFavorite
+
+    const [addToFavorites] = useAddToFavoritesMutation({ id });
+    const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
+    
+    useEffect(() => {}, [toggleLike]);
+    
+    const handleLikeTrack = async () => {
+      if (isFavorite) {
+        await deleteFromFavorites(id);
+      } else {
+        await addToFavorites(id);
+      }
+      dispatch(toggleLike(id));
+      console.log("Лайк нажат");
+    
+      const ReloadPage = () => {
+        console.log('Обновление');
+        getAllTracks()
+          .then((data) => {
+            dispatch(setPlaylist(data));
+            console.log(data);
+          })
+          .catch((error) => alert(error));
+      };
+      ReloadPage();
+    };
+
   return  (
     <S.BarContent >
       <ProgressBarTime
@@ -107,6 +142,16 @@ useEffect(() => {
           <TrackPlay
             currentTrack={currentTrack}
           />
+          <S.LikeIconSvgBarPlayer
+            alt = 'heart'
+            onClick={(e) => {
+            e.stopPropagation();
+            handleLikeTrack();
+          }}
+          className={isFavorite ? "active" : ""}
+          >
+          <LikeIcon />
+          </S.LikeIconSvgBarPlayer>
           <VolumeBlock
             volume={volume}
             onVolumeChange={handleVolumeChange} />
