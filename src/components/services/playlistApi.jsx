@@ -106,4 +106,5 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     useGetFavoriteTracksQuery,
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
+    useGetPlaylistQuery,
   } = playlistApi

@@ -1,5 +1,6 @@
 import * as S from "../styles/basicPage/basicPageStyles"
 
+
 const Logo = () => {
     return (
       <S.Logo>

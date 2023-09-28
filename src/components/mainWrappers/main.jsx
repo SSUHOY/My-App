@@ -24,6 +24,7 @@ export function Main({ isPlaying, setIsPlaying }) {
   const currentTrack = useSelector(selectCurrentTrack)
   const fetchAllTracks = useSelector(selectAllTracks)
   const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
 
   // запуск воспроизведения
@@ -42,13 +43,14 @@ export function Main({ isPlaying, setIsPlaying }) {
       .catch((error) => alert(error));
   }, []);
 
-  // таймер для skeletona
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    // таймер для skeletona
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }, []);
+
 
   return (
     <S.Main>

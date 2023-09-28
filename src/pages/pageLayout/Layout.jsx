@@ -15,20 +15,21 @@ const Layout = () => {
     const currentTrack = useSelector(selectCurrentTrack);
 
     return (
-    <>
-       <Container>
-       <GlobalStyling />
-       <Outlet/>
-    {currentTrack &&
-        <BarContentForm
-        currentTrack={currentTrack}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying} />
-       }
-    <Footer/>
-       </Container>
-  
-    </>
+      <>
+      <Container>
+         <GlobalStyling />
+         <Outlet />
+         {currentTrack && (
+            <BarContentForm
+            currentTrack={currentTrack}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            />
+         )}
+         <Footer />
+      </Container>
+      
+      </>
     )
 }
 

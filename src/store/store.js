@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
 import trackReducer from "./reducers/tracks"
-import thunk from "redux-thunk"
 import authReducer from "./reducers/authReducer"
 import { playlistApi } from "../components/services/playlistApi"
+import { catalogSelectionApi } from "../components/services/catalogSelectionApi"
 
 
 
@@ -12,8 +12,14 @@ export const store = configureStore({
         player: trackReducer,
         auth: authReducer,
         [playlistApi.reducerPath]:playlistApi.reducer,
+        [catalogSelectionApi.reducerPath]:catalogSelectionApi.reducer,
     },
-    middleware:(getDefaultMiddleWare) => 
-    getDefaultMiddleWare().concat(playlistApi.middleware)
+    middleware:(getDefaultMiddleWare) => [
+
+        ...getDefaultMiddleWare(),
+        
+        playlistApi.middleware,
+        catalogSelectionApi.middleware,
+    ] 
 })
 

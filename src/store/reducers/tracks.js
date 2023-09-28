@@ -1,7 +1,8 @@
 import { compareRandom } from "../../utils/randomShuffledTracks";
+import { setPlaylist } from "../actions/creators/tracks";
 import {
   GET_FAVORITE_TRACKS,
-  GET_TRACKS,
+  GET_TRACKS_FROM_PLAYLIST,
   LOG_IN_USER,
   LOG_OUT_USER,
   LOOP_TRACK,
@@ -18,6 +19,8 @@ import {
 
 // начальное состояние
 const initialState = {
+  // Получение треков в данный плейлист
+  setPlaylist: [],
   isPlaying: false,
   track: null,
   playlist: [],
@@ -68,6 +71,11 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
         playlist: tracksWithLikes,
+      };
+      // Выбор плейлиста
+     case GET_TRACKS_FROM_PLAYLIST: 
+      return {
+        ...state,
       };
             //  получаем отдельный трек
             case SET_CURRENT_TRACK:

@@ -10,10 +10,12 @@ import {
     GET_FAVORITE_TRACKS,
     TOGGLE_LIKE,
     UPLOAD_TOKENS,
-    TRACK_IS_LIKED,
-    TRACK_IS_UNLIKED,
     LOG_OUT_USER,
-    LOG_IN_USER
+    LOG_IN_USER,
+    DAILY_TRACKS,
+    DANCE_HITS,
+    INDIE_CHARGE,
+    GET_TRACKS_FROM_PLAYLIST
  } from '../types/tracks';
 
 
@@ -55,9 +57,15 @@ export const prevTrack = (index, track) => ({
     payload: {index, track}
 })
 
+// Плейлисты
 export const getFavoriteTracks = (favoriteTracks) => ({
     type: GET_FAVORITE_TRACKS,
     payload: favoriteTracks,
+})
+
+export const selectPlaylistCategories = (setPlaylist) => ({
+    type: GET_TRACKS_FROM_PLAYLIST,
+    payload: setPlaylist,
 })
      
 export const toggleLike = (index, track) =>({

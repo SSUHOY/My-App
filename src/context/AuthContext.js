@@ -18,9 +18,7 @@ export const AuthProvider = ({ children }) => {
   })
   const [error, setError] = useState(() => {
     const storedUserData = localStorage.getItem('userData')
-    console.log(storedUserData);
     if (storedUserData) {
-      console.log(storedUserData);
       setUser(JSON.parse(storedUserData))
     } else {
       return null

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// реализовать через rtk query
 export async function getAllTracks() {
     const response = await axios.get("https://skypro-music-api.skyeng.tech/catalog/track/all/");
   
@@ -8,6 +7,10 @@ export async function getAllTracks() {
           throw new Error("Ошибка сервера");
         }      
         return response.data;
+  }
+
+  export async function getPlaylistTracks() {
+    
   }
 
   export async function fetchRegister({ email, password, userName }) {
@@ -108,20 +111,3 @@ export async function fetchNewAccessToken({ refreshToken }) {
 
   return response.data.access
 }
-
-  export async function getFavTracks() {
-    const tokenObj = JSON.parse(localStorage.getItem('tokenData'))
-    const response = await fetch("https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${tokenObj.access}`
-    }
-    })
-   if (response.status === 401) {
-    await postToken()
-    return getFavTracks()
-   } else {
-    const items = await response.json()
-    return items
-   }
-  }

@@ -13,30 +13,24 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { selectAllTracks, selectFavoriteTracks } from "../../store/selectors/tracks"
 import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi"
+import { handlePlayTrack } from "../../components/functional/playerFunc"
 
 
 
 const FavoriteTracks = ({}) => {
-  const {data, isLoading} = useGetFavoriteTracksQuery()
-  const dispatch = useDispatch()
-  const favoriteTracksFromStore = useSelector(selectFavoriteTracks)
-  console.log('fav tracks' , favoriteTracksFromStore);
-
-const [loading, setLoading] = useState(true);
-// получение треков из понравившихся
-useEffect(() => {
-if(data) {
-  dispatch(getFavoriteTracks(data))
-}
-}, [data, dispatch]);
-
- const handlePlayTrack = (track) => {
-  dispatch(setTrack(track));
-  dispatch(playTrack());
-  console.log("Track Index:");
-};
-
-
+  const { data } = useGetFavoriteTracksQuery();
+  const dispatch = useDispatch();
+  const favoriteTracksFromStore = useSelector(selectFavoriteTracks);
+  console.log("fav tracks", favoriteTracksFromStore);
+  
+  const [loading, setLoading] = useState(true);
+  // получение треков из понравившихся
+  useEffect(() => {
+    if (data) {
+      dispatch(getFavoriteTracks(data));
+    }
+  }, [data, dispatch]);
+  
   // таймер для skeletona
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,6 +38,9 @@ if(data) {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+  
+
+  
 
   return (
     <>
