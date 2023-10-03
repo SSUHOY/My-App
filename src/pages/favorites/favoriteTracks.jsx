@@ -2,7 +2,6 @@ import { BlockHeader } from "../../components/basicPage/BlockHeader"
 import { Nav } from "../../components/mainWrappers/nav"
 import { SkeletonTheme } from "react-loading-skeleton"
 import * as S from "../../components/styles/mainMenu/mainMenuStyles"
-import SearchBar from "../../components/basicPage/searchBar"
 import PlayListTitle from "../../components/musicPlayer/playListTitle"
 import { SideBar } from "../../components/mainWrappers/sidebar"
 import PlayListItem from "../../components/musicPlayer/playListItem"
@@ -14,6 +13,7 @@ import { useEffect } from "react"
 import { selectAllTracks, selectFavoriteTracks } from "../../store/selectors/tracks"
 import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi"
 import { handlePlayTrack } from "../../components/functional/playerFunc"
+import SearchBar from "../../components/basicPage/search/searchBar"
 
 
 

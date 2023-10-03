@@ -1,6 +1,9 @@
-import * as S from "../styles/basicPage/basicPageStyles"
+import * as S from "../../styles/basicPage/basicPageStyles"
+
+
 
 const SearchBar = () => {
+
     return (
       <S.CenterBlock >
         <S.SearchSvg>
@@ -10,6 +13,7 @@ const SearchBar = () => {
           type="search"
           placeholder="Поиск"
           name="search"
+          id="search-bar"
         />
       </S.CenterBlock>
     )

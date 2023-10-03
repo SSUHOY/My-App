@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Filter from "../basicPage/filter";
-import SearchBar from "../basicPage/searchBar";
+import Filter from "../basicPage/filter/filter";
 import PlayListItem from "../musicPlayer/playListItem";
 import PlayListTitle from "../musicPlayer/playListTitle";
 import { SkeletonTheme } from "react-loading-skeleton";
@@ -18,6 +17,7 @@ import { MainSideBar } from "./sidebar";
 import { BlockHeader } from "../basicPage/BlockHeader";
 import { selectAllTracks, selectCurrentTrack } from "../../store/selectors/tracks";
 import { useGetTracksQuery } from "../services/playlistApi";
+import SearchBar from "../basicPage/search/searchBar";
 
 export function Main({ isPlaying, setIsPlaying }) {
   const {data} = useGetTracksQuery()
@@ -55,9 +55,9 @@ export function Main({ isPlaying, setIsPlaying }) {
     <S.Main>
       <Nav />
       <S.MainCenterBlock>
-        <SearchBar />
+        <SearchBar/>
         <BlockHeader title="Треки" />
-        <Filter />
+        <Filter tracks={data}/>
         <S.CenterBlockContent>
           <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <PlayListTitle />

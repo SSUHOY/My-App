@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Burger from "../basicPage/burgerLine"
-import Logo from "../basicPage/icons"
+import Logo from "../basicPage/icons/icons"
 import Menu from "../basicPage/menu"
 import * as S from "../styles/mainMenu/mainMenuStyles"
 

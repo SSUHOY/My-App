@@ -1,10 +1,10 @@
-import * as S from "../styles/basicPage/basicPageStyles"
-
+import * as S from "../../styles/basicPage/basicPageStyles"
+import LogoImgUrl from './usable/logo.png'
 
 const Logo = () => {
     return (
       <S.Logo>
-        <S.LogoImg src="./img/logo.png" alt="logo" />
+        <S.LogoImg src={LogoImgUrl} alt="logo" />
       </S.Logo>
     )
   }

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import * as S from "../styles/basicPage/filterStyles";
+import * as S from "./filter.styled"
 
-const Filter = () => {
+const Filter = ({tracks}) => {
 
   const initial = {
     artist: false,
@@ -9,6 +9,21 @@ const Filter = () => {
     genre: false,
   };
   const [clicks, setClicks] = useState(initial)
+  const [filterCategory, setFilterCategory] = useState([])
+  // const [selectedGenres, setSelectedGenres] = useState([])
+  // const [selectedArtists, setSelectedArtists] = useState([])
+
+
+// const filteredTracks = () => {
+//   let filteredTracks = tracks 
+
+//   if(selectedGenres.length > 0) {
+//     filteredTracks = filteredTracks.filter(({ genre }) => 
+//     selectedGenres.includes(genre),
+//     )
+//   }
+// }
+
 
   const handClick = (e) => {
     const key = e.target.name
@@ -17,8 +32,8 @@ const Filter = () => {
 
     return (
       <S.CenterBlockFilter>
-        <S.FilterTitle className="filter__title">Искать по: &nbsp; &nbsp;</S.FilterTitle>
-        <div className="dropdown_menu">
+        <S.FilterTitle>Искать по: &nbsp; &nbsp;</S.FilterTitle>
+        <S.DropdownMenu>
         <button
           onClick={handClick}
           name="artist"
@@ -37,7 +52,7 @@ const Filter = () => {
             <li>Arctic Monkeys</li>
           </ul>
         </div>
-      </div>
+      </S.DropdownMenu>
       <S.FilterTitle>
         <button
           onClick={handClick}
@@ -56,7 +71,7 @@ const Filter = () => {
           
         </div>
       </S.FilterTitle>
-      <S.FilterTitle className="filter__title">
+      <S.FilterTitle>
         <button
           onClick={handClick}
           name="genre"

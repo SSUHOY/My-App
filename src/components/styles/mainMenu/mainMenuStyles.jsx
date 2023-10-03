@@ -28,15 +28,14 @@ padding-right: 4px;
         flex-direction: column;
 overflow-y: scroll;
 &::-webkit-scrollbar {
-    background: #2E2E2E;
-    width: 2px;
+    background: #f2f2f2;
 }
 &::-webkit-scrollbar-thumb{
-    background: #f2f2f2;
-    width: 15px;
+    background: #2E2E2E;
     height: 15px;
   }
 `
+
 
 export const MainNav = styled.nav`
 width: 264px;
