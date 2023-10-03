@@ -44,3 +44,34 @@ appearance: none;
   position: relative;
   cursor:pointer;
 `
+
+export const DropdownList = styled.ul`
+  overflow-y: scroll;
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    background: #2E2E2E;
+    width: 2px;
+}
+&::-webkit-scrollbar-thumb{
+    background: #f2f2f2;
+  }
+  display: flex;
+  max-height: 237px;
+  flex-direction: column;
+  gap: 28px;
+  & li:hover {
+    ${(props) => !props.$active && `border-color: #d9b6ff; color: #ad61ff;`}
+    text-decoration: underline;
+  }
+`
+export const DropdownListGenres = styled.ul`
+  display: flex;
+  max-height: 237px;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 28px;
+  & li:hover {
+    ${(props) => !props.$active && `border-color: #d9b6ff; color: #ad61ff;`}
+    text-decoration: underline;
+  }
+`

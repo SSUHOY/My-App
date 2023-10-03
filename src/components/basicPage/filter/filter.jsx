@@ -1,94 +1,112 @@
 import { useState } from "react";
-import * as S from "./filter.styled"
+import * as S from "./filter.styled";
 
-const Filter = ({tracks}) => {
+const Filter = ({ tracks, value, onClickCategory, artistList }) => {
 
   const initial = {
     artist: false,
     year: false,
     genre: false,
   };
-  const [clicks, setClicks] = useState(initial)
-  const [filterCategory, setFilterCategory] = useState([])
-  // const [selectedGenres, setSelectedGenres] = useState([])
-  // const [selectedArtists, setSelectedArtists] = useState([])
+console.log(artistList);
 
 
-// const filteredTracks = () => {
-//   let filteredTracks = tracks 
+  const [clicks, setClicks] = useState(initial);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-//   if(selectedGenres.length > 0) {
-//     filteredTracks = filteredTracks.filter(({ genre }) => 
-//     selectedGenres.includes(genre),
-//     )
-//   }
-// }
-
+  const genres = ["Классическая музыка", "Электронная музыка", "Рок музыка"];
 
   const handClick = (e) => {
-    const key = e.target.name
-    setClicks((prev) => ({ ...initial, [key]: !prev[key] }))
-  }
+    const key = e.target.name;
+    setClicks((prev) => ({ ...initial, [key]: !prev[key] }));
+  };
 
-    return (
-      <S.CenterBlockFilter>
-        <S.FilterTitle>Искать по: &nbsp; &nbsp;</S.FilterTitle>
-        <S.DropdownMenu>
+  return (
+    <S.CenterBlockFilter>
+      <S.FilterTitle>Искать по: &nbsp; &nbsp;</S.FilterTitle>
+      <S.DropdownMenu>
         <button
           onClick={handClick}
           name="artist"
-          className={`filter__button button-author _btn-text dropbtn ${clicks.artist? "button-active" : ""}`}
-        >
+          className={`filter__button button-author _btn-text dropbtn ${
+            clicks.artist ? "button-active" : ""
+          }`}>
           исполнителю
         </button>
-        <div id="myDropdown" className={`dropdown-content scrollbar ${clicks.artist? "show" : ""}`}>
-          <ul className="dropdown-content_li">
-            <li>Michael Jackson</li>
-            <li>Calvin Harris</li>
-            <li>Zhu</li>
-            <li>Arctic Monkeys</li>
-            <li>Michael Jackson</li>
-            <li>Frank Sinatra</li>
-            <li>Arctic Monkeys</li>
-          </ul>
+        <div
+          id="myDropdown"
+          className={`dropdown-content ${
+            clicks.artist ? "show" : ""
+          }`}>
+            <S.DropdownList>
+            {artistList.map((artistNames, i) => (
+              <li
+              key={i}
+              onClick={() => onClickCategory(i)}>
+             {artistNames} 
+              </li>
+             ))}
+          
+            </S.DropdownList>
         </div>
       </S.DropdownMenu>
       <S.FilterTitle>
         <button
           onClick={handClick}
           name="year"
-          className={`filter__button button-author _btn-text dropbtn ${clicks.year? "button-active" : ""}`}
-        >
+          className={`filter__button button-author _btn-text dropbtn ${
+            clicks.year ? "button-active" : ""
+          }`}>
           году выпуска
         </button>
-        <div id="myDropdown" className={`dropdown-content-year ${clicks.year? "show-year" : ""}`}>
+        <div
+          id="myDropdown"
+          className={`dropdown-content-year ${clicks.year ? "show-year" : ""}`}>
           <S.FieldSetRadio className="select-year">
-            <S.InputRadio type="radio" id="New" name="Tracks" className="input-year"/>
-          <label>Более новые &nbsp;</label>
-          <S.InputRadio type="radio" id="Old" name="Tracks" className="input-year"/>
-          <label>Более старые</label>
+            <S.InputRadio
+              type="radio"
+              id="New"
+              name="Tracks"
+              className="input-year"
+            />
+            <label>Более новые &nbsp;</label>
+            <S.InputRadio
+              type="radio"
+              id="Old"
+              name="Tracks"
+              className="input-year"
+            />
+            <label>Более старые</label>
           </S.FieldSetRadio>
-          
         </div>
       </S.FilterTitle>
       <S.FilterTitle>
         <button
           onClick={handClick}
           name="genre"
-          className={`filter__button button-author _btn-text dropbtn ${clicks.genre? "button-active" : ""}`}
-        >
+          className={`filter__button button-author _btn-text dropbtn ${
+            clicks.genre ? "button-active" : ""
+          }`}>
           жанру
         </button>
-        <div id="myDropdown" className={`dropdown-content ${clicks.genre? "show" : ""}`}>
-        <p>Рок </p>
-          <p> Хип-хоп </p>
-          <p>Поп-музыка </p>
-          <p>Техно </p>
-          <p>Инди</p>
+        <div
+          id="myDropdown"
+          className={`dropdown-content ${clicks.genre ? "show" : ""}`}>
+          <S.DropdownListGenres>
+            {genres.map((genreName, i) => (
+              <li
+                key={i}
+                onClick={() => onClickCategory(i)}
+                className={activeIndex === i ? "underline" : ""}>
+                {genreName}
+              </li>
+            ))}
+         </S.DropdownListGenres>
         </div>
       </S.FilterTitle>
-      </S.CenterBlockFilter>
-    )
-  }
-  export default Filter
+    </S.CenterBlockFilter>
+  );
+};
+export default Filter;
+
   

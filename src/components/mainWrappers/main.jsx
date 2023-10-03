@@ -26,6 +26,21 @@ export function Main({ isPlaying, setIsPlaying }) {
   const currentTrack = useSelector(selectCurrentTrack)
   const [loading, setLoading] = useState(true);
 
+
+    // / фильтры
+    const [filterCategory, setFilterCategory] = useState([]);
+    const [selectedArtists, setSelectedArtists] = useState([])
+    const [selectedGenres, setSelectedGenres] = useState([])
+
+
+  const artistNames = [...new Set(data?.map((track) => track.author))].sort()
+  useEffect(() => {}, [selectedArtists])
+
+
+console.log(artistNames);
+
+  
+
   const dispatch = useDispatch();
 
   // запуск воспроизведения
@@ -57,7 +72,7 @@ export function Main({ isPlaying, setIsPlaying }) {
       <S.MainCenterBlock>
         <SearchBar/>
         <BlockHeader title="Треки" />
-        <Filter tracks={data}/>
+        <Filter tracks={data} value={filterCategory }  onClickCategory={(i) => setFilterCategory(i)} artistList={artistNames}/>
         <S.CenterBlockContent>
           <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <PlayListTitle />
