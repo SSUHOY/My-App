@@ -10,7 +10,7 @@ export const catalogSelectionApi = createApi({
       query: () => '',
     }),
     getCatalogSectionTracks: builder.query({
-      query: (id) => `${id}`,
+      query: (section) => `${section}`,
     }),
   }),
 })

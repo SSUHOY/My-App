@@ -24,12 +24,11 @@ const PlayListItem = ({
   isFavorite, 
   currentTrack,
 }) => {
+
   const isPlaying = useSelector(selectIsPlaying);
 
   const [addToFavorites] = useAddToFavoritesMutation({ id });
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
-  
-  useEffect(() => {}, [toggleLike]);
   
   const dispatch = useDispatch();
   

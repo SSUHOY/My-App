@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Filter from "../basicPage/filter/filter";
 import PlayListItem from "../musicPlayer/playListItem";
 import PlayListTitle from "../musicPlayer/playListTitle";
@@ -30,16 +30,23 @@ export function Main({ isPlaying, setIsPlaying }) {
     // / фильтры
     const [filterCategory, setFilterCategory] = useState([]);
     const [selectedArtists, setSelectedArtists] = useState([])
+    console.log(selectedArtists);
     const [selectedGenres, setSelectedGenres] = useState([])
 
 
   const artistNames = [...new Set(data?.map((track) => track.author))].sort()
   useEffect(() => {}, [selectedArtists])
 
-
-console.log(artistNames);
-
+  const filteredTracksByArtists = useMemo(
+    () => {
+      const filterByArtists = fetchAllTracks.filter(track => track.author === selectedArtists)
+      const filterByGenres = fetchAllTracks.filter(track => track.author === selectedGenres)
+   
+      return filterByArtists
   
+ } , [selectedArtists]
+    )
+console.log(filteredTracksByArtists);
 
   const dispatch = useDispatch();
 
@@ -72,7 +79,7 @@ console.log(artistNames);
       <S.MainCenterBlock>
         <SearchBar/>
         <BlockHeader title="Треки" />
-        <Filter tracks={data} value={filterCategory }  onClickCategory={(i) => setFilterCategory(i)} artistList={artistNames}/>
+        <Filter tracks={data} value={filterCategory}  onClickCategory={(artistNames) => setSelectedArtists(artistNames)} artistList={artistNames}/>
         <S.CenterBlockContent>
           <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <PlayListTitle />

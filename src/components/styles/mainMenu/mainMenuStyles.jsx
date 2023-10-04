@@ -28,10 +28,10 @@ padding-right: 4px;
         flex-direction: column;
 overflow-y: scroll;
 &::-webkit-scrollbar {
-    background: #f2f2f2;
+    background: #2e2e2e;
 }
 &::-webkit-scrollbar-thumb{
-    background: #2E2E2E;
+    background:  #f2f2f2;
     height: 15px;
   }
 `

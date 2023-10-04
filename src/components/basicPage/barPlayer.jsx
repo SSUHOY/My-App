@@ -15,7 +15,7 @@ import { LikeIcon } from '../musicPlayer/icons/playListIcons'
 import { getAllTracks } from "../../api"
 import { setPlaylist, toggleLike } from "../../store/actions/creators/tracks"
 
-const BarPlayer = ({currentTrack}) => {
+const BarPlayer = ({currentTrack, isFavorite, setIsFavorite}) => {
 
   const audioRef = useRef(null);
 
@@ -85,19 +85,15 @@ useEffect(() => {
 const id = currentTrack.id
 
 const {data} = useGetFavoriteTracksQuery();
-const [isFavorite, setIsFavorite] = useState(false)
+
 useEffect(() => {
   setIsFavorite(data ? Boolean(data.find(el => el.id === id)) : false);
 }, [data, id]);
 
 
 // Лайк трека
-
-
     const [addToFavorites] = useAddToFavoritesMutation({ id });
     const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
-    
-    useEffect(() => {}, [toggleLike]);
     
     const handleLikeTrack = async () => {
       if (isFavorite) {
@@ -144,7 +140,9 @@ useEffect(() => {
             togglePlay={togglePlay}
             isLoop={isLoop}
             isPlaying={isPlayingFromStore}
-            currentTrack={currentTrack} />
+            currentTrack={currentTrack}
+            isFavorite={isFavorite}
+            setIsFavorite={setIsFavorite} />
           <TrackPlay
             currentTrack={currentTrack}
           />

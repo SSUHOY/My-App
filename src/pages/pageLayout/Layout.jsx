@@ -9,10 +9,9 @@ import { Container } from "../../components/mainWrappers/container"
 
 
 
-const Layout = () => {
+const Layout = ({isFavorite , setIsFavorite, currentTrack}) => {
 
     const [isPlaying, setIsPlaying] = useState(true);
-    const currentTrack = useSelector(selectCurrentTrack);
    
 
     return (
@@ -25,6 +24,8 @@ const Layout = () => {
             currentTrack={currentTrack}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
+            isFavorite={isFavorite}
+            setIsFavorite={setIsFavorite}
             />
          )}
          <Footer />

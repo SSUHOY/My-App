@@ -10,14 +10,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { playTrack, selectPlaylistCategories, setTrack } from "../../store/actions/creators/tracks"
 import { useGetCatalogSectionTracksQuery } from "../../components/services/catalogSelectionApi"
 import { useEffect } from "react"
-import { selectPlaylist } from "../../store/selectors/tracks"
+import { selectCurrentTrack, selectPlaylist } from "../../store/selectors/tracks"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
 
-export const Playlist = () => {
-    const { id } = useParams()
-    const {data} = useGetCatalogSectionTracksQuery(id);
- 
+export const Playlist = ({isFavorite, setIsFavorite, currentTrack}) => {
+
+    const { section } = useParams()
+    const {data} = useGetCatalogSectionTracksQuery(section);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
 
@@ -33,6 +33,7 @@ export const Playlist = () => {
       console.log("Track Index:", index);
     };
 
+
       // таймер для skeletona
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -42,7 +43,13 @@ export const Playlist = () => {
   }, []);
   
     const tracks = data?.items || []
+    let id = currentTrack
 
+    useEffect(() => {
+     
+      setIsFavorite(tracks ? Boolean(tracks.find(el => el.id === id)) : false);
+    }, [data, id]);
+    
   return (
     <S.Main>
     <Nav />
@@ -50,9 +57,9 @@ export const Playlist = () => {
       <SearchBar />
         <BlockHeader
           title={
-            (id == 1 && "Классическая музыка") ||
-            (id == 2 && "Электронная музыка") ||
-            (id == 3 && "Рок-музыка")
+            (section == 1 && "Классическая музыка") ||
+            (section == 2 && "Электронная музыка") ||
+            (section == 3 && "Рок-музыка")
           }
         />
       <S.CenterBlockContent>
@@ -62,15 +69,13 @@ export const Playlist = () => {
             {tracks.map((track, index) => (
               <PlayListItem
                 onClick={() => handlePlayTrack(track, index)}
-                key={id}
+                key={index}
                 loading={loading}
                 title={track.name}
                 artist={track.author}
                 album={track.album}
                 subtitle={track.release_date}
                 time={track.duration_in_seconds}
-                id={track.id}
-                isFavorite={track.isFavorite}
               />
             ))}
           </S.PlaylistContent>

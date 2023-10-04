@@ -77,6 +77,11 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
       };
+      // case SET_FILTER:
+      //   return {
+      //     ...state, 
+      //     [action.filterName]: action.filterValue,
+      //   };
             //  получаем отдельный трек
             case SET_CURRENT_TRACK:
               const { track, index } = action.payload;

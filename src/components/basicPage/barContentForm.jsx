@@ -1,10 +1,10 @@
 import BarPlayer from './barPlayer'
 import * as S from '../styles/basicPage/basicPageStyles'
 
-const BarContentForm = ({currentTrack}) => {
+const BarContentForm = ({currentTrack, isFavorite, setIsFavorite}) => {
   return (
     <S.Bar>
-      <BarPlayer currentTrack={currentTrack}/>
+      <BarPlayer currentTrack={currentTrack} isFavorite={isFavorite} setIsFavorite={setIsFavorite}/>
     </S.Bar>
   )
 }

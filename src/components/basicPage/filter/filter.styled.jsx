@@ -13,11 +13,46 @@ display: flex;
         align-items: center;
 margin-bottom: 51px;
 `
+
+export const DropdownContentBox = styled.div`
+display: none;
+position: absolute;
+background-color: rgb(49, 49, 49);
+max-width: 280px;
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+z-index: 1;
+`
 export const DropdownMenu = styled.div`
 position: relative;
 display: inline-block;
 border-radius: 12px;
 `
+
+export const DropDownBtn = styled.button`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #FFFFFF;
+  border-radius: 60px;
+  padding: 6px 20px;
+  margin-right: 10px;
+  color: white;
+  background-color: transparent;
+  &:hover{ 
+    border-color: rgb(154, 72, 241);
+  }
+  &:focus {
+    border-color: rgb(154, 72, 241);
+  }
+  &:active{
+    border: 1px solid rgb(154, 72, 241);
+    border-color: rgb(154, 72, 241);
+    color: rgb(154, 72, 241);
+  }
+`
+
+
 
 export const FilterTitle = styled.div`
 font-style: normal;
