@@ -7,12 +7,11 @@ import { SideBar } from "../../components/mainWrappers/sidebar"
 import PlayListItem from "../../components/musicPlayer/playListItem"
 import { useDispatch, useSelector } from "react-redux"
 import { getFavoriteTracks, playTrack, setTrack } from "../../store/actions/creators/tracks"
-import { getFavTracks } from "../../api"
+
 import { useState } from "react"
 import { useEffect } from "react"
 import { selectAllTracks, selectFavoriteTracks } from "../../store/selectors/tracks"
 import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi"
-import { handlePlayTrack } from "../../components/functional/playerFunc"
 import SearchBar from "../../components/basicPage/search/searchBar"
 
 

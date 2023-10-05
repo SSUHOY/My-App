@@ -5,7 +5,6 @@ import PlayListTitle from "../musicPlayer/playListTitle";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useEffect } from "react";
 import * as S from "../styles/mainMenu/mainMenuStyles";
-import { getAllTracks } from "../../api";
 import { useDispatch, useSelector } from "react-redux";
 import {
   playTrack,
