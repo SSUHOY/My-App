@@ -92,17 +92,18 @@ code {
   font-size: 20px;
   padding: 32px;
   width: 260px;
-  height: 152px;
+  height: 124px;
   border-radius: 12px;
 }
 
 .show-genres {
+  text-wrap: nowrap;
   display: flex;
   flex-direction: column;
   font-size: 20px;
   padding: 32px;
-  width: 248px;
-  height: 305px;
+  width: 280px;
+  height: 198px;
   border-radius: 12px;
   gap: 24px;
 }

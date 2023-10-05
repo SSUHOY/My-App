@@ -17,7 +17,6 @@ export const Playlist = ({isFavorite, setIsFavorite}) => {
 
     const { section } = useParams()
     const {data} = useGetCatalogSectionTracksQuery(section);
-    console.log(data);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
 

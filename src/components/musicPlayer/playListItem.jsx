@@ -22,10 +22,9 @@ const PlayListItem = ({
   onClick,
   id,
   isFavorite, 
-  currentTrack
+  currentTrack, 
 }) => {
-console.log(id);
-console.log(isFavorite);
+
   const isPlaying = useSelector(selectIsPlaying);
 
   const [addToFavorites] = useAddToFavoritesMutation({ id });
