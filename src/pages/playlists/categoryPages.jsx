@@ -10,14 +10,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { playTrack, selectPlaylistCategories, setTrack } from "../../store/actions/creators/tracks"
 import { useGetCatalogSectionTracksQuery } from "../../components/services/catalogSelectionApi"
 import { useEffect } from "react"
-import { selectCurrentTrack, selectPlaylist } from "../../store/selectors/tracks"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
 
-export const Playlist = ({isFavorite, setIsFavorite, currentTrack}) => {
+export const Playlist = ({isFavorite, setIsFavorite}) => {
 
     const { section } = useParams()
     const {data} = useGetCatalogSectionTracksQuery(section);
+    console.log(data);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
 
@@ -43,12 +43,6 @@ export const Playlist = ({isFavorite, setIsFavorite, currentTrack}) => {
   }, []);
   
     const tracks = data?.items || []
-    let id = currentTrack
-
-    useEffect(() => {
-     
-      setIsFavorite(tracks ? Boolean(tracks.find(el => el.id === id)) : false);
-    }, [data, id]);
     
   return (
     <S.Main>
@@ -76,6 +70,8 @@ export const Playlist = ({isFavorite, setIsFavorite, currentTrack}) => {
                 album={track.album}
                 subtitle={track.release_date}
                 time={track.duration_in_seconds}
+                id={track.id}
+                isFavorite={isFavorite}
               />
             ))}
           </S.PlaylistContent>

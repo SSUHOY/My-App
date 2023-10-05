@@ -4,6 +4,15 @@ import * as S from "../../styles/basicPage/basicPageStyles"
 
 const SearchBar = () => {
 
+  // const Search = () => {
+  //   const dispatch = useDispatch()
+  //   const searchText = useSelector(selectSearchText)
+  //   const handleSearchChange = (e) => {
+  //     const newText = e.target.value
+  //     dispatch(getSearchText(newText))
+  //   }
+
+
     return (
       <S.CenterBlock >
         <S.SearchSvg>

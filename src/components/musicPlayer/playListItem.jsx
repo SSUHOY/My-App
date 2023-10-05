@@ -4,10 +4,10 @@ import * as S from "../styles/musicPlayer/playerStyles";
 import { formatTime } from "../../utils/formatTime";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectIsPlaying,
+  selectIsPlaying, selectPlaylist,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
-import { setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
+import { selectPlaylistCategories, setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
 import { useEffect } from "react";
 import { getAllTracks } from "../../api";
@@ -22,9 +22,10 @@ const PlayListItem = ({
   onClick,
   id,
   isFavorite, 
-  currentTrack,
+  currentTrack
 }) => {
-
+console.log(id);
+console.log(isFavorite);
   const isPlaying = useSelector(selectIsPlaying);
 
   const [addToFavorites] = useAddToFavoritesMutation({ id });

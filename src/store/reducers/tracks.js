@@ -29,6 +29,7 @@ const initialState = {
   isLoop: false,
   isShuffle: false,
   isLogin: false,
+  searchText: '',
 };
 
 export default function trackReducer(state = initialState, action) {
@@ -74,14 +75,14 @@ export default function trackReducer(state = initialState, action) {
       };
       // Выбор плейлиста
      case GET_TRACKS_FROM_PLAYLIST: 
+     const tracksFromCategories = state.setPlaylist.map(() => ({
+      ...track,
+      isFavorite: !track.isFavorite
+     }))
       return {
         ...state,
+        setPlaylist:tracksFromCategories
       };
-      // case SET_FILTER:
-      //   return {
-      //     ...state, 
-      //     [action.filterName]: action.filterValue,
-      //   };
             //  получаем отдельный трек
             case SET_CURRENT_TRACK:
               const { track, index } = action.payload;

@@ -27,6 +27,9 @@ padding-right: 4px;
     -ms-flex-direction: column;
         flex-direction: column;
 overflow-y: scroll;
+&:hover {
+    background-color: 
+}
 &::-webkit-scrollbar {
     background: #2e2e2e;
 }
@@ -36,6 +39,9 @@ overflow-y: scroll;
   }
 `
 
+export const PlaylistItem = styled.div`
+
+`
 
 export const MainNav = styled.nav`
 width: 264px;

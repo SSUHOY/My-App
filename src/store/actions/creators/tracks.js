@@ -15,7 +15,8 @@ import {
     DAILY_TRACKS,
     DANCE_HITS,
     INDIE_CHARGE,
-    GET_TRACKS_FROM_PLAYLIST
+    GET_TRACKS_FROM_PLAYLIST,
+    GET_SEARCH_TEXT
  } from '../types/tracks';
 
 
@@ -85,3 +86,8 @@ export const logoutUser = () => ({
 export const loginUser = () => ({
     type: LOG_IN_USER
 })
+
+export const getSearchText = (text) => ({
+    type: GET_SEARCH_TEXT,
+    payload: text,
+  })

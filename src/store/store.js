@@ -3,6 +3,7 @@ import trackReducer from "./reducers/tracks"
 import authReducer from "./reducers/authReducer"
 import { playlistApi } from "../components/services/playlistApi"
 import { catalogSelectionApi } from "../components/services/catalogSelectionApi"
+import filterReducer from "./reducers/filterReducer"
 
 
 
@@ -13,6 +14,7 @@ export const store = configureStore({
         auth: authReducer,
         [playlistApi.reducerPath]:playlistApi.reducer,
         [catalogSelectionApi.reducerPath]:catalogSelectionApi.reducer,
+        filter: filterReducer,
     },
     middleware:(getDefaultMiddleWare) => [
 
