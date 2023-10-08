@@ -13,7 +13,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
 
-export const Playlist = ({isFavorite, setIsFavorite}) => {
+export const Playlist = ({isFavorite}) => {
 
     const { section } = useParams()
     const {data} = useGetCatalogSectionTracksQuery(section);

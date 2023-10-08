@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useReducer, useState } from "react";
 import Filter from "../basicPage/filter/filter";
 import PlayListItem from "../musicPlayer/playListItem";
 import PlayListTitle from "../musicPlayer/playListTitle";
@@ -34,6 +34,8 @@ export function Main({ isPlaying, setIsPlaying }) {
   const artistNames = [...new Set(data?.map((track) => track.author))].sort();
   const genres = [...new Set(data?.map((track) => track.genre))].sort();
 
+// Фильтр по вводу в строку поиска
+const [searchText, setSearchText] = useState('')
  // фильтры по жанру и году
  const [selectedFilters, setSelectedFilters] = useState([{
   year: "", // Выбранный год выпуска
@@ -49,7 +51,6 @@ const handleSelectedGenresChange = (genreName) => {
   }
 });
 };
-console.log(selectedGenres);
 
 // Филтры по артисту, множественный выбор
   const [selectedArtists, setSelectedArtists] = useState([])
@@ -62,12 +63,11 @@ console.log(selectedGenres);
     }
   });
 };
-    console.log(selectedArtists);
     
   const filteredSongs = useMemo(() => {
     let result = [...fetchAllTracks];
-    if (selectedFilters.genre) {
-      result = result.filter((track) => track.genre === selectedFilters.genre);
+    if(searchText !== '') {
+      result = result.filter((track) => track.name.toLowerCase().includes(searchText.toLowerCase()));
     }
     if (selectedArtists.length > 0) {
       result = result.filter((track) => selectedArtists.includes(track.author));
@@ -83,9 +83,9 @@ console.log(selectedGenres);
       result.sort(
         (a, b) => new Date(b.release_date) - new Date(a.release_date)
       );
-    } 
+    }
     return result;
-  }, [fetchAllTracks, selectedFilters, selectedArtists, selectedGenres]);
+  }, [fetchAllTracks, selectedFilters, selectedArtists, selectedGenres, searchText]);
 
   // запуск воспроизведения
   const handlePlayTrack = (track, index, playlist) => {
@@ -113,7 +113,7 @@ console.log(selectedGenres);
     <S.Main>
       <Nav />
       <S.MainCenterBlock>
-        <SearchBar />
+        <SearchBar onChange={(value) => setSearchText(value)}/>
         <BlockHeader title="Треки" />
         <Filter
           tracks={data}
@@ -132,6 +132,18 @@ console.log(selectedGenres);
             }))
           }
         />
+         {selectedArtists.length > 0 ? (
+                <S.SelectedFiltersCircleArtists>
+                  {selectedArtists.length}
+                </S.SelectedFiltersCircleArtists>
+              ) : null
+              }
+         {selectedGenres.length > 0 ? (
+                <S.SelectedFiltersCircleGenres>
+                  {selectedGenres.length}
+                </S.SelectedFiltersCircleGenres>
+              ) : null
+              }
         <S.CenterBlockContent>
           <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <PlayListTitle />
@@ -155,6 +167,9 @@ console.log(selectedGenres);
                   fetchAllTracks={fetchAllTracks}
                 />
               ))}
+              <S.NotFound>
+              {searchText !== '' && filteredSongs?.length === 0 ? "Ничего не найдено" : null}
+              </S.NotFound>
             </S.PlaylistContent>
           </SkeletonTheme>
         </S.CenterBlockContent>

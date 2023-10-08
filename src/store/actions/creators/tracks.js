@@ -86,8 +86,3 @@ export const logoutUser = () => ({
 export const loginUser = () => ({
     type: LOG_IN_USER
 })
-
-export const getSearchText = (text) => ({
-    type: GET_SEARCH_TEXT,
-    payload: text,
-  })

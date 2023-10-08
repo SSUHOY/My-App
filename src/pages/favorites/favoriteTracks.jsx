@@ -38,6 +38,11 @@ const FavoriteTracks = ({}) => {
     return () => clearTimeout(timer);
   }, []);
   
+  const handlePlayTrack = (track, index, playlist) => {
+    dispatch(setTrack(track, index, playlist));
+    dispatch(playTrack());
+    console.log("Track Index:", index);
+  };
 
   
 

@@ -104,3 +104,37 @@ display: block;
     background-color: transparent;
   `}
 `;
+
+export const NotFound = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+export const SelectedFiltersCircleArtists=styled.div`
+    width: 26px;
+    height: 26px;
+    background-color: #b672ff;
+    border-radius: 16px;
+    display: flex;
+    margin-top: 2px;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 590px;
+    top: 230px;
+`
+
+export const SelectedFiltersCircleGenres=styled.div`
+    width: 26px;
+    height: 26px;
+    background-color: #b672ff;
+    border-radius: 16px;
+    display: flex;
+    margin-top: 2px;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 837px;
+    top: 230px;
+`

@@ -1,17 +1,10 @@
+import { useDispatch } from "react-redux"
 import * as S from "../../styles/basicPage/basicPageStyles"
+import { selectSearchText } from "../../../store/selectors/tracks"
 
 
 
 const SearchBar = ({onChange}) => {
-
-  // const Search = () => {
-  //   const dispatch = useDispatch()
-  //   const searchText = useSelector(selectSearchText)
-  //   const handleSearchChange = (e) => {
-  //     const newText = e.target.value
-  //     dispatch(getSearchText(newText))
-  //   }
-
 
     return (
       <S.CenterBlock >
