@@ -2,7 +2,7 @@ import * as S from "../../styles/basicPage/basicPageStyles"
 
 
 
-const SearchBar = () => {
+const SearchBar = ({onChange}) => {
 
   // const Search = () => {
   //   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const SearchBar = () => {
           placeholder="Поиск"
           name="search"
           id="search-bar"
+          onChange={(e) => onChange(e.target.value)}
         />
       </S.CenterBlock>
     )

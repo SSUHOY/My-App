@@ -6,10 +6,13 @@ const Filter = ({
   onClickCategory,
   artistList,
   genreList,
-  value
+  value,
+  selectedArtists,
+  onArtistClick,
+  onGenreClick,
+  selectedGenres
 }) => {
   const [clicks, setClicks] = useState(selectedFilters || {});
-  console.log(clicks.year);
 
   const handClick = (category) => {
     setClicks((prevClicks) => ({
@@ -17,10 +20,6 @@ const Filter = ({
       [category]: !prevClicks[category],
     }));
   };
-
-  const [activeIndex, setActiveIndex] = useState(null);
-  console.log(activeIndex);
-  // const genres = ["Классическая музыка", "Электронная музыка", "Рок музыка"];
 
   return (
     <S.CenterBlockFilter>
@@ -39,10 +38,10 @@ const Filter = ({
             {artistList.map((artistNames, i) => (
               <li
                 key={i}
-                onClick={() => {
-                  onClickCategory("artist", artistNames);
-                }}
-                className={value === i  ? "underline" : ""}>
+                onClick={() => onArtistClick(artistNames)}
+                className={
+                  selectedArtists?.includes(artistNames) ? "underline": " "
+                }>
                 {artistNames}
               </li>
             ))}
@@ -61,6 +60,15 @@ const Filter = ({
           className={clicks.year ? "show-year" : ""}>
           <S.FieldSetRadio className="select-year">
             <S.InputRadio
+              type="radio"
+              id="Default"
+              name="Tracks"
+              checked={selectedFilters.year === "Default"}
+              className="input-year"
+              onChange={() => onClickCategory("year", "Default")}
+            />
+            <label>По умолчанию &nbsp;</label>
+          <S.InputRadio
               type="radio"
               id="New"
               name="Tracks"
@@ -95,8 +103,10 @@ const Filter = ({
             {genreList.map((genreName, i) => (
               <li
                 key={i}
-                onClick={() => onClickCategory("genre", genreName)}
-                className={value === i ? "underline" : ""}>
+                onClick={() => onGenreClick(genreName)}
+                className={
+                  selectedGenres?.includes(genreName) ? "underline": " "
+                }>
                 {genreName}
               </li>
             ))}

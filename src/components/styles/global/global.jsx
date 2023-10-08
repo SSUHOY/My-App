@@ -92,7 +92,7 @@ code {
   font-size: 20px;
   padding: 32px;
   width: 260px;
-  height: 124px;
+  height: 152px;
   border-radius: 12px;
 }
 

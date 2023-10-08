@@ -30,27 +30,51 @@ export function Main({ isPlaying, setIsPlaying }) {
 
   const [loading, setLoading] = useState(true);
 
-  // фильтры
-  const [selectedFilters, setSelectedFilters] = useState({
-    genre: "", // Выбранный жанр \
-    year: "", // Выбранный год выпуска
-    artist: "", // Список выбранных исполнителей
-  });
-  console.log(selectedFilters.year);
-
+ 
   const artistNames = [...new Set(data?.map((track) => track.author))].sort();
   const genres = [...new Set(data?.map((track) => track.genre))].sort();
 
+ // фильтры по жанру и году
+ const [selectedFilters, setSelectedFilters] = useState([{
+  year: "", // Выбранный год выпуска
+}]);
+// Фильтр по жанру, множественный выбор 
+const [selectedGenres, setSelectedGenres] = useState([])
+const handleSelectedGenresChange = (genreName) => {
+  setSelectedGenres((prevSelectedGenres) => {
+  if (prevSelectedGenres.includes(genreName)) {
+  return prevSelectedGenres.filter((item) => item !== genreName);
+  } else {
+  return [...prevSelectedGenres, genreName];
+  }
+});
+};
+console.log(selectedGenres);
+
+// Филтры по артисту, множественный выбор
+  const [selectedArtists, setSelectedArtists] = useState([])
+  const handleSelectedArtistsChange = (artistName) => {
+    setSelectedArtists((prevSelectedArtists) => {
+    if (prevSelectedArtists.includes(artistName)) {
+    return prevSelectedArtists.filter((item) => item !== artistName);
+    } else {
+    return [...prevSelectedArtists, artistName];
+    }
+  });
+};
+    console.log(selectedArtists);
+    
   const filteredSongs = useMemo(() => {
     let result = [...fetchAllTracks];
     if (selectedFilters.genre) {
       result = result.filter((track) => track.genre === selectedFilters.genre);
     }
-    if (selectedFilters.artist) {
-      result = result.filter(
-        (track) => track.author === selectedFilters.artist
-      );
-    }
+    if (selectedArtists.length > 0) {
+      result = result.filter((track) => selectedArtists.includes(track.author));
+      }
+   if (selectedGenres.length > 0) {
+        result = result.filter((track) => selectedGenres.includes(track.genre));
+      }
     if (selectedFilters.year === "New") {
       result.sort(
         (a, b) => new Date(a.release_date) - new Date(b.release_date)
@@ -59,9 +83,9 @@ export function Main({ isPlaying, setIsPlaying }) {
       result.sort(
         (a, b) => new Date(b.release_date) - new Date(a.release_date)
       );
-    }
+    } 
     return result;
-  }, [fetchAllTracks, selectedFilters]);
+  }, [fetchAllTracks, selectedFilters, selectedArtists, selectedGenres]);
 
   // запуск воспроизведения
   const handlePlayTrack = (track, index, playlist) => {
@@ -97,6 +121,10 @@ export function Main({ isPlaying, setIsPlaying }) {
           selectedFilters={selectedFilters}
           artistList={artistNames}
           genreList={genres}
+          onArtistClick={handleSelectedArtistsChange}
+          onGenreClick={handleSelectedGenresChange}
+          selectedGenres={selectedGenres}
+          selectedArtists={selectedArtists}
           onClickCategory={(category, value) =>
             setSelectedFilters((prevFilters) => ({
               ...prevFilters,
