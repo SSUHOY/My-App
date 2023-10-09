@@ -93,7 +93,21 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
               ]
             : [{ type: 'Favorites', id: 'LIST' }],
       }),
-  
+      getPlaylistCategories: builder.query({
+        query: (section) => 
+        `/catalog/selection/${section}`, 
+        transformResponse: (response) => ({
+          playlist: response.items,
+        }),
+        providesTags: (result) => 
+        result.playlist
+        ? [
+          ...result.playlist.map(({ id }) => ({ type: 'Favorites', id })),
+          { type: 'Favorites', id: 'LIST' },
+        ]
+      : [{ type: 'Favorites', id: 'LIST' }],
+      }),
+      
       addToFavorites: builder.mutation({
         query: (id) => ({
           url: `/catalog/track/${id}/favorite/`,
@@ -115,7 +129,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   export const {
     useGetFavoriteTracksQuery,
     useGetTracksQuery,
-    useGetPlaylistQuery,
+    useGetPlaylistCategoriesQuery,
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
   } = playlistApi

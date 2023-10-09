@@ -1,5 +1,5 @@
 const PlayerButton = ({ icon, alt, togglePlay, toggleNext }) => {
-    const xlinkHref = `img/icon/sprite.svg#icon-${icon}`
+    const xlinkHref = `/img/icon/sprite.svg#icon-${icon}`
     return (
       <div className={`player__btn-${icon} _btn`} onClick={togglePlay}>
         <svg className={`player__btn-${icon}-svg`} alt={alt}   >

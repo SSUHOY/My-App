@@ -4,10 +4,10 @@ import * as S from "../styles/musicPlayer/playerStyles";
 import { formatTime } from "../../utils/formatTime";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectIsPlaying, selectPlaylist,
+  selectIsPlaying,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
-import { selectPlaylistCategories, setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
+import { selectPlaylistCategories, toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
 
 const PlayListItem = ({

@@ -1,7 +1,7 @@
 import * as S from "../styles/musicPlayer/playerStyles"
 import { PlayerButtonNext, PlayerButtonPlay, PlayerButtonPrev, PlayerButtonRepeat, PlayerButtonShuffle } from "./playerButtons"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllTracks, selectIsLoop, selectIsShuffle, selectShuffledTracks } from "../../store/selectors/tracks"
+import { selectIsLoop, selectIsShuffle } from "../../store/selectors/tracks"
 import { nextTrack, playTrack, prevTrack, setIsLoop, setIsShuffle} from "../../store/actions/creators/tracks"
 
 const PlayerControls = ({togglePlay, isPlaying}) => {

@@ -6,7 +6,7 @@ const TrackPlayImg = () => {
     return (
       <S.TrackPlayImg >
         <S.TrackPlaySvg alt="music">
-          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+          <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
         </S.TrackPlaySvg>
       </S.TrackPlayImg>
     )

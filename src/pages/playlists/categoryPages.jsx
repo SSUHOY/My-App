@@ -8,15 +8,15 @@ import { useParams } from "react-router-dom"
 import PlayListItem from "../../components/musicPlayer/playListItem"
 import { useDispatch, useSelector } from "react-redux"
 import { playTrack, selectPlaylistCategories, setTrack } from "../../store/actions/creators/tracks"
-import { useGetCatalogSectionTracksQuery } from "../../components/services/catalogSelectionApi"
 import { useEffect } from "react"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
 import { selectPlaylist } from "../../store/selectors/tracks"
+import { useGetPlaylistCategoriesQuery } from "../../components/services/playlistApi"
 
 export const Playlist = () => {
     const { section } = useParams()
-    const {data} = useGetCatalogSectionTracksQuery(section);
+    const {data} = useGetPlaylistCategoriesQuery(section);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
     
@@ -25,7 +25,7 @@ export const Playlist = () => {
 
     useEffect(() => {
       if (data) {
-        dispatch(selectPlaylistCategories(data.items));
+        dispatch(selectPlaylistCategories(data.playlist));
       }
     }, [data, dispatch]);
     
