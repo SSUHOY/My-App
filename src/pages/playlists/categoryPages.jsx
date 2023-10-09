@@ -12,17 +12,20 @@ import { useGetCatalogSectionTracksQuery } from "../../components/services/catal
 import { useEffect } from "react"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
+import { selectPlaylist } from "../../store/selectors/tracks"
 
-export const Playlist = ({isFavorite}) => {
-
+export const Playlist = () => {
     const { section } = useParams()
     const {data} = useGetCatalogSectionTracksQuery(section);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true);
+    
+    const fetchCategoriesItems = useSelector(selectPlaylist)
+    console.log(fetchCategoriesItems);
 
     useEffect(() => {
       if (data) {
-        dispatch(selectPlaylistCategories(data));
+        dispatch(selectPlaylistCategories(data.items));
       }
     }, [data, dispatch]);
     
@@ -41,7 +44,7 @@ export const Playlist = ({isFavorite}) => {
     return () => clearTimeout(timer);
   }, []);
   
-    const tracks = data?.items || []
+  
     
   return (
     <S.Main>
@@ -59,8 +62,9 @@ export const Playlist = ({isFavorite}) => {
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <S.PlaylistContent>
-            {tracks.map((track, index) => (
+            {fetchCategoriesItems.map((track, index) => (
               <PlayListItem
+                currentData={fetchCategoriesItems}
                 onClick={() => handlePlayTrack(track, index)}
                 key={index}
                 loading={loading}
@@ -70,7 +74,7 @@ export const Playlist = ({isFavorite}) => {
                 subtitle={track.release_date}
                 time={track.duration_in_seconds}
                 id={track.id}
-                isFavorite={isFavorite}
+                isFavorite={track.isFavorite}
               />
             ))}
           </S.PlaylistContent>

@@ -30,6 +30,7 @@ const initialState = {
   isShuffle: false,
   isLogin: false,
   searchText: '',
+  isFavorite: false,
 };
 
 export default function trackReducer(state = initialState, action) {
@@ -74,15 +75,29 @@ export default function trackReducer(state = initialState, action) {
         playlist: tracksWithLikes,
       };
       // Выбор плейлиста
-     case GET_TRACKS_FROM_PLAYLIST: 
-     const tracksFromCategories = state.setPlaylist.map(() => ({
-      ...track,
-      isFavorite: !track.isFavorite
-     }))
-      return {
-        ...state,
-        setPlaylist:tracksFromCategories
-      };
+    //  case GET_TRACKS_FROM_PLAYLIST:
+    //   const {id} = action.payload; 
+    //  const tracksFromCategories = state.setPlaylist.map((track) => {
+    //   if(track.id === id) {
+    //     return {...track, isFavorite:!track.isFavorite}
+    //   }
+    //   return track;
+    //  })
+    //   return {
+    //     ...state,
+    //     setPlaylist:tracksFromCategories
+    //   };
+
+    case GET_TRACKS_FROM_PLAYLIST:
+      const usersId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
+      const tracksWithLikesInCategories = action.payload.map((track) => ({
+        ...track,
+        isFavorite:track.stared_user.some((user) => user.id === usersId),
+      }));
+        return {
+          ...state, 
+          setPlaylist: tracksWithLikesInCategories,
+        }
             //  получаем отдельный трек
             case SET_CURRENT_TRACK:
               const { track, index } = action.payload;

@@ -27,6 +27,7 @@ export function Main({ isPlaying, setIsPlaying }) {
 
   const fetchAllTracks = useSelector(selectAllTracks);
   const currentTrack = useSelector(selectCurrentTrack);
+  console.log(fetchAllTracks);
 
   const [loading, setLoading] = useState(true);
 
@@ -52,7 +53,7 @@ const handleSelectedGenresChange = (genreName) => {
 });
 };
 
-// Филтры по артисту, множественный выбор
+// Фильтры по артисту, множественный выбор
   const [selectedArtists, setSelectedArtists] = useState([])
   const handleSelectedArtistsChange = (artistName) => {
     setSelectedArtists((prevSelectedArtists) => {
@@ -150,9 +151,8 @@ const handleSelectedGenresChange = (genreName) => {
             <S.PlaylistContent>
               {filteredSongs.map((track, index) => (
                 <PlayListItem
+                  currentData = {data}
                   onClick={() => handlePlayTrack(track, index)}
-                  track={track}
-                  currentTrack={currentTrack}
                   key={index}
                   title={track.name}
                   artist={track.author}
@@ -164,7 +164,6 @@ const handleSelectedGenresChange = (genreName) => {
                   setIsPlaying={setIsPlaying}
                   id={track.id}
                   isFavorite={track.isFavorite}
-                  fetchAllTracks={fetchAllTracks}
                 />
               ))}
               <S.NotFound>
@@ -180,68 +179,4 @@ const handleSelectedGenresChange = (genreName) => {
 }
 
 export default Main;
-
-
-  //  const filteredTracks = data?data.filter((track) => {
-  //   const { artist, year, genre } = selectedFilters;
-
-  //   Фильтрация по исполнителю
-  //   if (artist.length > 0 && !artist.includes(track.author)) {
-  //     return false;
-  //   }
-
-  //   // Фильтрация по году выпуска
-  //   if (year === "New" && track.release_year < 2000) {
-  //     return false;
-  //   }
-  //   if (year === "Old" && track.release_year >= 2000) {
-  //     return false;
-  //   }
-
-  //   // Фильтрация по жанру
-  //   if (genre && genre !== track.genre) {
-  //     return false;
-  //   }
-
-  //   return true; // Оставляем треки, которые соответствуют выбранным фильтрам
-  // }):[];
-
-
-
-
-// useEffect(() => {
-//   if(filteredTracksByArtists.length > 0) {
-//     // dispatch(setPlaylist(filteredTracksByArtists))
-//   } if (filteredTracksByGenres.length > 0) {
-//     // dispatch(setPlaylist(filteredTracksByGenres))
-//     setSelectedTracks(filteredTracksByGenres)
-//   }
-//   return
-// },[selectedGenres, selectedArtists])
-
-
-  // const filteredTracks = useMemo(
-  //   () => {
-  //     const filterByArtists = fetchAllTracks.filter(track => track.author === selectedFilters.artist)
-  //     return filterByArtists;
-  //   } , [selectedFilters]
-  //   )
-    // console.log(filteredTracksByArtists);
-
-
-  // useEffect(() => {
-  //   const filterByArtists = fetchAllTracks.filter(track => track.author === selectedArtists)
-  //   if(filterByArtists.length > 0) {
-  //    dispatch(setPlaylist(filterByArtists))
-  //     // setSelectedTracks(filteredTracksByArtists)
-  //   }
-  // }, [selectedArtists])
-
- 
-  //   const filteredTracksByGenres = useMemo(()=> {
-  //     const filteredByGenres = fetchAllTracks.filter(track => track.genre === selectedGenres)
-  //     return filteredByGenres
-  //   }, [selectedGenres]
-  //   )
-  //   console.log(filteredTracksByGenres);
 

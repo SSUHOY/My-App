@@ -9,8 +9,6 @@ import {
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
 import { selectPlaylistCategories, setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
-import { useEffect } from "react";
-import { getAllTracks } from "../../api";
 
 const PlayListItem = ({
   title,
@@ -23,10 +21,10 @@ const PlayListItem = ({
   id,
   isFavorite, 
   currentTrack, 
+  currentData
 }) => {
 
   const isPlaying = useSelector(selectIsPlaying);
-
   const [addToFavorites] = useAddToFavoritesMutation({ id });
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
   
@@ -42,14 +40,12 @@ const PlayListItem = ({
     console.log("Лайк нажат");
   
     const ReloadPage = () => {
-      getAllTracks()
-        .then((data) => {
-          dispatch(setPlaylist(data));
-        })
-        .catch((error) => alert(error));
+      dispatch(selectPlaylistCategories(currentData))
+      console.log('Страница обновлена');
     };
     ReloadPage();
   };
+
   
 
   return (

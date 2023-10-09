@@ -12,6 +12,4 @@ export const selectFavoriteTracks = (state) => state.player.favoriteTracks
 export const selectIsLiked = (state) => state.player.isLiked
 export const logoutUserSelector = (store) => store.player.isLogin
 export const logUserSelector = (store) => store.player.isLogin
-// Выбор плейлиста из API
 export const selectPlaylist = (state) => state.player.setPlaylist
-export const selectSearchText = (state) => state.filter.searchText

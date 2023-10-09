@@ -55,8 +55,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
      if(!refreshResult.data.access) {
         return forceLogout()
      }
-     api.dispatch(
-        uploadTokens({...auth, accessToken:refreshResult.data.access})
+     auth.accessToken(
+        uploadTokens(refreshResult.data.access, auth.refreshToken)
      )
      const retryResult = await baseQuery(args, api, extraOptions)
 
