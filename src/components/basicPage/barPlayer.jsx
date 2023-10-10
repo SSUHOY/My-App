@@ -156,9 +156,11 @@ useEffect(() => {
           >
           <LikeIcon />
           </S.LikeIconSvgBarPlayer>
+          <S.VolumeBlockBox>
           <VolumeBlock
             volume={volume}
             onVolumeChange={handleVolumeChange} />
+          </S.VolumeBlockBox>
     </S.BarPlayer>
     </S.BarPlayerBlock>
     </S.BarContent>

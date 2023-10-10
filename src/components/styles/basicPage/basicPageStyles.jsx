@@ -35,6 +35,7 @@ cursor: pointer;
 `
 
 export const BarPlayerBlock = styled.div`
+width: 100%;
 height: 73px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -63,8 +64,8 @@ display: flex;
         align-items: center;
 -webkit-box-pack: start;
     -ms-flex-pack: start;
-        justify-content: space between;
-}
+        justify-content: space-between;
+        width: 100%;
 `
 
 export const BurgerLine = styled.span`
@@ -349,4 +350,11 @@ export const StyledProgressInput = styled.input`
 export const StyledProgressBarTime = styled.div`
   align-self: end;
   color: rgba(105, 105, 105, 1);
+`
+
+export const VolumeBlockBox = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 `
