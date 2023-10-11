@@ -98,11 +98,19 @@ export const NavMenu = styled.div`
 display: block;
   visibility: visible;
   transition: all 0.2s;
-  transform: ${props => props.active ? "translateX(0%)" : "translateX(-1500%)"};
+  transform: translateX(0%);
+  &.active {
+    fill: #b672ff;
+    stroke:  #b672ff;
+    transform: translateX(-1500%);
+  }
 
-  ${props => props.active && `
-    background-color: transparent;
-  `}
+
+//   transform: ${props => props.active ? "translateX(0%)" : "translateX(-1500%)"};
+
+//   ${props => props.active && `
+//     background-color: transparent;
+//   `}
 `;
 
 export const NotFound = styled.div`

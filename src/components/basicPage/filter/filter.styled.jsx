@@ -95,7 +95,7 @@ export const DropdownList = styled.ul`
   flex-direction: column;
   gap: 28px;
   & li:hover {
-    ${(props) => !props.$active && `border-color: #d9b6ff; color: #ad61ff;`}
+    ${(props) => !props.active && `border-color: #d9b6ff; color: #ad61ff;`}
     text-decoration: underline;
   }
 `
@@ -106,7 +106,7 @@ export const DropdownListGenres = styled.ul`
   cursor: pointer;
   gap: 28px;
   & li:hover {
-    ${(props) => !props.$active && `border-color: #d9b6ff; color: #ad61ff;`}
+    ${(props) => !props.active && `border-color: #d9b6ff; color: #ad61ff;`}
     text-decoration: underline;
   }
 `

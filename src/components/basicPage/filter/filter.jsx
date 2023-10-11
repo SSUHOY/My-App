@@ -1,12 +1,12 @@
 import { useState } from "react";
 import * as S from "./filter.styled";
 
+
 const Filter = ({
   selectedFilters,
   onClickCategory,
   artistList,
   genreList,
-  value,
   selectedArtists,
   onArtistClick,
   onGenreClick,

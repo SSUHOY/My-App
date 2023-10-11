@@ -27,7 +27,6 @@ export function Main({ isPlaying, setIsPlaying }) {
 
   const fetchAllTracks = useSelector(selectAllTracks);
   const currentTrack = useSelector(selectCurrentTrack);
-  console.log(fetchAllTracks);
 
   const [loading, setLoading] = useState(true);
 

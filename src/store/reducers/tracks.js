@@ -1,5 +1,4 @@
 import { compareRandom } from "../../utils/randomShuffledTracks";
-import { setPlaylist } from "../actions/creators/tracks";
 import {
   GET_FAVORITE_TRACKS,
   GET_TRACKS_FROM_PLAYLIST,
@@ -50,7 +49,7 @@ export default function trackReducer(state = initialState, action) {
     }
       case TOGGLE_LIKE:
         const { trackId } = action.payload;
-        const updatedTracks = state.playlist.map((track, id) => {
+        const updatedTracks = state.playlist.map((track) => {
           if (track.id === trackId) {
             return {
               ...state,
@@ -74,20 +73,6 @@ export default function trackReducer(state = initialState, action) {
         ...state,
         playlist: tracksWithLikes,
       };
-      // Выбор плейлиста
-    //  case GET_TRACKS_FROM_PLAYLIST:
-    //   const {id} = action.payload; 
-    //  const tracksFromCategories = state.setPlaylist.map((track) => {
-    //   if(track.id === id) {
-    //     return {...track, isFavorite:!track.isFavorite}
-    //   }
-    //   return track;
-    //  })
-    //   return {
-    //     ...state,
-    //     setPlaylist:tracksFromCategories
-    //   };
-
     case GET_TRACKS_FROM_PLAYLIST:
       const usersId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
       const tracksWithLikesInCategories = action.payload.map((track) => ({

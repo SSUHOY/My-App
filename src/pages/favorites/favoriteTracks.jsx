@@ -7,10 +7,9 @@ import { SideBar } from "../../components/mainWrappers/sidebar"
 import PlayListItem from "../../components/musicPlayer/playListItem"
 import { useDispatch, useSelector } from "react-redux"
 import { getFavoriteTracks, playTrack, setTrack } from "../../store/actions/creators/tracks"
-
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useEffect } from "react"
-import { selectAllTracks, selectFavoriteTracks } from "../../store/selectors/tracks"
+import { selectFavoriteTracks } from "../../store/selectors/tracks"
 import { useGetFavoriteTracksQuery } from "../../components/services/playlistApi"
 import SearchBar from "../../components/basicPage/search/searchBar"
 
@@ -44,6 +43,17 @@ const FavoriteTracks = ({}) => {
     console.log("Track Index:", index);
   };
 
+  // Фильтр по вводу в строку поиска
+  const [searchText, setSearchText] = useState('')
+
+  const filteredSongs = useMemo(() => {
+    let result = [...favoriteTracksFromStore];
+    if(searchText !== '') {
+      result = result.filter((track) => track.name.toLowerCase().includes(searchText.toLowerCase()));
+    }
+    return result;
+  }, [favoriteTracksFromStore, searchText]);
+
   
 
   return (
@@ -51,13 +61,13 @@ const FavoriteTracks = ({}) => {
       <S.Main>
       <Nav/>
       <S.MainCenterBlock>
-      <SearchBar />
+      <SearchBar onChange={(value) => setSearchText(value)} />
       <BlockHeader title="Мои треки" />  
       <S.CenterBlockContent > 
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <PlayListTitle />
       <S.PlaylistContent>
-        {favoriteTracksFromStore.map((track, index) =>
+        {filteredSongs.map((track, index) =>
            (<PlayListItem
                   onClick={() => handlePlayTrack(track)}
                   loading={loading}
@@ -70,7 +80,7 @@ const FavoriteTracks = ({}) => {
                   id ={track.id}
                   isFavorite={track.isFavorite}
            /> ))}
-      {favoriteTracksFromStore.length === 0 && 'В этом плейлисте нет треков'}
+      {filteredSongs.length === 0 && 'В этом плейлисте нет треков'}
       </S.PlaylistContent>
       </SkeletonTheme>
       </S.CenterBlockContent>

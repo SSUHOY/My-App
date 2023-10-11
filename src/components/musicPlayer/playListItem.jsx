@@ -7,7 +7,7 @@ import {
   selectIsPlaying,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
-import { selectPlaylistCategories, toggleLike } from "../../store/actions/creators/tracks";
+import { toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
 
 const PlayListItem = ({
@@ -21,7 +21,6 @@ const PlayListItem = ({
   id,
   isFavorite, 
   currentTrack, 
-  currentData
 }) => {
 
   const isPlaying = useSelector(selectIsPlaying);
@@ -37,13 +36,6 @@ const PlayListItem = ({
       await addToFavorites(id);
     }
     dispatch(toggleLike(id));
-    console.log("Лайк нажат");
-  
-    const ReloadPage = () => {
-      dispatch(selectPlaylistCategories(currentData))
-      console.log('Страница обновлена');
-    };
-    ReloadPage();
   };
 
   

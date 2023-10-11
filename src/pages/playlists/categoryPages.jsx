@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom"
 import PlayListItem from "../../components/musicPlayer/playListItem"
 import { useDispatch, useSelector } from "react-redux"
 import { playTrack, selectPlaylistCategories, setTrack } from "../../store/actions/creators/tracks"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useState } from "react"
 import SearchBar from "../../components/basicPage/search/searchBar"
 import { selectPlaylist } from "../../store/selectors/tracks"
@@ -21,7 +21,6 @@ export const Playlist = () => {
     const [loading, setLoading] = useState(true);
     
     const fetchCategoriesItems = useSelector(selectPlaylist)
-    console.log(fetchCategoriesItems);
 
     useEffect(() => {
       if (data) {
@@ -44,13 +43,25 @@ export const Playlist = () => {
     return () => clearTimeout(timer);
   }, []);
   
+
+    // Фильтр по вводу в строку поиска
+    const [searchText, setSearchText] = useState('')
+
+    const filteredSongs = useMemo(() => {
+      let result = [...fetchCategoriesItems];
+      if(searchText !== '') {
+        result = result.filter((track) => track.name.toLowerCase().includes(searchText.toLowerCase()));
+      }
+      return result;
+    }, [fetchCategoriesItems, searchText]);
+  
   
     
   return (
     <S.Main>
-    <Nav />
+    <Nav active={true} />
     <S.MainCenterBlock>
-      <SearchBar />
+      <SearchBar onChange={(value) => setSearchText(value)} />
         <BlockHeader
           title={
             (section == 1 && "Классическая музыка") ||
@@ -62,7 +73,7 @@ export const Playlist = () => {
         <SkeletonTheme baseColor="#313131" highlightColor="#444">
           <PlayListTitle />
           <S.PlaylistContent>
-            {fetchCategoriesItems.map((track, index) => (
+            {filteredSongs.map((track, index) => (
               <PlayListItem
                 currentData={fetchCategoriesItems}
                 onClick={() => handlePlayTrack(track, index)}

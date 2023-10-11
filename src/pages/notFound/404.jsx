@@ -11,7 +11,6 @@ import SearchBar from "../../components/basicPage/search/searchBar";
 export const NotFound = () => {
 
 return (
-
 <>
   <S.Main>
     <Nav />

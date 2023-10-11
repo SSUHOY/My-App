@@ -1,8 +1,4 @@
-import { useDispatch } from "react-redux"
 import * as S from "../../styles/basicPage/basicPageStyles"
-import { selectSearchText } from "../../../store/selectors/tracks"
-
-
 
 const SearchBar = ({onChange}) => {
 
