@@ -1,4 +1,4 @@
-import * as S from "../styles/player/playerStyles"
+import * as S from "../styles/musicPlayer/playerStyles"
 import { PlayerButtonNext, PlayerButtonPlay, PlayerButtonPrev, PlayerButtonRepeat, PlayerButtonShuffle } from "./playerButtons"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllTracks, selectIsLoop, selectIsShuffle, selectShuffledTracks } from "../../store/selectors/tracks"

@@ -1,4 +1,4 @@
-import * as S from "../styles/player/playerStyles"
+import * as S from "../styles/musicPlayer/playerStyles"
 
 const PlayListTitle = () => {
     return (

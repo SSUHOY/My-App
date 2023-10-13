@@ -1,7 +1,7 @@
 import { formatTime } from "../../utils/formatTime"
 import { StyledProgressBarTime } from "../styles/basicPage/basicPageStyles"
 
-const ProgressBarTime = ({ currentTime, duration }) => {
+export const ProgressBarTime = ({ currentTime, duration }) => {
 
   return (
     <StyledProgressBarTime>
@@ -10,4 +10,3 @@ const ProgressBarTime = ({ currentTime, duration }) => {
     </StyledProgressBarTime>
   )
 }
-export default ProgressBarTime

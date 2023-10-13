@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import { AppRoutes } from './routes';
 import { getAllTracks } from './api';
+import { useThemeContext } from './utils/theme-switcher/theme';
 
 function App() {
 

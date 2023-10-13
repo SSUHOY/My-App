@@ -26,12 +26,16 @@ const Filter = () => {
         >
           исполнителю
         </button>
-        <div id="myDropdown" className={`dropdown-content ${clicks.artist? "show" : ""}`}>
-          <p>Michael Jackson </p>
-          <p> Frank Sinatra </p>
-          <p>Calvin Harris </p>
-          <p>Zhu </p>
-          <p>Arctic Monkeys</p>
+        <div id="myDropdown" className={`dropdown-content scrollbar ${clicks.artist? "show" : ""}`}>
+          <ul className="dropdown-content_li">
+            <li>Michael Jackson</li>
+            <li>Calvin Harris</li>
+            <li>Zhu</li>
+            <li>Arctic Monkeys</li>
+            <li>Michael Jackson</li>
+            <li>Frank Sinatra</li>
+            <li>Arctic Monkeys</li>
+          </ul>
         </div>
       </div>
       <S.FilterTitle>

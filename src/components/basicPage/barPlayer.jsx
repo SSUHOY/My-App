@@ -1,18 +1,20 @@
 import PlayerControls from '../musicPlayer/playerControls'
 import TrackPlay from './trackPlay'
 import * as S from '../styles/basicPage/basicPageStyles'
-import ProgressBarTime from './ProgressBarTime'
-import ProgressBar from './ProgressBar'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import VolumeBlock from '../volumeBlock/volumeBlock'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCurrentTrack, selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
-import { pauseTrack, playTrack } from '../../store/actions/creators/tracks'
+import { selectIsLoop, selectIsPlaying } from '../../store/selectors/tracks'
+import { nextTrack, pauseTrack, playTrack } from '../../store/actions/creators/tracks'
+import { useRef } from 'react'
+import { ProgressBarTime } from './durationtimebar'
+import {ProgressBar} from './progressbarinput'
 
-const BarPlayer = () => {
+const BarPlayer = ({currentTrack}) => {
 
-  const currentTrack = useSelector(selectCurrentTrack)
+  const audioRef = useRef(null);
+
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(30)
@@ -21,12 +23,18 @@ const BarPlayer = () => {
   const isLoop = useSelector(selectIsLoop)
   const dispatch = useDispatch()
   
-  const audioRef = useRef(null);
-
   useEffect(() => {
     setCurrentTime(0)
   }, [currentTrack])
 
+
+  // Определение обработчика событий для обновления времени и продолжительности звука
+  const handleTimeUpdate = () => {
+    if(audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+      setDuration(audioRef.current.duration);
+    }
+  }
 
     const handleStart = () => {
       dispatch(playTrack())
@@ -49,11 +57,7 @@ const BarPlayer = () => {
     setVolume(shiftVolume)
     audioRef.current.volume = shiftVolume / 100
   }
-// Определение обработчика событий для обновления времени и продолжительности звука
-  const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
-    setDuration(audioRef.current.duration);
-  }
+
 
 // Поиск времени, когда пользователь указывает на определенное время в полосе поиска ProgressBar
   const handleSeekTrackTime = (e) => {
@@ -63,18 +67,24 @@ const BarPlayer = () => {
 
 // хук useEffect для добавления и удаления прослушивателя событий
 useEffect(() => {
-  audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+  if(audioRef.current) {
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    audioRef.current.addEventListener('ended', handleTrackEnd)
+  }
   return () => {
-    audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+    if(audioRef.current) {
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current.removeEventListener('ended', handleTrackEnd)
+    }
   };
-}, [currentTrack]);
+}, []);
 
   return  (
     <S.BarContent >
       <ProgressBarTime
         currentTime={currentTime}
         duration={duration} />
-       <ProgressBar   
+       <ProgressBar
          duration={duration}
          currentTime={currentTime}
          handleTimeUpdate={handleTimeUpdate}

@@ -7,14 +7,19 @@ import {
     SHUFFLE_PLAYLIST,
     PLAY_TRACK,
     LOOP_TRACK,
-    GET_TRACKS,
-    SET_PLAYLIST_TITLE
+    GET_FAVORITE_TRACKS,
+    TOGGLE_LIKE,
+    UPLOAD_TOKENS,
+    TRACK_IS_LIKED,
+    TRACK_IS_UNLIKED,
+    LOG_OUT_USER,
+    LOG_IN_USER
  } from '../types/tracks';
 
 
- export const setTrack = (track, index) => ({
+ export const setTrack = (track, index, playlist) => ({
     type: SET_CURRENT_TRACK,
-    payload: {index, track}
+    payload: {index, track, playlist}
 })
  
  export const pauseTrack = () => ({
@@ -29,7 +34,7 @@ import {
      
 export const setPlaylist = (playlist) => ({
     type: SET_PLAYLIST,
-    payload: playlist
+    payload: playlist,
 })
 
 export const setIsShuffle = () => ({
@@ -49,12 +54,26 @@ export const prevTrack = (index, track) => ({
     type: PREV_TRACK,
     payload: {index, track}
 })
-  
-// export const setPlaylistTitle = (title) => ({
-//     type: SET_PLAYLIST_TITLE,
-//     pal
-// })
-    
 
-    
-    
+export const getFavoriteTracks = (favoriteTracks) => ({
+    type: GET_FAVORITE_TRACKS,
+    payload: favoriteTracks,
+})
+     
+export const toggleLike = (index, track) =>({
+    type: TOGGLE_LIKE,
+    payload: {index, track}
+})
+
+export const uploadTokens = (accessToken, refreshToken) => ({
+    type: UPLOAD_TOKENS,
+    payload: {accessToken, refreshToken}
+})
+
+export const logoutUser = () => ({
+    type: LOG_OUT_USER
+})
+
+export const loginUser = () => ({
+    type: LOG_IN_USER
+})

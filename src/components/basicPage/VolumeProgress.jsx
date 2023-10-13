@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import * as S from './volumeBlock.styles'
 
 const VolumeProgress = ({ volume, onVolumeChange }) => {

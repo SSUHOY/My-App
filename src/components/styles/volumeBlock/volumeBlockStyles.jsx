@@ -9,7 +9,7 @@ width: auto;
   padding: 0 92px 0 0;
 `
 export const VolumeContent = styled.div`
-padding-left: 1200px;
+padding-left: max(1920px, 5%);
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -36,4 +36,9 @@ margin-bottom: 10px;
 export const VolumeProgressLineInput = styled.input`
 width: 109px;
 height:2px;
+background: #797979;
+&::-webkit-slider-thumb {
+  background: white;
+  
+}
 `

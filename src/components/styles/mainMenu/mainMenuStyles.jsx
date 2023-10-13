@@ -15,9 +15,31 @@ flex-wrap: wrap;
     justify-content: space-between;
 `
 
+export const PlaylistContent = styled.div`
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+height: 1200px;
+margin-bottom: 80px;
+padding-right: 4px;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+overflow-y: scroll;
+&::-webkit-scrollbar {
+    background: #2E2E2E;
+    width: 2px;
+}
+&::-webkit-scrollbar-thumb{
+    background: #f2f2f2;
+    width: 15px;
+    height: 15px;
+  }
+`
+
 export const MainNav = styled.nav`
 width: 264px;
-height: 270px;
 background-color: #181818;
 padding: 20px 0 20px 36px
 `
@@ -49,6 +71,7 @@ width: auto;
   padding: 20px 40px 20px 111px;
 `
 
+
 export const CenterBlockContent = styled.div`
 display: -webkit-box;
 display: -ms-flexbox;
@@ -61,6 +84,7 @@ display: flex;
 
 export const MainSideBar = styled.div`
 background-color: rgb(24, 24, 24);
+min-width: 400px;
 max-width: 418px;
 padding: 20px 90px 20px 78px;
 `

@@ -122,8 +122,23 @@ fill: transparent;
 stroke: #696969;
 `
 
+export const LikeIconSvg = styled.div`
+padding-left:1px;
+
+&.active svg {
+  fill: #b672ff;
+  stroke:  #b672ff
+}
+&.active:hover svg {
+    fill: #b672ff;
+    stroke: #b672ff;
+  }
+`
+
+
 export const TrackTimeText = styled.span`
 padding-left: 5px;
+padding-bottom: 15px;
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
