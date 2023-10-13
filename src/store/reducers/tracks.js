@@ -1,7 +1,7 @@
 import { compareRandom } from "../../utils/randomShuffledTracks";
 import {
   GET_FAVORITE_TRACKS,
-  GET_TRACKS,
+  GET_TRACKS_FROM_PLAYLIST,
   LOG_IN_USER,
   LOG_OUT_USER,
   LOOP_TRACK,
@@ -18,6 +18,8 @@ import {
 
 // начальное состояние
 const initialState = {
+  // Получение треков в данный плейлист
+  setPlaylist: [],
   isPlaying: false,
   track: null,
   playlist: [],
@@ -26,6 +28,8 @@ const initialState = {
   isLoop: false,
   isShuffle: false,
   isLogin: false,
+  searchText: '',
+  isFavorite: false,
 };
 
 export default function trackReducer(state = initialState, action) {
@@ -45,7 +49,7 @@ export default function trackReducer(state = initialState, action) {
     }
       case TOGGLE_LIKE:
         const { trackId } = action.payload;
-        const updatedTracks = state.playlist.map((track, id) => {
+        const updatedTracks = state.playlist.map((track) => {
           if (track.id === trackId) {
             return {
               ...state,
@@ -69,6 +73,16 @@ export default function trackReducer(state = initialState, action) {
         ...state,
         playlist: tracksWithLikes,
       };
+    case GET_TRACKS_FROM_PLAYLIST:
+      const usersId = JSON.parse(localStorage.getItem('userData'))?.id ?? null
+      const tracksWithLikesInCategories = action.payload.map((track) => ({
+        ...track,
+        isFavorite:track.stared_user.some((user) => user.id === usersId),
+      }));
+        return {
+          ...state, 
+          setPlaylist: tracksWithLikesInCategories,
+        }
             //  получаем отдельный трек
             case SET_CURRENT_TRACK:
               const { track, index } = action.payload;

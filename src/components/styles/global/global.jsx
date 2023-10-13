@@ -71,6 +71,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.underline {
+  color: rgba(182, 114, 255, 1);
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 32px;
+  width: 248px;
+  height: 305px;
+  border-radius: 12px;
+  gap: 24px;
+}
+
+.show-year {
+  display: flex;
+  font-size: 20px;
+  padding: 32px;
+  width: 260px;
+  height: 152px;
+  border-radius: 12px;
+}
+
+.show-genres {
+  text-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 32px;
+  width: 280px;
+  height: 198px;
+  border-radius: 12px;
+  gap: 24px;
+}
+
 `
 
 export default GlobalStyling

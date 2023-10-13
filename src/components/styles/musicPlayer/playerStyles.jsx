@@ -15,6 +15,10 @@ export const PlaylistItem = styled.div`
 width: 100%;
 display: block;
 margin-bottom: 12px;
+cursor: pointer;
+&:hover {
+  background-color: #2E2E2E;
+}
 `
 
 export const PlayListTrack = styled.div`

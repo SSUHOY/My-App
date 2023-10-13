@@ -1,6 +1,7 @@
-import * as S from "../styles/basicPage/basicPageStyles"
+import * as S from "../../styles/basicPage/basicPageStyles"
 
-const SearchBar = () => {
+const SearchBar = ({onChange}) => {
+
     return (
       <S.CenterBlock >
         <S.SearchSvg>
@@ -10,6 +11,8 @@ const SearchBar = () => {
           type="search"
           placeholder="Поиск"
           name="search"
+          id="search-bar"
+          onChange={(e) => onChange(e.target.value)}
         />
       </S.CenterBlock>
     )

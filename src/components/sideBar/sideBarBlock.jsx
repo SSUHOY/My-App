@@ -1,5 +1,4 @@
 import SidebarItem from './sideBarItem'
-
 import * as S from '../styles/sideBar/sideBarStyles'
 
 const SidebarBlock = ({isLoading}) => {

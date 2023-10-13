@@ -7,10 +7,8 @@ import {
   selectIsPlaying,
 } from "../../store/selectors/tracks";
 import { LikeIcon, NoteIcon } from "./icons/playListIcons";
-import { setPlaylist, setTrack, toggleLike } from "../../store/actions/creators/tracks";
+import { toggleLike } from "../../store/actions/creators/tracks";
 import { useAddToFavoritesMutation, useDeleteFromFavoritesMutation } from "../services/playlistApi";
-import { useEffect } from "react";
-import { getAllTracks } from "../../api";
 
 const PlayListItem = ({
   title,
@@ -22,14 +20,12 @@ const PlayListItem = ({
   onClick,
   id,
   isFavorite, 
-  currentTrack,
+  currentTrack, 
 }) => {
-  const isPlaying = useSelector(selectIsPlaying);
 
+  const isPlaying = useSelector(selectIsPlaying);
   const [addToFavorites] = useAddToFavoritesMutation({ id });
   const [deleteFromFavorites] = useDeleteFromFavoritesMutation({ id });
-  
-  useEffect(() => {}, [toggleLike]);
   
   const dispatch = useDispatch();
   
@@ -40,17 +36,8 @@ const PlayListItem = ({
       await addToFavorites(id);
     }
     dispatch(toggleLike(id));
-    console.log("Лайк нажат");
-  
-    const ReloadPage = () => {
-      getAllTracks()
-        .then((data) => {
-          dispatch(setPlaylist(data));
-        })
-        .catch((error) => alert(error));
-    };
-    ReloadPage();
   };
+
   
 
   return (

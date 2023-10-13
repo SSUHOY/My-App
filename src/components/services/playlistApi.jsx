@@ -55,8 +55,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
      if(!refreshResult.data.access) {
         return forceLogout()
      }
-     api.dispatch(
-        uploadTokens({...auth, accessToken:refreshResult.data.access})
+     auth.accessToken(
+        uploadTokens(refreshResult.data.access, auth.refreshToken)
      )
      const retryResult = await baseQuery(args, api, extraOptions)
 
@@ -83,7 +83,31 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
               ]
             : [{ type: 'Favorites', id: 'LIST' }],
       }),
-  
+      getTracks: builder.query({
+        query: () => '/catalog/track/all',
+        providesTags: (result) =>
+          result
+            ? [
+                ...result.map(({ id }) => ({ type: 'Favorites', id })),
+                { type: 'Favorites', id: 'LIST' },
+              ]
+            : [{ type: 'Favorites', id: 'LIST' }],
+      }),
+      getPlaylistCategories: builder.query({
+        query: (section) => 
+        `/catalog/selection/${section}`, 
+        transformResponse: (response) => ({
+          playlist: response.items,
+        }),
+        providesTags: (result) => 
+        result.playlist
+        ? [
+          ...result.playlist.map(({ id }) => ({ type: 'Favorites', id })),
+          { type: 'Favorites', id: 'LIST' },
+        ]
+      : [{ type: 'Favorites', id: 'LIST' }],
+      }),
+      
       addToFavorites: builder.mutation({
         query: (id) => ({
           url: `/catalog/track/${id}/favorite/`,
@@ -104,6 +128,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
   export const {
     useGetFavoriteTracksQuery,
+    useGetTracksQuery,
+    useGetPlaylistCategoriesQuery,
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
   } = playlistApi

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { useAuthContext } from "../../context/AuthContext"
 import * as S from "../styles/basicPage/basicPageStyles"
-import { LogOutLogo } from "./icons"
+import { LogOutLogo } from "./icons/icons"
 
 const UserNameSideBar = () => {
   const { user } = useAuthContext()

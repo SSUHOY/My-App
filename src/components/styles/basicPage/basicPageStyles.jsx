@@ -21,8 +21,21 @@ width: 100%;
 height: 5px;
 background: #2E2E2E;
 `
+export const LikeIconSvgBarPlayer = styled.div`
+margin-left:120px;
+cursor: pointer;
+&.active svg {
+  fill: #b672ff;
+  stroke:  #b672ff
+}
+&.active:hover svg {
+    fill: #b672ff;
+    stroke: #b672ff;
+  }
+`
 
 export const BarPlayerBlock = styled.div`
+width: 100%;
 height: 73px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,8 +64,8 @@ display: flex;
         align-items: center;
 -webkit-box-pack: start;
     -ms-flex-pack: start;
-        justify-content: space between;
-}
+        justify-content: space-between;
+        width: 100%;
 `
 
 export const BurgerLine = styled.span`
@@ -168,7 +181,7 @@ export const TrackPlayAuthor = styled.div`
 -ms-grid-row: 1;
 -ms-grid-column: 2;
 grid-area: author;
-min-width: 49px;
+width: 49px;
 `
 
 export const TrackPlayAuthorLink = styled.a`
@@ -199,24 +212,21 @@ export const TrackPlayLikeDis= styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
-margin-left: 26%;
-`
-export const TrackPlayLike= styled.div`
-padding: 5px;
-fill: transparent;
-stroke: #ACACAC;
-cursor: pointer;
+margin-left: 120px;
 `
 
-export const TrackPlayLikeSvg = styled.svg`
+export const TrackPlayLike = styled.svg`
+width: 40px;
 padding: 5px;
-width: 14px;
 fill: transparent;
 stroke: #696969;
+cursor: pointer;
 `
-export const TrackPlayDislike = styled.div`
-padding-bottom: 4px;
+export const TrackPlayDislike = styled.svg`
+width: 30px;
 margin-left: 28.5px;
+fill: transparent;
+stroke: #696969;
 cursor: pointer;
 `
 
@@ -230,8 +240,12 @@ display: flex;
         flex-direction: row;
 `
 
+export const LikeDislikeBox = styled.div`
+height:40px;
+`
+
 export const TrackPlayContain = styled.div`
-width: auto;
+width: 180px;
 display: -ms-grid;
 display: grid;
 -ms-grid-columns: auto 1fr;
@@ -336,4 +350,11 @@ export const StyledProgressInput = styled.input`
 export const StyledProgressBarTime = styled.div`
   align-self: end;
   color: rgba(105, 105, 105, 1);
+`
+
+export const VolumeBlockBox = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 `

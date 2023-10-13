@@ -27,15 +27,20 @@ padding-right: 4px;
     -ms-flex-direction: column;
         flex-direction: column;
 overflow-y: scroll;
+&:hover {
+    background-color: 
+}
 &::-webkit-scrollbar {
-    background: #2E2E2E;
-    width: 2px;
+    background: #2e2e2e;
 }
 &::-webkit-scrollbar-thumb{
-    background: #f2f2f2;
-    width: 15px;
+    background:  #f2f2f2;
     height: 15px;
   }
+`
+
+export const PlaylistItem = styled.div`
+
 `
 
 export const MainNav = styled.nav`
@@ -93,9 +98,51 @@ export const NavMenu = styled.div`
 display: block;
   visibility: visible;
   transition: all 0.2s;
-  transform: ${props => props.active ? "translateX(0%)" : "translateX(-1500%)"};
+  transform: translateX(0%);
+  &.active {
+    fill: #b672ff;
+    stroke:  #b672ff;
+    transform: translateX(-1500%);
+  }
 
-  ${props => props.active && `
-    background-color: transparent;
-  `}
+
+//   transform: ${props => props.active ? "translateX(0%)" : "translateX(-1500%)"};
+
+//   ${props => props.active && `
+//     background-color: transparent;
+//   `}
 `;
+
+export const NotFound = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+export const SelectedFiltersCircleArtists=styled.div`
+    width: 26px;
+    height: 26px;
+    background-color: #b672ff;
+    border-radius: 16px;
+    display: flex;
+    margin-top: 2px;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 590px;
+    top: 230px;
+`
+
+export const SelectedFiltersCircleGenres=styled.div`
+    width: 26px;
+    height: 26px;
+    background-color: #b672ff;
+    border-radius: 16px;
+    display: flex;
+    margin-top: 2px;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 837px;
+    top: 230px;
+`
