@@ -10,8 +10,6 @@ export const AuthContext = createContext({})
 
 export const useAuthContext = () => useContext(AuthContext)
 
-
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const storedUserData = localStorage.getItem('userData')
@@ -34,7 +32,6 @@ const loginUserFn = async ({ email, password }) => {
     const {access: accessToken, refresh: refreshToken} = tokenData
     dispatch(uploadTokens(accessToken, refreshToken));
     const userData = await fetchLogin({email, password});
-    
     localStorage.setItem('tokenData', JSON.stringify(tokenData))
     console.log(localStorage);
     localStorage.setItem('userData', JSON.stringify(userData))
