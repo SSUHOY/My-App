@@ -145,7 +145,7 @@ const handleSelectedGenresChange = (genreName) => {
               ) : null
               }
         <S.CenterBlockContent>
-          <SkeletonTheme baseColor="#313131" highlightColor="#444">
+          <SkeletonTheme baseColor="#c92222" highlightColor="#444">
             <PlayListTitle />
             <S.PlaylistContent>
               {filteredSongs.map((track, index) => (
